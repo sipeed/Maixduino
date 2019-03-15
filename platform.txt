@@ -1,0 +1,102 @@
+name = K210 Arduino
+version = 0.1.0
+
+# Compile variables
+compiler.path={runtime.tools.riscv64-unknown-elf-gcc.path}/bin/
+compiler.c.cmd=riscv64-unknown-elf-gcc
+compiler.cpp.cmd=riscv64-unknown-elf-g++
+compiler.ld.cmd=riscv64-unknown-elf-ld
+compiler.ar.cmd=riscv64-unknown-elf-ar
+compiler.objcopy.cmd=riscv64-unknown-elf-objcopy
+compiler.elf2hex.cmd=riscv64-unknown-elf-objcopy
+compiler.size.cmd=riscv64-unknown-elf-size
+
+
+compiler.sdk.path={runtime.platform.path}/kendryte-standalone-sdk/lib
+compiler.preproc.flags=-I{build.system.path}/include -I{compiler.sdk.path}/bsp/include -I{compiler.sdk.path}/bsp -I{compiler.sdk.path}/drivers/include -I{compiler.sdk.path}/drivers -I{compiler.sdk.path}/utils/include -I{compiler.sdk.path}/utils
+
+
+
+compiler.c.flags=-c -DCONFIG_LOG_ENABLE -DCONFIG_LOG_LEVEL=LOG_INFO -DDEBUG=1 -D__riscv64 -mcmodel={build.mcmodel} -std=gnu11 -Wno-pointer-to-int-cast -Wno-old-style-declaration -fno-common -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -fno-zero-initialized-in-bss -Os -ggdb {compiler.preproc.flags} -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Werror=frame-larger-than=65536 -Wno-unused-parameter -Wno-sign-compare -Wno-error=missing-braces -Wno-error=return-type -Wno-error=pointer-sign -Wno-missing-braces -Wno-strict-aliasing -Wno-implicit-fallthrough -Wno-missing-field-initializers -g
+
+compiler.cpp.flags=-c -DCONFIG_LOG_ENABLE -DCONFIG_LOG_LEVEL=LOG_INFO -DDEBUG=1 -D__riscv64 -mcmodel={build.mcmodel} -fno-common -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -fno-zero-initialized-in-bss -Os -ggdb {compiler.preproc.flags} -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Werror=frame-larger-than=65536 -Wno-unused-parameter -Wno-sign-compare -Wno-error=missing-braces -Wno-error=return-type -Wno-error=pointer-sign -Wno-missing-braces -Wno-strict-aliasing -Wno-implicit-fallthrough -Wno-missing-field-initializers -g
+
+compiler.ld.flags=-mcmodel=medany -g -nostartfiles -Wl,--gc-sections -T {build.ldscript}
+
+compiler.S.flags=-c -DCONFIG_LOG_ENABLE -DCONFIG_LOG_LEVEL=LOG_INFO -DDEBUG=1 -D__riscv64 -mcmodel={build.mcmodel} -std=gnu11 -Wno-pointer-to-int-cast -Wno-old-style-declaration -fno-common -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -fno-zero-initialized-in-bss -Os -ggdb {compiler.preproc.flags} -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Werror=frame-larger-than=65536 -Wno-unused-parameter -Wno-sign-compare -Wno-error=missing-braces -Wno-error=return-type -Wno-error=pointer-sign -Wno-missing-braces -Wno-strict-aliasing -Wno-implicit-fallthrough -Wno-missing-field-initializers -g -x assembler-with-cpp -D __riscv64
+
+compiler.ar.flags=rcs
+
+compiler.objcopy.eep.flags=
+
+compiler.elf2hex.flags=-R .rel.dyn
+
+compiler.define=-DARDUINO=
+
+compiler.c.extra_flags=-DF_CPU={build.f_cpu}L -D{build.board}
+compiler.c.elf.extra_flags=
+compiler.cpp.extra_flags=-DF_CPU={build.f_cpu}L -D{build.board}
+compiler.S.extra_flags=-DF_CPU={build.f_cpu}L -D{build.board}
+compiler.ar.extra_flags=
+compiler.elf2hex.extra_flags=
+
+# Can be overridden in boards.txt
+build.extra_flags=
+
+# USB Flags
+# ---------
+build.usb_flags=
+build.openocdcfg=
+
+# Compile patterns
+# ---------------------
+
+## Compile S files
+recipe.S.o.pattern="{compiler.path}{compiler.c.cmd}" {compiler.S.flags} -DARDUINO={runtime.ide.version} {compiler.S.extra_flags} {build.extra_flags} {includes} "{source_file}" -o "{object_file}"
+
+## Compile c files
+recipe.c.o.pattern="{compiler.path}{compiler.c.cmd}" {compiler.c.flags} -DARDUINO={runtime.ide.version} {compiler.c.extra_flags} {build.extra_flags} {includes} "{source_file}" -o "{object_file}"
+
+## Compile c++ files
+recipe.cpp.o.pattern="{compiler.path}{compiler.cpp.cmd}" {compiler.cpp.flags} -DARDUINO={runtime.ide.version} {compiler.cpp.extra_flags} {build.extra_flags} {includes} "{source_file}" -o "{object_file}"
+
+## Create archives
+recipe.ar.pattern="{compiler.path}{compiler.ar.cmd}" {compiler.ar.flags} {compiler.ar.extra_flags} "{archive_file_path}" "{object_file}"
+
+## Link gc-sections, archives, and objects
+recipe.c.combine.pattern="{compiler.path}{compiler.cpp.cmd}" {compiler.ld.flags} {build.extra_flags} {object_files} -o "{build.path}/{build.project_name}.elf" -Wl,--start-group -lgcc -lm -lc -Wl,--end-group -Wl,--start-group "{archive_file_path}" -Wl,--end-group -Wl,--start-group -lgcc -lm -lc
+
+## Create binary
+recipe.objcopy.eep.pattern="{compiler.path}{compiler.objcopy.cmd}" {compiler.objcopy.eep.flags} --output-format=binary "{build.path}/{build.project_name}.elf" "{build.path}/{build.project_name}.bin"
+
+## Create hex
+recipe.objcopy.hex.pattern="{compiler.path}{compiler.elf2hex.cmd}" {compiler.elf2hex.flags} -O srec "{build.path}/{build.project_name}.elf" "{build.path}/{build.project_name}.hex"
+
+## Compute size
+recipe.size.pattern="{compiler.path}{compiler.size.cmd}" -B "{build.path}/{build.project_name}.elf"
+recipe.size.regex=\s*[0-9]+\s+[0-9]+\s+[0-9]+\s+([0-9]+).*
+
+
+# Uploader tools
+# -------------------
+tools.openocd.path={runtime.tools.openocd.path}/
+tools.openocd.cmd=openocd
+tools.openocd.cmd.windows=openocd.exe
+tools.openocd.program.params.verbose=-d2
+tools.openocd.program.params.quiet=-d0
+tools.openocd.program.config={runtime.tools.openocd.path}/ocd.txt
+tools.openocd.program.pattern="{path}{cmd}" -d0 -f {program.config} -c "flash protect 0 0 last off; program {{build.path}/{build.project_name}.elf} verify; resume 0x20000000; exit"
+
+
+tools.manual_openocd.path=
+tools.manual_openocd.cmd=openocd
+tools.manual_openocd.program.params.verbose=-d2
+tools.manual_openocd.program.params.quiet=-d0
+tools.manual_openocd.program.config=
+tools.manual_openocd.program.pattern="{path}{cmd}" -d0 -f {program.config} -c "flash protect 0 0 last off; program {{build.path}/{build.project_name}.elf} verify; resume 0x20000000; exit"
+
+tools.kflash.path={runtime.tools.kflash.path}/
+tools.kflash.cmd={runtime.tools.kflash.path}/kflash
+tools.kflash.bootloader.path={runtime.tools.kflash.path}/bootloader.bin
+tools.kflash.upload.pattern="{cmd}" -p {serial.port} -l "{bootloader.path}" {build.path}/{build.project_name}.bin
+tools.kflash.program.pattern="{cmd}" -p {serial.port} -l "{bootloader.path}" {build.path}/{build.project_name}.bin

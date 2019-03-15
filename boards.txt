@@ -1,0 +1,33 @@
+menu.clksrc=CPU Clock Frequency
+menu.toolsloc=Tool Install Location
+
+#Sipeed M1 Dock Board
+
+m1.name=Sipeed M1 Dock Board
+m1.menu.toolsloc.default=Default
+m1.menu.toolsloc.manual=Manual
+m1.menu.toolsloc.default.compiler.path={runtime.tools.riscv64-unknown-elf-gcc.path}/bin/
+m1.menu.toolsloc.manual.compiler.path={runtime.tools.riscv64-unknown-elf-gcc.path}/bin/
+
+#Point to the file for ./variants/<variant>/pins_arduino.h
+m1.build.variant=standard
+
+m1.menu.clksrc=400MHz FPGA Clock
+m1.menu.clksrc.fpga.build.f_cpu=400000000L
+
+#m1.build.mcu=rv64gc
+#m1.build.mabi=ilp64
+m1.build.mcmodel=medany
+
+#"The 'core' file directory for this board, in ./cores
+m1.build.core=arduino
+# This sets a define for use in the compiled code.
+m1.build.board=SIPEED_M1_BOARD
+m1.build.sdata.size=512
+#This selects the tool from "programmers.txt"
+m1.program.tool=kflash
+m1.upload.tool=kflash
+# Limit is the 16MB Flash. Assume half is used for something else.
+m1.upload.maximum_size=8388608
+m1.build.ldscript={runtime.platform.path}/kendryte-standalone-sdk/lds/kendryte.ld
+m1.build.openocdcfg={runtime.tools.openocd.path}/ocd.txt
