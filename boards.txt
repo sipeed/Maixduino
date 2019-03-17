@@ -15,8 +15,6 @@ m1.build.variant=standard
 m1.menu.clksrc=400MHz FPGA Clock
 m1.menu.clksrc.fpga.build.f_cpu=400000000L
 
-#m1.build.mcu=rv64gc
-#m1.build.mabi=ilp64
 m1.build.mcmodel=medany
 
 #"The 'core' file directory for this board, in ./cores

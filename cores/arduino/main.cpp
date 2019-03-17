@@ -1,7 +1,7 @@
 
 #define ARDUINO_MAIN
 #include "Arduino.h"
-//#include "encoding.h"
+#include "encoding.h"
 
 
 #define cmb() __asm__ __volatile__ ("" ::: "memory")
@@ -12,8 +12,8 @@
  */
 int main( void )
 {
-  //init();
-
+  pll_init();
+  fpioa_init();
   setup();
 
   do {
