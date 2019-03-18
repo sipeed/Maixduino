@@ -82,7 +82,7 @@ void noTone(uint8_t _pin);
 //#include "variant.h"
 
 #include "wiring_digital.h"
-//#include "wiring_analog.h"
+#include "wiring_analog.h"
 //#include "wiring_shift.h"
 //#include "WInterrupts.h"
 

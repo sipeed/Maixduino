@@ -7,7 +7,7 @@
 #include "platform.h"
 
 #include "Arduino.h"
-
+#include "pwm.h"
 
 /* BOARD  PIN DEFINE */
 /* LEDs */
@@ -59,9 +59,15 @@ static const uint8_t MOSI = SPI0_MOSI;
 static const uint8_t MISO = SPI0_MISO;
 static const uint8_t SCK  = SPI0_SCLK;
 
+typedef struct _pwm_fpio_set_t{
+    pwm_channel_number_t channel;
+    pwm_device_number_t device;
+    uint8_t inuse;
+}pwm_fpio_set_t;
+
 #define VARIANT_NUM_GPIOHS (32)
 #define VARIANT_NUM_GPIO   ( 8)
-#define VARIANT_NUM_PWM    ( 3)
+#define VARIANT_NUM_PWM    (12)
 #define VARIANT_NUM_I2C    ( 3)
 #define VARIANT_NUM_SPI    ( 3)
 #define VARIANT_NUM_UART   ( 3)
