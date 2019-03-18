@@ -98,5 +98,5 @@ tools.manual_openocd.program.pattern="{path}{cmd}" -d0 -f {program.config} -c "f
 tools.kflash.path={runtime.tools.kflash.path}/
 tools.kflash.cmd={runtime.tools.kflash.path}/kflash
 tools.kflash.bootloader.path={runtime.tools.kflash.path}/bootloader.bin
-tools.kflash.upload.pattern="{cmd}" -p {serial.port} -l "{bootloader.path}" -b 2000000 {build.path}/{build.project_name}.bin
-tools.kflash.program.pattern="{cmd}" -p {serial.port} -l "{bootloader.path}" -b 2000000 {build.path}/{build.project_name}.bin
+tools.kflash.upload.pattern="{cmd}" -p {serial.port} -l "{bootloader.path}" {build.path}/{build.project_name}.bin
+tools.kflash.program.pattern="{cmd}" -p {serial.port} -l "{bootloader.path}" {build.path}/{build.project_name}.bin
