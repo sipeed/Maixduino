@@ -78,12 +78,9 @@ void noTone(uint8_t _pin);
 
 #endif // __cplusplus
 
-// Include board variant
-//#include "variant.h"
-
 #include "wiring_digital.h"
 #include "wiring_analog.h"
-//#include "wiring_shift.h"
+#include "wiring_shift.h"
 //#include "WInterrupts.h"
 
 #endif // Arduino_h
