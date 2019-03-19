@@ -11,19 +11,21 @@ compiler.objcopy.cmd=riscv64-unknown-elf-objcopy
 compiler.elf2hex.cmd=riscv64-unknown-elf-objcopy
 compiler.size.cmd=riscv64-unknown-elf-size
 
+compiler.clib.path={runtime.tools.riscv64-unknown-elf-gcc.path}/include
+compiler.sdk.path={runtime.platform.path}/cores/arduino/kendryte-standalone-sdk/lib
+compiler.preproc.flags=-I{build.system.path}/include -I{compiler.sdk.path}/bsp/include -I{compiler.sdk.path}/drivers/include -I{compiler.sdk.path}/utils/include -I{compiler.sdk.path}/freertos/conf -I{compiler.sdk.path}/freertos/include -I{compiler.sdk.path}/freertos/portable -I{compiler.clib.path}
 
-compiler.sdk.path={runtime.platform.path}/kendryte-standalone-sdk/lib
-compiler.preproc.flags=-I{build.system.path}/include -I{compiler.sdk.path}/bsp/include -I{compiler.sdk.path}/bsp -I{compiler.sdk.path}/drivers/include -I{compiler.sdk.path}/drivers -I{compiler.sdk.path}/utils/include -I{compiler.sdk.path}/utils
+compiler.both.flags=-mcmodel=medany -mabi=lp64f -march=rv64imafc -fno-common -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -fno-zero-initialized-in-bss -Os -ggdb -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Werror=frame-larger-than=65536 -Wno-unused-parameter -Wno-sign-compare -Wno-error=missing-braces -Wno-error=return-type -Wno-error=pointer-sign -Wno-missing-braces -Wno-strict-aliasing -Wno-implicit-fallthrough -Wno-missing-field-initializers -Wno-int-to-pointer-cast -Wno-error=comment -Wno-error=logical-not-parentheses -Wno-error=duplicate-decl-specifier -Wno-error=parentheses -lpthread
 
+compiler.debug.flags=-DCONFIG_LOG_ENABLE -DCONFIG_LOG_LEVEL=LOG_INFO -DDEBUG=1 -D__riscv64
 
+compiler.c.flags=-c {compiler.debug.flags} {compiler.both.flags} {compiler.preproc.flags} -std=gnu11 -Wno-pointer-to-int-cast -Wno-old-style-declaration -g
 
-compiler.c.flags=-c -DCONFIG_LOG_ENABLE -DCONFIG_LOG_LEVEL=LOG_INFO -DDEBUG=1 -D__riscv64 -mcmodel={build.mcmodel} -std=gnu11 -Wno-pointer-to-int-cast -Wno-old-style-declaration -fno-common -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -fno-zero-initialized-in-bss -Os -ggdb {compiler.preproc.flags} -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Werror=frame-larger-than=65536 -Wno-unused-parameter -Wno-sign-compare -Wno-error=missing-braces -Wno-error=return-type -Wno-error=pointer-sign -Wno-missing-braces -Wno-strict-aliasing -Wno-implicit-fallthrough -Wno-missing-field-initializers -g
+compiler.cpp.flags=-c {compiler.debug.flags} {compiler.both.flags} {compiler.preproc.flags} -std=gnu++17 -g
 
-compiler.cpp.flags=-c -DCONFIG_LOG_ENABLE -DCONFIG_LOG_LEVEL=LOG_INFO -DDEBUG=1 -D__riscv64 -mcmodel={build.mcmodel} -fno-common -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -fno-zero-initialized-in-bss -Os -ggdb {compiler.preproc.flags} -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Werror=frame-larger-than=65536 -Wno-unused-parameter -Wno-sign-compare -Wno-error=missing-braces -Wno-error=return-type -Wno-error=pointer-sign -Wno-missing-braces -Wno-strict-aliasing -Wno-implicit-fallthrough -Wno-missing-field-initializers -g
+compiler.ld.flags=-mcmodel=medany -mabi=lp64f -march=rv64imafc -fno-common -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -fno-zero-initialized-in-bss -Os -ggdb -nostartfiles -static -Wl,--gc-sections -Wl,-static -Wl,--whole-archive -Wl,--no-whole-archive -Wl,-EL -Wl,--no-relax -T {build.ldscript}
 
-compiler.ld.flags=-mcmodel=medany -g -nostartfiles -Wl,--gc-sections -T {build.ldscript}
-
-compiler.S.flags=-c -DCONFIG_LOG_ENABLE -DCONFIG_LOG_LEVEL=LOG_INFO -DDEBUG=1 -D__riscv64 -mcmodel={build.mcmodel} -std=gnu11 -Wno-pointer-to-int-cast -Wno-old-style-declaration -fno-common -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -fno-zero-initialized-in-bss -Os -ggdb {compiler.preproc.flags} -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Werror=frame-larger-than=65536 -Wno-unused-parameter -Wno-sign-compare -Wno-error=missing-braces -Wno-error=return-type -Wno-error=pointer-sign -Wno-missing-braces -Wno-strict-aliasing -Wno-implicit-fallthrough -Wno-missing-field-initializers -g -x assembler-with-cpp -D __riscv64
+compiler.S.flags=-c {compiler.debug.flags} {compiler.both.flags} {compiler.preproc.flags} -g -x assembler-with-cpp -D __riscv64
 
 compiler.ar.flags=rcs
 
@@ -64,7 +66,7 @@ recipe.cpp.o.pattern="{compiler.path}{compiler.cpp.cmd}" {compiler.cpp.flags} -D
 recipe.ar.pattern="{compiler.path}{compiler.ar.cmd}" {compiler.ar.flags} {compiler.ar.extra_flags} "{archive_file_path}" "{object_file}"
 
 ## Link gc-sections, archives, and objects
-recipe.c.combine.pattern="{compiler.path}{compiler.cpp.cmd}" {compiler.ld.flags} {build.extra_flags} {object_files} -o "{build.path}/{build.project_name}.elf" -Wl,--start-group -lgcc -lm -lc -Wl,--end-group -Wl,--start-group "{archive_file_path}" -Wl,--end-group -Wl,--start-group -lgcc -lm -lc
+recipe.c.combine.pattern="{compiler.path}{compiler.cpp.cmd}" {compiler.ld.flags} {build.extra_flags} {object_files} -o "{build.path}/{build.project_name}.elf" -Wl,--start-group -lgcc -lm -lc -Wl,--end-group -Wl,--start-group "{archive_file_path}" -lgcc -lm -lc -Wl,--end-group
 
 ## Create binary
 recipe.objcopy.eep.pattern="{compiler.path}{compiler.objcopy.cmd}" {compiler.objcopy.eep.flags} --output-format=binary "{build.path}/{build.project_name}.elf" "{build.path}/{build.project_name}.bin"
@@ -96,7 +98,6 @@ tools.manual_openocd.program.config=
 tools.manual_openocd.program.pattern="{path}{cmd}" -d0 -f {program.config} -c "flash protect 0 0 last off; program {{build.path}/{build.project_name}.elf} verify; resume 0x20000000; exit"
 
 tools.kflash.path={runtime.tools.kflash.path}/
-tools.kflash.cmd={runtime.tools.kflash.path}/kflash
-tools.kflash.bootloader.path={runtime.tools.kflash.path}/bootloader.bin
-tools.kflash.upload.pattern="{cmd}" -p {serial.port} -l "{bootloader.path}" {build.path}/{build.project_name}.bin
-tools.kflash.program.pattern="{cmd}" -p {serial.port} -l "{bootloader.path}" {build.path}/{build.project_name}.bin
+tools.kflash.cmd={runtime.tools.kflash.path}/k-flash
+tools.kflash.upload.pattern="{cmd}" -d {serial.port} -b 2000000 {build.path}/{build.project_name}.bin
+tools.kflash.program.pattern="{cmd}" -d {serial.port} -b 2000000 {build.path}/{build.project_name}.bin

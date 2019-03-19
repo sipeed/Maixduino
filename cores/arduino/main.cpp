@@ -13,7 +13,6 @@
 int main( void )
 {
   pll_init();
-  fpioa_init();
   setup();
 
   do {

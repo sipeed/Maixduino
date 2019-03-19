@@ -10,7 +10,7 @@ manual_openocd.program.params.verbose=-v
 manual_openocd.program.params.quiet=-q
 manual_openocd.program.tool=manual_openocd
 
-kflash.name=kflash
+kflash.name=k-flash
 kflash.communication=usb
 kflash.program.params.verbose=-v
 kflash.program.params.quiet=-q
