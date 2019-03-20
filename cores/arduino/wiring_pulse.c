@@ -27,7 +27,7 @@
  * before the start of the pulse. */
 extern uint32_t pulseIn(uint32_t pin, bool state, uint32_t timeout)
 {
-    uint32_t cpu_freq = sysctl_clock_get_freq(SYSCTL_CLOCK_CPU);
+	uint32_t cpu_freq = sysctl_clock_get_freq(SYSCTL_CLOCK_CPU);
 	uint32_t numloops = 0;
 	uint32_t maxloops = timeout * (cpu_freq / 1000000L) / 16; // microsecondsToClockCycles(timeout) / 16; ???
 	uint32_t start, end;

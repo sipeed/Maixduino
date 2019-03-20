@@ -39,6 +39,7 @@
 #include "gpiohs.h"
 #include "gpio.h"
 #include "gpio_common.h"
+#include "plic.h"
 
 #ifdef __cplusplus
 extern "C"{
@@ -70,7 +71,7 @@ typedef void (*voidFuncPtr)( void ) ;
 //#include "WString.h"
 //#include "WMath.h"
 //#include "HardwareSerial.h"
-//#include "wiring_pulse.h"
+#include "wiring_pulse.h"
 
 // Tone function prototypes
 void tone(uint8_t _pin, unsigned int frequency, unsigned long duration = 0);
@@ -81,6 +82,6 @@ void noTone(uint8_t _pin);
 #include "wiring_digital.h"
 #include "wiring_analog.h"
 #include "wiring_shift.h"
-//#include "WInterrupts.h"
+#include "WInterrupts.h"
 
 #endif // Arduino_h

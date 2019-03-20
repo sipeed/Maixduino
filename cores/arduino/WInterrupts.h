@@ -20,6 +20,7 @@
 #define _WIRING_INTERRUPTS_
 
 #include <stdint.h>
+#include "plic.h"
 
 #ifdef __cplusplus
 extern "C"{
@@ -27,28 +28,26 @@ extern "C"{
 
 //      LOW 0
 //      HIGH 1
-#define FALLING 1
 #define CHANGE  2
-#define RISING  3
+#define FALLING 3
+#define RISING  4
 
 #define DEFAULT 1
 #define EXTERNAL 0
 
-#define digitalPinToInterrupt(P) (PLIC_INT_GPIO_BASE + variant_pin_map[P].bit_pos) 
-
-  typedef void (*voidFuncPtr)(void);
-
+#define digitalPinToInterrupt(P)
+typedef void (*voidFuncPtr)(void);
 /*
  * \brief Specifies a named Interrupt Service Routine (ISR) to call when an interrupt occurs. Use digitalPinToInterrupt(pin) to get the correct intnum.
  *        Other interrupt numbers are available, see platform.h.
  *        Replaces any previous function that was attached to the interrupt.
  */
-void attachInterrupt(uint32_t intnum, voidFuncPtr callback, uint32_t mode);
+void attachInterrupt(uint8_t intnum, voidFuncPtr callback, uint8_t mode);
 
 /*
  * \brief Turns off the given interrupt.
  */
-void detachInterrupt(uint32_t intnum);
+void detachInterrupt(uint8_t intnum);
 
 #ifdef __cplusplus
 } // extern "C"
