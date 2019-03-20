@@ -12,6 +12,11 @@ void delay(uint64_t dwMs){
     msleep(dwMs);
     return;
 }
+void delayMicroseconds(uint64_t dwUs){
+    usleep(dwUs);
+    return;
+}
+
 void pll_init(){
     sysctl_pll_set_freq(SYSCTL_PLL0, 800000000UL);
     sysctl_pll_set_freq(SYSCTL_PLL1, 300000000UL);

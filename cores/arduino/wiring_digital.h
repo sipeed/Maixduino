@@ -3,6 +3,7 @@
 
 #include "Arduino.h"
 #include <stdint.h>
+#include "platform.h"
 
 #ifdef __cplusplus
 extern "C"{
@@ -12,11 +13,11 @@ extern "C"{
 #define PortAddr_t uint32_t
 #define PortRegister_t volatile uint32_t *
 
-#define digitalPinToPort(pin)    ((PortAddr_t)     GPIO_CTRL_ADDR)
-#define digitalPinToPortIn(pin)  ((PortAddr_t)     GPIO_CTRL_ADDR)
-#define digitalPinToBitMask(pin) ((PortValue_t)    (1<<variant_pin_map[pin].bit_pos))
-#define portOutputRegister(port) ((PortRegister_t) (GPIO_CTRL_ADDR + GPIO_OUTPUT_VAL))
-#define portInputRegister(port)  ((PortRegister_t) (GPIO_CTRL_ADDR + GPIO_INPUT_VAL))
+#define digitalPinToPort(pin)    ((PortAddr_t)     GPIOHS_BASE_ADDR)
+#define digitalPinToPortIn(pin)  ((PortAddr_t)     GPIOHS_BASE_ADDR)
+#define digitalPinToBitMask(pin) ((PortValue_t)    (1<<pin))
+#define portOutputRegister(port) ((PortRegister_t) (GPIOHS_BASE_ADDR + GPIOHS_OUTPUT_VAL))
+#define portInputRegister(port)  ((PortRegister_t) (GPIOHS_BASE_ADDR + GPIOHS_INPUT_VAL))
 
 /**
  * \brief Configures the specified pin to behave either as an input or an output. See the description of digital pins for details.

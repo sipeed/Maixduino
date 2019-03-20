@@ -25,6 +25,8 @@ extern uint64_t micros(void);
  */
 extern void delay(uint64_t dwMs);
 
+extern void delayMicroseconds(uint64_t dwUs);
+
 void pll_init(void);
 
 
