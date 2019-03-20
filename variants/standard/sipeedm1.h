@@ -9,6 +9,10 @@
 #include "Arduino.h"
 #include "pwm.h"
 
+#ifdef __cplusplus
+#include "UARTClass.h"
+#endif
+
 /* BOARD  PIN DEFINE */
 /* LEDs */
 #define PIN_LED_GREEN        13
@@ -64,6 +68,10 @@ typedef struct _pwm_fpio_set_t{
     pwm_device_number_t device;
     uint8_t inuse;
 }pwm_fpio_set_t;
+
+#ifdef __cplusplus
+extern UARTClass Serial;
+#endif
 
 #define VARIANT_NUM_GPIOHS (32)
 #define VARIANT_NUM_GPIO   ( 8)

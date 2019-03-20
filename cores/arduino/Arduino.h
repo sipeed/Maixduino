@@ -40,6 +40,7 @@
 #include "gpio.h"
 #include "gpio_common.h"
 #include "plic.h"
+#include "uarths.h"
 
 #ifdef __cplusplus
 extern "C"{
@@ -67,10 +68,10 @@ typedef void (*voidFuncPtr)( void ) ;
 #ifdef __cplusplus
 } // extern "C"
 
-//#include "WCharacter.h"
-//#include "WString.h"
-//#include "WMath.h"
-//#include "HardwareSerial.h"
+#include "WCharacter.h"
+#include "WString.h"
+#include "WMath.h"
+#include "HardwareSerial.h"
 #include "wiring_pulse.h"
 
 // Tone function prototypes

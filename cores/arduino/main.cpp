@@ -14,6 +14,7 @@ int main( void )
 {
   pll_init();
   plic_init();
+  uarths_init();
   setup();
 
   do {
