@@ -12,7 +12,7 @@ static int _readResolution = 0;
 static int _writeResolution = 8;
 static double _writeFreq = 200000;
 
-static pwm_fpio_set_t pwm_pins[VARIANT_NUM_PWM]={
+pwm_fpio_set_t pwm_pins[VARIANT_NUM_PWM]={
     {.channel = PWM_CHANNEL_0, .device = PWM_DEVICE_0, .inuse = 0x0},
     {.channel = PWM_CHANNEL_1, .device = PWM_DEVICE_0, .inuse = 0x0},
     {.channel = PWM_CHANNEL_2, .device = PWM_DEVICE_0, .inuse = 0x0},
