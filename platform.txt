@@ -35,10 +35,10 @@ compiler.elf2hex.flags=-R .rel.dyn
 
 compiler.define=-DARDUINO=
 
-compiler.c.extra_flags=-DF_CPU={build.f_cpu}L -D{build.board}
+compiler.c.extra_flags=-DF_CPU={build.f_cpu} -D{build.board}
 compiler.c.elf.extra_flags=
-compiler.cpp.extra_flags=-DF_CPU={build.f_cpu}L -D{build.board}
-compiler.S.extra_flags=-DF_CPU={build.f_cpu}L -D{build.board}
+compiler.cpp.extra_flags=-DF_CPU={build.f_cpu} -D{build.board}
+compiler.S.extra_flags=-DF_CPU={build.f_cpu} -D{build.board}
 compiler.ar.extra_flags=
 compiler.elf2hex.extra_flags=
 
@@ -98,6 +98,7 @@ tools.manual_openocd.program.config=
 tools.manual_openocd.program.pattern="{path}{cmd}" -d0 -f {program.config} -c "flash protect 0 0 last off; program {{build.path}/{build.project_name}.elf} verify; resume 0x20000000; exit"
 
 tools.kflash.path={runtime.tools.kflash.path}/
-tools.kflash.cmd={runtime.tools.kflash.path}/k-flash
-tools.kflash.upload.pattern="{cmd}" -d {serial.port} -b 2000000 {build.path}/{build.project_name}.bin
-tools.kflash.program.pattern="{cmd}" -d {serial.port} -b 2000000 {build.path}/{build.project_name}.bin
+tools.kflash.cmd=python3 {runtime.tools.kflash.path}/kflash.py
+tools.kflash.cmd.windows={runtime.tools.kflash.path}/k-flash
+tools.kflash.program.pattern="{cmd}" -p {serial.port} {build.path}/{build.project_name}.bin
+tools.kflash.program.pattern.windows="{cmd}" -d {serial.port} -b 2000000 {build.path}/{build.project_name}.bin
