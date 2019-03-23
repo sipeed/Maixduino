@@ -22,6 +22,7 @@
 
 #include <ctype.h>
 #include "wiring_constants.h"
+#include "wiring_digital.h"
 
 #ifdef __cplusplus
 extern "C"{

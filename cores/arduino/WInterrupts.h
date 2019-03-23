@@ -35,7 +35,7 @@ extern "C"{
 #define DEFAULT 1
 #define EXTERNAL 0
 
-#define digitalPinToInterrupt(P)
+#define digitalPinToInterrupt(Pin) Pin;
 typedef void (*voidFuncPtr)(void);
 /*
  * \brief Specifies a named Interrupt Service Routine (ISR) to call when an interrupt occurs. Use digitalPinToInterrupt(pin) to get the correct intnum.
