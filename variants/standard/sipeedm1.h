@@ -20,6 +20,9 @@
 #define PIN_LED_RED          14
 #define PIN_LED              13
 #define LED_BUILTIN          13
+#define LED_GREEN            13
+#define LED_BLUE             12
+#define LED_RED              14
 /* KEY */
 #define KEY0                 16
 /*  UART */
