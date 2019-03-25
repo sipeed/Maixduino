@@ -11,6 +11,10 @@
 
 #ifdef __cplusplus
 #include "UARTClass.h"
+extern class UARTHSClass Serial;
+extern class UARTClass Serial1;
+extern class UARTClass Serial2;
+extern class UARTClass Serial3;
 #endif
 
 /* BOARD  PIN DEFINE */
@@ -25,9 +29,6 @@
 #define LED_RED              14
 /* KEY */
 #define KEY0                 16
-/*  UART */
-#define RX0                   4
-#define TX0                   5
 /* MIC ARRAY */
 #define MIC_BCK              18
 #define MIC_WS               19
@@ -55,11 +56,14 @@
 #define LCD_DC               38
 #define LCD_WR               39
 
-static const uint8_t RX = RX0;
-static const uint8_t TX = TX0;
+#define RX0                   4
+#define TX0                   5
 
-static const uint8_t SDA = 10;
-static const uint8_t SCL =  9;
+#define RX1                   6
+#define TX1                   7
+
+#define SDA                  10
+#define SCL                   9
 
 static const uint8_t SS   = SPI0_CS0 ;
 static const uint8_t MOSI = SPI0_MOSI;
@@ -72,9 +76,7 @@ typedef struct _pwm_fpio_set_t{
     uint8_t inuse;
 }pwm_fpio_set_t;
 
-#ifdef __cplusplus
-extern UARTClass Serial;
-#endif
+
 
 #define VARIANT_NUM_GPIOHS (32)
 #define VARIANT_NUM_GPIO   ( 8)

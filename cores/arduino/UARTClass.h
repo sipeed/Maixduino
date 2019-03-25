@@ -23,13 +23,16 @@
 #include "HardwareSerial.h"
 #include "uarths.h"
 #include "uart.h"
+#include "fpioa.h"
+#include "pins_arduino.h"
+#include "RingBuffer.h"
 
 class UARTClass : public HardwareSerial
 {
   public:
-    UARTClass(uint8_t rxPin, uint8_t txPin);
-    UARTClass(void);
-    void begin(uint32_t dwBaudRate);
+    UARTClass();
+    UARTClass(uart_device_number_t device_select);
+    void begin(uint32_t dwBaudRate, uint8_t _rx = 6, uint8_t _tx = 7);
     void end(void);
     int available(void);
     int availableForWrite(void);
@@ -40,12 +43,30 @@ class UARTClass : public HardwareSerial
     using Print::write; // pull in write(str) and write(buf, size) from Print
 
     operator bool() {return (true);}; // UART always active
-
-  protected:
-    uint8_t _rxPin;
-    uint8_t _txPin;
-    
+  //protected:
+    RingBuffer *_buff;
+    uint32_t _timeout = 1000;
+    uart_device_number_t _uart;
+  private:
+    fpioa_function_t _rxfunc;
+    fpioa_function_t _txfunc;
+    //static int _rec_callback(void *ctx);
 };
+
+class UARTHSClass : public UARTClass
+{
+  public:
+    UARTHSClass();
+    void begin(uint32_t dwBaudRate, uint8_t _rx = 4, uint8_t _tx = 5);
+    void end(void);
+    size_t write(const uint8_t c);
+    using Print::write;
+    operator bool() {return (true);}; // UART always active
+  //private:
+    //static int _rec_callback(void *ctx);
+};
+
+extern volatile uart_t* const  uart[3];
 extern int uarths_putchar(char c);
 extern int uarths_getc(void);
 
