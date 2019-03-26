@@ -100,5 +100,7 @@ tools.manual_openocd.program.pattern="{path}{cmd}" -d0 -f {program.config} -c "f
 tools.kflash.path={runtime.tools.kflash.path}/
 tools.kflash.cmd=python3 {runtime.tools.kflash.path}/kflash.py
 tools.kflash.cmd.windows={runtime.tools.kflash.path}/k-flash
-tools.kflash.program.pattern={cmd} -p {serial.port} {build.path}/{build.project_name}.bin
-tools.kflash.program.pattern.windows="{cmd}" -d {serial.port} -b 2000000 {build.path}/{build.project_name}.bin
+tools.kflash.program.pattern={cmd} -n -p {serial.port} -b {build.burn_baudrate} -B {build.burn_tool_firmware} {build.path}/{build.project_name}.bin
+tools.kflash.program.pattern.windows="{cmd}" -d {serial.port} -b {build.burn_baudrate} {build.path}/{build.project_name}.bin
+
+
