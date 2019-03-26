@@ -6,7 +6,7 @@ menu.toolsloc            = Tool Install Location
 ##################################################
 ############# Sipeed M1 Dock Board ###############
 
-m1.name = Sipeed M1 Dock Board
+m1.name = Sipeed "Maix One Dock"/"Maix Bit" Board
 
 ## Toolchain
 m1.menu.toolsloc.default=Default
