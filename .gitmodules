@@ -1,0 +1,3 @@
+[submodule "cores/arduino/kendryte-standalone-sdk"]
+	path = cores/arduino/kendryte-standalone-sdk
+	url = https://github.com/sipeed/kendryte-standalone-sdk

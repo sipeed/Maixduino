@@ -1,6 +1,10 @@
 name = K210 Arduino
 version = 0.1.0
 
+# arch
+arch              = k210
+arch_for_c_cpp    = K210
+
 # Compile variables
 compiler.path={runtime.tools.riscv64-unknown-elf-gcc.path}/bin/
 compiler.c.cmd=riscv64-unknown-elf-gcc
@@ -13,15 +17,16 @@ compiler.size.cmd=riscv64-unknown-elf-size
 
 compiler.clib.path={runtime.tools.riscv64-unknown-elf-gcc.path}/include
 compiler.sdk.path={runtime.platform.path}/cores/arduino/kendryte-standalone-sdk/lib
-compiler.preproc.flags=-I{build.system.path}/include -I{compiler.sdk.path}/bsp/include -I{compiler.sdk.path}/drivers/include -I{compiler.sdk.path}/utils/include -I{compiler.sdk.path}/freertos/conf -I{compiler.sdk.path}/freertos/include -I{compiler.sdk.path}/freertos/portable -I{compiler.clib.path}
+compiler.lib_hal_inc.path={runtime.platform.path}/cores/arduino/hal/include
+compiler.preproc.flags=-I{build.system.path}/include -I{compiler.lib_hal_inc.path} -I{compiler.sdk.path}/bsp/include -I{compiler.sdk.path}/drivers/include -I{compiler.sdk.path}/utils/include -I{compiler.sdk.path}/freertos/conf -I{compiler.sdk.path}/freertos/include -I{compiler.sdk.path}/freertos/portable -I{compiler.clib.path}
 
 compiler.both.flags=-mcmodel=medany -mabi=lp64f -march=rv64imafc -fno-common -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -fno-zero-initialized-in-bss -Os -ggdb -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Werror=frame-larger-than=65536 -Wno-unused-parameter -Wno-sign-compare -Wno-error=missing-braces -Wno-error=return-type -Wno-error=pointer-sign -Wno-missing-braces -Wno-strict-aliasing -Wno-implicit-fallthrough -Wno-missing-field-initializers -Wno-int-to-pointer-cast -Wno-error=comment -Wno-error=logical-not-parentheses -Wno-error=duplicate-decl-specifier -Wno-error=parentheses -lpthread
 
 compiler.debug.flags=-DCONFIG_LOG_ENABLE -DCONFIG_LOG_LEVEL=LOG_INFO -DDEBUG=1 -D__riscv64
 
-compiler.c.flags=-c {compiler.debug.flags} {compiler.both.flags} {compiler.preproc.flags} -std=gnu11 -Wno-pointer-to-int-cast -Wno-old-style-declaration -g
+compiler.c.flags=-c {compiler.debug.flags} {compiler.both.flags} {compiler.preproc.flags} -std=gnu11 -Wno-pointer-to-int-cast -Wno-old-style-declaration -g -Wno-error=unused-variable -Wno-error=unused-function -Wno-error=unused-const-variable
 
-compiler.cpp.flags=-c {compiler.debug.flags} {compiler.both.flags} {compiler.preproc.flags} -std=gnu++17 -g
+compiler.cpp.flags=-c {compiler.debug.flags} {compiler.both.flags} {compiler.preproc.flags} -std=gnu++17 -g -Wno-error=unused-variable -Wno-error=unused-function -Wno-error=unused-const-variable
 
 compiler.ld.flags=-mcmodel=medany -mabi=lp64f -march=rv64imafc -fno-common -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -fno-zero-initialized-in-bss -Os -ggdb -nostartfiles -static -Wl,--gc-sections -Wl,-static -Wl,--whole-archive -Wl,--no-whole-archive -Wl,-EL -Wl,--no-relax -T {build.ldscript}
 
@@ -35,9 +40,9 @@ compiler.elf2hex.flags=-R .rel.dyn
 
 compiler.define=-DARDUINO=
 
-compiler.c.extra_flags=-DF_CPU={build.f_cpu} -D{build.board}
+compiler.c.extra_flags=-DF_CPU={build.f_cpu} -D{build.board} -D{arch_for_c_cpp} -DARCH={arch_for_c_cpp}
 compiler.c.elf.extra_flags=
-compiler.cpp.extra_flags=-DF_CPU={build.f_cpu} -D{build.board}
+compiler.cpp.extra_flags=-DF_CPU={build.f_cpu} -D{build.board} -D{arch_for_c_cpp} -DARCH={arch_for_c_cpp}
 compiler.S.extra_flags=-DF_CPU={build.f_cpu} -D{build.board}
 compiler.ar.extra_flags=
 compiler.elf2hex.extra_flags=
