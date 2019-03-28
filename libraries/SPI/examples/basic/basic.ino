@@ -1,6 +1,11 @@
 #include "SPI.h"
 
 SPIClass spi0(SPI0);
+#ifdef K210
+#error "11111111"
+#else
+#error "222222"
+#endif
 
 void setup()
 {
