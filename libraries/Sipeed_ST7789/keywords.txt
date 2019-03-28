@@ -1,0 +1,51 @@
+#######################################
+# Syntax Coloring Map 
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+Sipeed_ST7789	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+begin                KEYWORD2
+drawPixel            KEYWORD2
+writePixel           KEYWORD2
+writeFillRect        KEYWORD2
+writeFastVLine       KEYWORD2
+writeFastHLine       KEYWORD2
+drawFastVLine        KEYWORD2
+drawFastHLine        KEYWORD2
+fillRect             KEYWORD2
+fillScreen           KEYWORD2
+drawRect             KEYWORD2
+setRotation          KEYWORD2
+invertDisplay        KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+COLOR_BLACK       LITERAL1
+COLOR_NAVY        LITERAL1
+COLOR_DARKGREEN   LITERAL1
+COLOR_DARKCYAN    LITERAL1
+COLOR_MAROON      LITERAL1
+COLOR_PURPLE      LITERAL1
+COLOR_OLIVE       LITERAL1
+COLOR_LIGHTGREY   LITERAL1
+COLOR_DARKGREY    LITERAL1
+COLOR_BLUE        LITERAL1
+COLOR_GREEN       LITERAL1
+COLOR_CYAN        LITERAL1
+COLOR_RED         LITERAL1
+COLOR_MAGENTA     LITERAL1
+COLOR_YELLOW      LITERAL1
+COLOR_WHITE       LITERAL1
+COLOR_ORANGE      LITERAL1
+COLOR_GREENYELLOW LITERAL1
+COLOR_PINK        LITERAL1
+

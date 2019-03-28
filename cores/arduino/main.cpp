@@ -15,6 +15,9 @@ int main( void )
   pll_init();
   plic_init();
   uarths_init();
+  gpio_init();
+  sysctl_set_power_mode(SYSCTL_POWER_BANK6,SYSCTL_POWER_V18);
+	sysctl_set_power_mode(SYSCTL_POWER_BANK7,SYSCTL_POWER_V18);
   setup();
 
   do {
