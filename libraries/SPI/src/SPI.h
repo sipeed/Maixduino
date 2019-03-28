@@ -67,6 +67,9 @@ public:
   
     void transferBytes(uint8_t * data, uint8_t * out, uint32_t size);
 
+    // special
+    spi_id_t busId(){ return _spiNum; }
+
 };
 
 extern SPIClass SPI;
