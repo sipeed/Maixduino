@@ -1,6 +1,10 @@
 name = K210 Arduino
 version = 0.1.0
 
+# arch
+arch              = k210
+arch_for_c_cpp    = K210
+
 # Compile variables
 compiler.path={runtime.tools.riscv64-unknown-elf-gcc.path}/bin/
 compiler.c.cmd=riscv64-unknown-elf-gcc
@@ -36,9 +40,9 @@ compiler.elf2hex.flags=-R .rel.dyn
 
 compiler.define=-DARDUINO=
 
-compiler.c.extra_flags=-DF_CPU={build.f_cpu} -D{build.board}
+compiler.c.extra_flags=-DF_CPU={build.f_cpu} -D{build.board} -D{arch_for_c_cpp} -DARCH={arch_for_c_cpp}
 compiler.c.elf.extra_flags=
-compiler.cpp.extra_flags=-DF_CPU={build.f_cpu} -D{build.board}
+compiler.cpp.extra_flags=-DF_CPU={build.f_cpu} -D{build.board} -D{arch_for_c_cpp} -DARCH={arch_for_c_cpp}
 compiler.S.extra_flags=-DF_CPU={build.f_cpu} -D{build.board}
 compiler.ar.extra_flags=
 compiler.elf2hex.extra_flags=
