@@ -27,7 +27,7 @@
 // using a ring buffer (I think), in which head is the index of the location
 // to which to write the next incoming character and tail is the index of the
 // location from which to read.
-#define SERIAL_BUFFER_SIZE 64
+#define RING_BUFFER_SIZE 64
 
 template <int N>
 class RingBufferN
@@ -51,7 +51,7 @@ class RingBufferN
     int nextIndex(int index);
 };
 
-typedef RingBufferN<SERIAL_BUFFER_SIZE> RingBuffer;
+typedef RingBufferN<RING_BUFFER_SIZE> RingBuffer;
 
 
 template <int N>

@@ -62,8 +62,8 @@ extern class UARTClass Serial3;
 #define RX1                   6
 #define TX1                   7
 
-#define SDA                  10
-#define SCL                   9
+#define SDA                  31
+#define SCL                  30
 
 static const uint8_t SS   = SPI0_CS0 ;
 static const uint8_t MOSI = SPI0_MOSI;
