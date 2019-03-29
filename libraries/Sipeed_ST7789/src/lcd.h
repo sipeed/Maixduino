@@ -61,7 +61,8 @@ typedef enum _lcd_dir
     DIR_XY_LRDU = 0xC0,
     DIR_YX_LRDU = 0xE0,
     DIR_XY_MASK = 0x20,
-    DIR_MASK = 0xE0,
+    DIR_RL_MASK = 0x40,
+    DIR_UD_MASK = 0x80
 } lcd_dir_t;
 
 typedef struct _lcd_ctl

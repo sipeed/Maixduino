@@ -55,10 +55,7 @@ public:
     ~Sipeed_ST7789(void);
 
     boolean      begin( uint32_t freq = 15000000, uint16_t color = 0xffff );
-    // void         display(void);
-    // void         clearDisplay(uint16_t color);
-    // void         invertDisplay(boolean i);
-    // void         dim(boolean dim);
+
     virtual void drawPixel(int16_t x, int16_t y, uint16_t color);
     virtual void writePixel(int16_t x, int16_t y, uint16_t color);
     virtual void writeFillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color);
@@ -74,9 +71,8 @@ public:
 
     void drawRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color, uint16_t lineWidth);
 
-    //TODO: direction
-    // virtual void setRotation(uint8_t r);
-    // virtual void invertDisplay(boolean i);
+    virtual void setRotation(uint8_t r);
+    virtual void invertDisplay(boolean invert);
 
 private:
     SPIClass& _spi;
@@ -84,7 +80,7 @@ private:
     int8_t    _rstPin;
     uint8_t   _dmaCh;
     uint32_t  _freq;
-
+    uint16_t  _screenDir;
 
 
 };
