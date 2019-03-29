@@ -19,13 +19,25 @@ typedef uint16_t prog_uint16_t;
 typedef int32_t prog_int32_t;
 typedef uint32_t prog_uint32_t;
 
-#define memcpy_P(dest, src, num) memcpy((dest), (src), (num))
-#define strcpy_P(dest, src) strcpy((dest), (src))
-#define strcat_P(dest, src) strcat((dest), (src))
-#define strcmp_P(a, b) strcmp((a), (b))
-#define strstr_P(a, b) strstr((a), (b))
-#define strlen_P(a) strlen((a))
-#define sprintf_P(s, f, ...) sprintf((s), (f), __VA_ARGS__)
+#define memcmp_P      memcmp
+#define memccpy_P     memccpy
+#define memmem_P      memmem
+#define memcpy_P      memcpy
+#define strcpy_P      strcpy
+#define strncpy_P     strncpy
+#define strcat_P      strcat
+#define strncat_P     strncat
+#define strcmp_P      strcmp
+#define strncmp_P     strncmp
+#define strcasecmp_P  strcasecmp
+#define strncasecmp_P strncasecmp
+#define strlen_P      strlen
+#define strnlen_P     strnlen
+#define strstr_P      strstr
+#define printf_P      printf
+#define sprintf_P     sprintf
+#define snprintf_P    snprintf
+#define vsnprintf_P   vsnprintf
 
 #define pgm_read_byte(addr) (*(const unsigned char *)(addr))
 #define pgm_read_word(addr) (*(const unsigned short *)(addr))

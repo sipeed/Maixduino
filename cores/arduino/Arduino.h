@@ -73,6 +73,11 @@ typedef void (*voidFuncPtr)( void ) ;
 #include "WMath.h"
 #include "HardwareSerial.h"
 #include "wiring_pulse.h"
+#include "Client.h"
+#include "HardwareI2C.h"
+#include "IPAddress.h"
+#include "Server.h"
+#include "Udp.h"
 
 // Tone function prototypes
 void tone(uint8_t _pin, unsigned int frequency, unsigned long duration = 0);
