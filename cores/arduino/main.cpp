@@ -18,6 +18,7 @@ int main( void )
   gpio_init();
   sysctl_set_power_mode(SYSCTL_POWER_BANK6,SYSCTL_POWER_V18);
 	sysctl_set_power_mode(SYSCTL_POWER_BANK7,SYSCTL_POWER_V18);
+  sysctl_enable_irq();
   setup();
 
   do {

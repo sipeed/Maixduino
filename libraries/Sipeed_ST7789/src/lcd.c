@@ -215,10 +215,10 @@ void lcd_draw_rectangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint
 
 #define SWAP_16(x) ((x >> 8 & 0xff) | (x << 8))
 
-void lcd_draw_picture(uint16_t x1, uint16_t y1, uint16_t width, uint16_t height, uint32_t *ptr)
+void lcd_draw_picture(uint16_t x1, uint16_t y1, uint16_t width, uint16_t height, uint16_t *ptr)
 {
     uint32_t i;
-    uint16_t *p = (uint16_t *)ptr;
+    uint16_t *p = ptr;
     lcd_set_area(x1, y1, x1 + width - 1, y1 + height - 1);
     for (i = 0; i < LCD_MAX_PIXELS; i += 2)
     {

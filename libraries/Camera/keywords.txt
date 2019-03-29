@@ -1,0 +1,36 @@
+#######################################
+# Syntax Coloring Map 
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+framesize_t	KEYWORD1
+pixformat_t	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+begin                KEYWORD2
+end                  KEYWORD2
+run                  KEYWORD2
+id                   KEYWORD2
+snapshot             KEYWORD2
+getRGB565            KEYWORD2
+getRGB888            KEYWORD2
+setRotaion           KEYWORD2
+setInver             KEYWORD2
+width                KEYWORD2
+height               KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+PIXFORMAT_RGB565  LITERAL1
+FRAMESIZE_QQVGA   LITERAL1
+FRAMESIZE_QVGA    LITERAL1
+FRAMESIZE_VGA     LITERAL1
+
+
