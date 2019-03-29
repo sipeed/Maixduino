@@ -163,4 +163,10 @@ void Sipeed_ST7789::invertDisplay(boolean invert) {
     lcd_set_direction((lcd_dir_t)_screenDir);
 }
 
+void Sipeed_ST7789::drawImage(uint16_t x1, uint16_t y1, uint16_t width, uint16_t height, uint16_t* img)
+{
+    configASSERT(img!=nullptr || img!=0);
+
+    lcd_draw_picture(x1, y1, width, height, img);
+}
 
