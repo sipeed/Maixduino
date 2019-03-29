@@ -1,6 +1,6 @@
 #include <Sipeed_ST7789.h>
 
-SPIClass spi_(SPI0);
+SPIClass spi_(SPI0); // MUST be SPI0 for Maix series on board LCD
 Sipeed_ST7789 lcd(320, 240, spi_);
 
 
