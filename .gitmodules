@@ -4,3 +4,6 @@
 [submodule "libraries/Adafruit-GFX-Library"]
 	path = libraries/Adafruit-GFX-Library
 	url = https://github.com/adafruit/Adafruit-GFX-Library
+[submodule "libraries/WiFiEsp"]
+	path = libraries/WiFiEsp
+	url = https://github.com/btx000/WiFiEsp
