@@ -1,5 +1,6 @@
 /*
-  Copyright (c) 2011 Arduino.  All right reserved.
+  dtostrf - Emulation for dtostrf function from avr-libc
+  Copyright (c) 2015 Arduino LLC.  All rights reserved.
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -8,28 +9,26 @@
 
   This library is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
-  See the GNU Lesser General Public License for more details.
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
 
   You should have received a copy of the GNU Lesser General Public
   License along with this library; if not, write to the Free Software
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef _ITOA_
-#define _ITOA_
+#pragma once
+
+#if !defined(ARDUINO_ARCH_AVR)
 
 #ifdef __cplusplus
-extern "C"{
-#endif // __cplusplus
+extern "C" {
+#endif
 
-extern char* itoa(int value, char *string, int radix);
-extern char* ltoa(long value, char *string, int radix);
-extern char* utoa(unsigned value, char *string, int radix);
-extern char* ultoa(unsigned long value, char *string, int radix);
+char *dtostrf(double val, signed char width, unsigned char prec, char *sout);
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+}
+#endif
 
-#endif // _ITOA_
+#endif
