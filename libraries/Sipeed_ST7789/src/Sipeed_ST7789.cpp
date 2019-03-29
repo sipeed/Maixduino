@@ -7,7 +7,8 @@
 Sipeed_ST7789::Sipeed_ST7789(uint16_t w, uint16_t h, SPIClass& spi, int8_t dc_pin, int8_t rst_pin, uint8_t dma_ch )
 :Adafruit_GFX(w,h),
  _spi(spi), _dcxPin(dc_pin), _rstPin(rst_pin), 
- _dmaCh(dma_ch)
+ _dmaCh(dma_ch),
+ _screenDir(DIR_YX_RLDU)
 {
     configASSERT(_spi.busId()==SPI0);
 }
@@ -33,6 +34,7 @@ boolean Sipeed_ST7789::begin( uint32_t freq, uint16_t color )
     sysctl_set_spi0_dvp_data(1);
     _freq = freq;
     lcd_init(spiNum, SIPEED_ST7789_SS, SIPEED_ST7789_RST_GPIONUM, SIPEED_ST7789_DCX_GPIONUM, _freq, _rstPin,  _dcxPin, _dmaCh);
+    lcd_set_direction((lcd_dir_t)_screenDir);
     lcd_clear(color);
     return true;
 }
@@ -87,11 +89,78 @@ void Sipeed_ST7789::drawRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_
     lcd_draw_rectangle(x, y, x+w-1, y+h-1, 1, color);
 }
 
-void drawRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color, uint16_t lineWidth)
+void Sipeed_ST7789::drawRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color, uint16_t lineWidth)
 {
     lcd_draw_rectangle(x, y, x+w-1, y+h-1, lineWidth, color);
 }
 
 
+uint16_t getValueByRotation(uint8_t rotation)
+{
+    uint16_t v = DIR_YX_RLDU;
+    switch(rotation) {
+        case 0:
+            v = DIR_YX_RLDU;
+            break;
+        case 1:
+            v = DIR_XY_RLUD;
+            break;
+        case 2:
+            v = DIR_YX_LRUD;
+            break;
+        case 3:
+            v = DIR_XY_LRDU;
+            break;
+    }
+    return v;
+}
+
+/**************************************************************************/
+/*!
+    @brief      Set rotation setting for display
+    @param  x   0 thru 3 corresponding to 4 cardinal rotations
+*/
+/**************************************************************************/
+void Sipeed_ST7789::setRotation(uint8_t x) {
+    rotation = (x & 3);
+    configASSERT(rotation >= 0 && rotation <= 3);
+
+    switch(rotation) {
+        case 0:
+        case 2:
+            _width  = WIDTH;
+            _height = HEIGHT;
+            break;
+        case 1:
+        case 3:
+            _width  = HEIGHT;
+            _height = WIDTH;
+            break;
+    }
+    _screenDir = getValueByRotation(rotation);
+    lcd_set_direction((lcd_dir_t)_screenDir);
+}
+
+void Sipeed_ST7789::invertDisplay(boolean invert) {
+    uint16_t _screenDir = getValueByRotation(rotation);
+    if( invert )
+    {
+        switch(rotation) {
+            case 0:
+                _screenDir = DIR_YX_RLUD;
+                break;
+            case 1:
+                _screenDir = DIR_XY_LRUD;
+                break;
+            case 2:
+                _screenDir = DIR_YX_LRDU;
+                break;
+            case 3:
+                _screenDir = DIR_XY_RLDU;
+                break;
+        }
+    }
+    lcd_set_direction((lcd_dir_t)_screenDir);
+}
 
 

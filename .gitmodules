@@ -1,3 +1,6 @@
 [submodule "cores/arduino/kendryte-standalone-sdk"]
 	path = cores/arduino/kendryte-standalone-sdk
 	url = https://github.com/sipeed/kendryte-standalone-sdk
+[submodule "libraries/Adafruit-GFX-Library"]
+	path = libraries/Adafruit-GFX-Library
+	url = https://github.com/adafruit/Adafruit-GFX-Library

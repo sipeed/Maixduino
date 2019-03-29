@@ -145,6 +145,8 @@ void sipeed_spi_deinit(spi_device_num_t spi_num)
     sysctl_clock_disable( sysctl_clock_t(SYSCTL_CLOCK_SPI0 + spi_num));
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 typedef struct{
@@ -152,14 +154,22 @@ typedef struct{
     bool   used;
 } spi_ss_t;
 
-static spi_ss_t g_ss_table[4]={
-    {.pin = -1, .used = false},
-    {.pin = -1, .used = false},
-    {.pin = -1, .used = false},
-    {.pin = -1, .used = false}
+static spi_ss_t g_ss_table[2][4]={
+    {//SPI0
+        {.pin = -1, .used = false},
+        {.pin = -1, .used = false},
+        {.pin = -1, .used = false},
+        {.pin = -1, .used = false}
+    },
+    {//SPI1
+        {.pin = -1, .used = false},
+        {.pin = -1, .used = false},
+        {.pin = -1, .used = false},
+        {.pin = -1, .used = false}
+    }
 };
 
-int8_t getSsByPin(int8_t pin)
+int8_t getSsByPin(uint8_t spi, int8_t pin)
 {
     uint8_t i;
 
@@ -167,45 +177,45 @@ int8_t getSsByPin(int8_t pin)
         return -1;
     for(i=0; i<4; ++i)
     {
-        if(g_ss_table[i].used && g_ss_table[i].pin == pin)
+        if(g_ss_table[spi][i].used && g_ss_table[spi][i].pin == pin)
             return i;
     }
     return -1;
 }
 
-int8_t getSsNumLast()
+int8_t getSsNumLast(uint8_t spi)
 {
     uint8_t i=0, count=0;
     for(i=0; i<4; ++i)
     {
-        if(!g_ss_table[i].used)
+        if(!g_ss_table[spi][i].used)
             ++count;
     }
     return count;
 }
 
-bool checkSs(int8_t ss)
+bool checkSs(uint8_t spi, int8_t ss)
 {
     int8_t ssPeriph;
     if( ss < 0) // not use ss
         return true;
-    ssPeriph = getSsByPin(ss);
+    ssPeriph = getSsByPin(spi, ss);
     if(ssPeriph >= 0)
         return true;
-    if(getSsNumLast() > 0)
+    if(getSsNumLast(spi) > 0)
         return true;
     return false;
 }
 
-int8_t setSs(int8_t pin)
+int8_t setSs(uint8_t spi, int8_t pin)
 {
     uint8_t i=0;
     for(i=0; i<4; ++i)
     {
-        if(!g_ss_table[i].used)
+        if(!g_ss_table[spi][i].used)
         {
-            g_ss_table[i].used = true;
-            g_ss_table[i].pin = pin;
+            g_ss_table[spi][i].used = true;
+            g_ss_table[spi][i].pin = pin;
             return i;
         }
     }
@@ -217,9 +227,9 @@ int8_t setSs(int8_t pin)
  * @param mosi must >= 0
  * @param ss -1: not use hardware ss
  */
-bool checkPinParam(int8_t sck, int8_t miso, int8_t mosi, int8_t ss)
+bool checkPinParam(uint8_t spi, int8_t sck, int8_t miso, int8_t mosi, int8_t ss)
 {
-    if(!checkSs(ss))
+    if(!checkSs(spi, ss))
         return false;
     //TODO:
     return true;
@@ -275,7 +285,7 @@ void SPIClass::begin(int8_t sck, int8_t miso, int8_t mosi, int8_t ss)
         mosi = _mosi;
         ss = _ss;
     }
-    configASSERT(checkPinParam(sck, miso, mosi, ss));
+    configASSERT(checkPinParam(_spiNum, sck, miso, mosi, ss));
 
     if(_spiNum == SPI_SOFT)
     {
@@ -288,7 +298,7 @@ void SPIClass::begin(int8_t sck, int8_t miso, int8_t mosi, int8_t ss)
         fpioa_set_function(sck, FUNC_SPI0_SCLK);
         if( ss >= 0)
         {
-            fpioa_function_t a = (fpioa_function_t)(FUNC_SPI0_SS0+setSs(ss));
+            fpioa_function_t a = (fpioa_function_t)(FUNC_SPI0_SS0+setSs(_spiNum, ss));
             fpioa_set_function(ss, a);
         }
         fpioa_set_function(mosi, FUNC_SPI0_D0);
@@ -300,7 +310,7 @@ void SPIClass::begin(int8_t sck, int8_t miso, int8_t mosi, int8_t ss)
         fpioa_set_function(sck, FUNC_SPI1_SCLK);
         if( ss >= 0)
         {
-            fpioa_set_function(ss, (fpioa_function_t)(FUNC_SPI1_SS0+setSs(ss)));
+            fpioa_set_function(ss, (fpioa_function_t)(FUNC_SPI1_SS0+setSs(_spiNum, ss)));
         }
         fpioa_set_function(mosi, FUNC_SPI1_D0);
         if(miso>=0)
@@ -310,7 +320,7 @@ void SPIClass::begin(int8_t sck, int8_t miso, int8_t mosi, int8_t ss)
     _miso = miso;
     _sck = sck;
     _ss = ss;
-    _ssPeriph = getSsByPin(ss);
+    _ssPeriph = getSsByPin(_spiNum, ss);
     if(_ssPeriph<0)
         _ssPeriph = 0; // default to cs0 TODO: optimize? 
     spi_init(spi_device_num_t(_spiNum), spi_work_mode_t(_dataMode), SPI_FF_STANDARD, 8, 0);
