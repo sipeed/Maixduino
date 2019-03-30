@@ -48,12 +48,12 @@ private:
     bool     _initPinsInConstruct;
 
 public:
-    SPIClass(spi_id_t spi_bus = SPI0);
+    SPIClass(spi_id_t spi_bus = SPI1);
     /*
      * API just for k210
      */
     SPIClass(spi_id_t spi_bus, int8_t sck, int8_t miso, int8_t mosi, int8_t ss, uint32_t freq = 1000000);
-    void begin(int8_t sck=27, int8_t miso=26, int8_t mosi=28, int8_t ss=29);
+    void begin(int8_t sck=27, int8_t miso=26, int8_t mosi=28, int8_t ss=-1);
     void end();
 
     void setBitOrder(uint8_t bitOrder);
