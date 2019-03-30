@@ -1,5 +1,5 @@
-name = K210 Arduino
-version = 0.1.0
+name = MaixDuino
+version = 0.2.3
 
 # arch
 arch              = k210
