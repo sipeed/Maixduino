@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include "gpio.h"
 #include "fpioa.h"
-#include "spi.h"
+#include "./kendryte-standalone-sdk/lib/drivers/include/spi.h"
 
 #ifdef __cplusplus
 extern "C" {
