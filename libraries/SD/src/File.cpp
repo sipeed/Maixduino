@@ -95,6 +95,22 @@ int File::read(void *buf, uint16_t nbyte) {
   return 0;
 }
 
+long File::read(void *buf, uint32_t nbyte) {
+  if (!_file) 
+    return 0;
+  uint32_t bytesToRead = nbyte;
+  uint16_t ret, readBytesOnece;
+  while(bytesToRead)
+  {
+    readBytesOnece = (bytesToRead>65000) ? 65000 : bytesToRead;
+    ret = (uint16_t)_file->read(buf+(nbyte-bytesToRead), readBytesOnece);
+    if(ret == 0xffff)
+      return -1;
+    bytesToRead -= ret;
+  }
+  return nbyte;
+}
+
 int File::available() {
   if (! _file) return 0;
 

@@ -606,6 +606,19 @@ _id(0)
     configASSERT(pixFormat == PIXFORMAT_RGB565 || pixFormat==PIXFORMAT_YUV422);
 }
 
+
+
+Sipeed_OV2640::Sipeed_OV2640(uint16_t width, uint16_t height, pixformat_t pixFormat)
+:Camera(width, height, pixFormat),
+_dataBuffer(NULL), _aiBuffer(NULL),
+_resetPoliraty(ACTIVE_HIGH), _pwdnPoliraty(ACTIVE_HIGH),
+_slaveAddr(0x00),
+_id(0)
+{
+    configASSERT(pixFormat == PIXFORMAT_RGB565 || pixFormat==PIXFORMAT_YUV422);
+}
+
+
 Sipeed_OV2640::~Sipeed_OV2640()
 {
     end();

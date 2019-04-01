@@ -36,12 +36,20 @@ static const int resolution[][2] = {
     {1600, 1200},    /* UXGA      */
 };
 
-Camera::Camera(framesize_t frameSize = FRAMESIZE_QVGA, pixformat_t pixFormat = PIXFORMAT_RGB565)
+Camera::Camera(framesize_t frameSize, pixformat_t pixFormat)
 {
     _frameSize = frameSize;
     _pixFormat = pixFormat;
     _width = resolution[frameSize][0];
     _height = resolution[frameSize][1];
+}
+
+Camera::Camera(int16_t width, uint16_t height, pixformat_t pixFormat)
+{
+    _frameSize = FRAMESIZE_CUSTOM;
+    _pixFormat = pixFormat;
+    _width     = width;
+    _height    = height;
 }
 
 Camera::~Camera()

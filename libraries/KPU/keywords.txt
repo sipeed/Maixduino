@@ -1,0 +1,26 @@
+#######################################
+# Syntax Coloring Map SD
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+KPUClass	KEYWORD1	
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+begin	KEYWORD2
+end  	KEYWORD2
+forward	KEYWORD2
+isForwardOk	KEYWORD2
+getResult	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+KPU_ERROR_BUSY    	LITERAL1
+KPU_ERROR_BAD_MODEL	LITERAL1
+KPU_ERROR_MODEL_VERSION	LITERAL1
+KPU_ERROR_NONE   	LITERAL1

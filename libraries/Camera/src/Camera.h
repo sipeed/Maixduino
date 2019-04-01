@@ -44,6 +44,7 @@ typedef enum {
     FRAMESIZE_SVGA,     // 800x600
     FRAMESIZE_SXGA,     // 1280x1024
     FRAMESIZE_UXGA,     // 1600x1200
+    FRAMESIZE_CUSTOM,
 } framesize_t;
 
 
@@ -51,6 +52,7 @@ class Camera{
 
 public:
     Camera(framesize_t frameSize, pixformat_t pixFormat);
+    Camera(int16_t width, uint16_t height, pixformat_t pixFormat);
     ~Camera();
     virtual bool begin( ) = 0;
     virtual void end() = 0;
@@ -64,8 +66,16 @@ public:
      *         If pixels format is RGB565: return RGB565 pixels with every uint16_t one pixel, e.g. RED: 0xF800
      */
     virtual uint8_t* snapshot() = 0;
-    virtual uint8_t* getRGB565(){ return 0; };
-    virtual uint8_t* getRGB888(){ return 0; };
+    /**
+     * @return pixels with RGB565 format,  every uint16_t one pixel, e.g. RED: 0xF800, so two pixels: {0xF800, 0xF800}
+     */
+    virtual uint16_t* getRGB565(){ return nullptr; };
+    /**
+     * 
+     * @return pixels with RGB888 format, for n pixels: {{R0,R1,...,Rn-1,},{G0,G1,...,Gn-1},{B0,B1,...,Bn-1}}
+     *                                    e.g. two RED pixel: {0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00}
+     */
+    virtual uint8_t* getRGB888(){ return nullptr; };
     virtual void setRotaion(uint8_t rotation) = 0;
     virtual void setInvert(bool invert) = 0;
 

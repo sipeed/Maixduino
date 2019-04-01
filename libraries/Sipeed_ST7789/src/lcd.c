@@ -174,7 +174,7 @@ void lcd_set_area(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2)
 void lcd_draw_point(uint16_t x, uint16_t y, uint16_t color)
 {
     lcd_set_area(x, y, x, y);
-    tft_write_byte((uint8_t*)&color, 2);
+    tft_write_half(&color, 1);
 }
 
 void lcd_clear(uint16_t color)
@@ -204,13 +204,13 @@ void lcd_draw_rectangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint
         *p++ = data;
 
     lcd_set_area(x1, y1, x2, y1 + width - 1);
-    tft_write_byte((uint8_t*)data_buf, ((x2 - x1 + 1) * width + 1) * 2);
+    tft_write_word(data_buf, ((x2 - x1 + 1) * width + 1) / 2);
     lcd_set_area(x1, y2 - width + 1, x2, y2);
-    tft_write_byte((uint8_t*)data_buf, ((x2 - x1 + 1) * width + 1) * 2);
+    tft_write_word(data_buf, ((x2 - x1 + 1) * width + 1) / 2);
     lcd_set_area(x1, y1, x1 + width - 1, y2);
-    tft_write_byte((uint8_t*)data_buf, ((y2 - y1 + 1) * width + 1) * 2);
+    tft_write_word(data_buf, ((y2 - y1 + 1) * width + 1) / 2);
     lcd_set_area(x2 - width + 1, y1, x2, y2);
-    tft_write_byte((uint8_t*)data_buf, ((y2 - y1 + 1) * width + 1) * 2);
+    tft_write_word(data_buf, ((y2 - y1 + 1) * width + 1) / 2);
 }
 
 #define SWAP_16(x) ((x >> 8 & 0xff) | (x << 8))

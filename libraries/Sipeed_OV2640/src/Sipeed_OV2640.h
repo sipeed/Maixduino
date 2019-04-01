@@ -37,6 +37,7 @@ class Sipeed_OV2640 : public Camera{
 
 public:
     Sipeed_OV2640(framesize_t frameSize = FRAMESIZE_QVGA, pixformat_t pixFormat = PIXFORMAT_RGB565);
+    Sipeed_OV2640(uint16_t width, uint16_t height, pixformat_t pixFormat = PIXFORMAT_RGB565);
     ~Sipeed_OV2640();
     
     virtual bool begin();
@@ -51,6 +52,8 @@ public:
      *         If pixels format is RGB565: return RGB565 pixels with every uint16_t one pixel, e.g. RED: 0xF800
      */
     virtual uint8_t* snapshot();
+    virtual uint16_t* getRGB565(){ return (uint16_t*)_dataBuffer; };
+    virtual uint8_t* getRGB888(){ return _aiBuffer; };
     virtual void setRotaion(uint8_t rotation);
     virtual void setInvert(bool invert);
 
