@@ -11,7 +11,7 @@
 #include "Sipeed_OV2640.h"
 #include "Sipeed_ST7789.h"
 #include <SD.h>
-#include <KPU.h>
+#include <Maix_KPU.h>
 
 #define KMODEL_SIZE (4220 * 1024)
 #define STATISTICS_NUM 5

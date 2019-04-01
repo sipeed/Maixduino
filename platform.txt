@@ -27,7 +27,7 @@ compiler.debug.flags=-DCONFIG_LOG_ENABLE -DCONFIG_LOG_LEVEL=LOG_INFO -DDEBUG=1 -
 
 compiler.c.flags=-c {compiler.debug.flags} {compiler.both.flags} {compiler.preproc.flags} -std=gnu11 -Wno-pointer-to-int-cast -Wno-old-style-declaration -g -Wno-error=unused-variable -Wno-error=unused-function -Wno-error=unused-const-variable
 
-compiler.cpp.flags=-c {compiler.debug.flags} {compiler.both.flags} {compiler.preproc.flags} -std=gnu++17 -g -Wno-error=unused-variable -Wno-error=unused-function -Wno-error=unused-const-variable
+compiler.cpp.flags=-c {compiler.debug.flags} {compiler.both.flags} -I{runtime.platform.path}/libraries/SPI/src {compiler.preproc.flags} -std=gnu++17 -g -Wno-error=unused-variable -Wno-error=unused-function -Wno-error=unused-const-variable
 
 compiler.ld.flags=-mcmodel=medany -mabi=lp64f -march=rv64imafc -fno-common -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -fno-zero-initialized-in-bss -Os -ggdb -nostartfiles -static -Wl,--gc-sections -Wl,-static -Wl,--whole-archive -Wl,--no-whole-archive -Wl,-EL -Wl,--no-relax -T {build.ldscript}
 

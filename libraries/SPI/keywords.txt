@@ -1,0 +1,35 @@
+#######################################	
+# Syntax Coloring Map SPI	
+#######################################	
+
+ #######################################	
+# Datatypes (KEYWORD1)	
+#######################################	
+
+ SPI	KEYWORD1	
+
+ #######################################	
+# Methods and Functions (KEYWORD2)	
+#######################################	
+begin               KEYWORD2	
+end                	KEYWORD2	
+transfer            KEYWORD2	
+transferBytes       KEYWORD2	
+setBitOrder         KEYWORD2	
+setDataMode         KEYWORD2	
+setFrequency        KEYWORD2	
+beginTransaction    KEYWORD2	
+endTransaction      KEYWORD2	
+bus                 KEYWORD2	
+
+
+ #######################################	
+# Constants (LITERAL1)	
+#######################################	
+SPI_MODE0	      LITERAL1	
+SPI_MODE1	      LITERAL1	
+SPI_MODE2	      LITERAL1	
+SPI_MODE3	      LITERAL1	
+SPI_MSBFIRST      LITERAL1	
+SPI0              LITERAL1	
+SPI1              LITERAL1

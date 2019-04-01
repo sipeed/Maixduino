@@ -6,7 +6,7 @@
 #include "fpioa.h"
 #include "stdint.h"
 #include "stdbool.h"
-#include "./kendryte-standalone-sdk/lib/drivers/include/spi.h"
+#include "../kendryte-standalone-sdk/lib/drivers/include/spi.h"
 #include "SPI_hal.h"
 #include "sysctl.h"
 

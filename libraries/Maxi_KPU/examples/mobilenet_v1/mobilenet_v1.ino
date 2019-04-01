@@ -15,7 +15,7 @@
 #include <Sipeed_OV2640.h>
 #include <Sipeed_ST7789.h>
 #include "MBNet_1000.h"
-
+#include "Maix_KPU.h"
 
 SPIClass spi_(SPI0); // MUST be SPI0 for Maix series on board LCD
 Sipeed_ST7789 lcd(320, 240, spi_);

@@ -1,5 +1,5 @@
-#ifndef __SPI_H
-#define __SPI_H
+#ifndef __SPI__fafefef_H
+#define __SPI__fafefef_H
 
 #include "stdint.h"
 

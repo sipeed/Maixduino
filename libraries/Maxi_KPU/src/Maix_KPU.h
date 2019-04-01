@@ -5,6 +5,9 @@
 extern "C" {
 #include "kpu.h"
 }
+#include "stdint.h"
+#include "stdbool.h"
+
 
 typedef enum{
     KPU_ERROR_BUSY          = -3,
