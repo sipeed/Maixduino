@@ -37,8 +37,8 @@ private:
     KPUClass&      _kpu;
     Sipeed_ST7789& _lcd;
     Sipeed_OV2640& _camera;
-    uint8_t        _model[KMODEL_SIZE] __attribute__((aligned(128)));
-    size_t       _count;
+    uint8_t*       _model;
+    size_t         _count;
     statistics_t   _statistics[STATISTICS_NUM];
     float*         _result;
     uint16_t       _index[1000];

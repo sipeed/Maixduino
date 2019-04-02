@@ -8,11 +8,12 @@
 #include "MBNet_1000.h"
 #include "names.h"
 #include "stdlib.h"
+#include "errno.h"
 
 
 MBNet_1000::MBNet_1000(KPUClass& kpu, Sipeed_ST7789& lcd, Sipeed_OV2640& camera)
 :_kpu(kpu),_lcd(lcd), _camera(camera),
-_count(0), _result(nullptr)
+_model(nullptr), _count(0), _result(nullptr)
 {
     _names = mbnet_label_name;
     memset(_statistics, 0, sizeof(_statistics));
@@ -20,7 +21,8 @@ _count(0), _result(nullptr)
 
 MBNet_1000::~MBNet_1000()
 {
-
+    if(_model)
+        free(_model);
 }
 
 
@@ -32,25 +34,44 @@ int MBNet_1000::begin(const char* kmodel_name)
     if(!_lcd.begin(15000000, COLOR_RED))
         return -2;
     _camera.run(true);
+    _lcd.setTextSize(2);
+    _lcd.setTextColor(COLOR_WHITE);
 
     if (!SD.begin()) 
+    {
+        _lcd.setCursor(100,100);
+        _lcd.print("No SD Card");
         return -3;
+    }
 
     myFile = SD.open(kmodel_name);
     if (!myFile)
         return -4;
     uint32_t fSize = myFile.size();
-    _lcd.setTextSize(2);
-    _lcd.setTextColor(COLOR_WHITE);
     _lcd.setCursor(100,100);
     _lcd.print("Loading ... ");
+    _model = (uint8_t*)malloc(fSize);
+    if(!_model)
+    {
+        _lcd.setCursor(100,140);
+        _lcd.print("Memmory not enough ... ");
+        return ENOMEM;
+    }
     long ret = myFile.read(_model, fSize);
     myFile.close();
     if(ret != fSize)
+    {
+        free(_model);
+        _model = nullptr;
         return -5;
+    }
 
     if(_kpu.begin(_model) != 0)
+    {
+        free(_model);
+        _model = nullptr;
         return -6;
+    }
     return 0;
 }
 
