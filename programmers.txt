@@ -1,15 +1,3 @@
-openocd.name=OpenOCD
-openocd.communication=usb
-openocd.program.params.verbose=-v
-openocd.program.params.quiet=-q
-openocd.program.tool=openocd
-
-manual_openocd.name=OpenOCD
-manual_openocd.communication=usb
-manual_openocd.program.params.verbose=-v
-manual_openocd.program.params.quiet=-q
-manual_openocd.program.tool=manual_openocd
-
 kflash.name=k-flash
 kflash.communication=usb
 kflash.program.params.verbose=-v

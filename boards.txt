@@ -10,9 +10,7 @@ m1.name = Sipeed "Maix One Dock"/"Maix Bit" Board
 
 ## Toolchain
 m1.menu.toolsloc.default=Default
-m1.menu.toolsloc.manual=Manual
 m1.menu.toolsloc.default.compiler.path={runtime.tools.riscv64-unknown-elf-gcc.path}/bin/
-m1.menu.toolsloc.manual.compiler.path={runtime.tools.riscv64-unknown-elf-gcc.path}/bin/
 
 ## CPU Clock
 m1.menu.clksrc.400 = 400MHz CPU Clock Frequency
@@ -51,7 +49,6 @@ m1.upload.tool=kflash
 ## Limit is the 16MB Flash. Assume half is used for something else.
 m1.upload.maximum_size=8388608
 m1.build.ldscript={runtime.platform.path}/cores/arduino/kendryte-standalone-sdk/lds/kendryte.ld
-m1.build.openocdcfg={runtime.tools.openocd.path}/ocd.txt
 
 
 ####################################################
@@ -61,9 +58,7 @@ go.name = Sipeed Maix Go Board
 
 ## Toolchain
 go.menu.toolsloc.default=Default
-go.menu.toolsloc.manual=Manual
 go.menu.toolsloc.default.compiler.path={runtime.tools.riscv64-unknown-elf-gcc.path}/bin/
-go.menu.toolsloc.manual.compiler.path={runtime.tools.riscv64-unknown-elf-gcc.path}/bin/
 
 ## CPU Clock
 go.menu.clksrc.400 = 400MHz CPU Clock Frequency
@@ -101,6 +96,5 @@ go.upload.tool  = kflash
 ## Limit is the 16MB Flash. Assume half is used for something else.
 go.upload.maximum_size=8388608
 go.build.ldscript={runtime.platform.path}/cores/arduino/kendryte-standalone-sdk/lds/kendryte.ld
-go.build.openocdcfg={runtime.tools.openocd.path}/ocd.txt
 
 

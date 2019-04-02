@@ -1,4 +1,4 @@
-name = MaixDuino
+name = Maixduino
 version = 0.2.3
 
 # arch
@@ -87,21 +87,6 @@ recipe.size.regex=\s*[0-9]+\s+[0-9]+\s+[0-9]+\s+([0-9]+).*
 
 # Uploader tools
 # -------------------
-tools.openocd.path={runtime.tools.openocd.path}/
-tools.openocd.cmd=openocd
-tools.openocd.cmd.windows=openocd.exe
-tools.openocd.program.params.verbose=-d2
-tools.openocd.program.params.quiet=-d0
-tools.openocd.program.config={runtime.tools.openocd.path}/ocd.txt
-tools.openocd.program.pattern="{path}{cmd}" -d0 -f {program.config} -c "flash protect 0 0 last off; program {{build.path}/{build.project_name}.elf} verify; resume 0x20000000; exit"
-
-
-tools.manual_openocd.path=
-tools.manual_openocd.cmd=openocd
-tools.manual_openocd.program.params.verbose=-d2
-tools.manual_openocd.program.params.quiet=-d0
-tools.manual_openocd.program.config=
-tools.manual_openocd.program.pattern="{path}{cmd}" -d0 -f {program.config} -c "flash protect 0 0 last off; program {{build.path}/{build.project_name}.elf} verify; resume 0x20000000; exit"
 
 tools.kflash.path={runtime.tools.kflash.path}/
 tools.kflash.cmd=python3 {runtime.tools.kflash.path}/kflash.py
