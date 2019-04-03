@@ -8,6 +8,9 @@ Arduino core for Maix Board (K210)
 
 Docs: [maixduino.sipeed.com](https://maixduino.sipeed.com/)
 
+## Install
+
+Refer install doc: [Install](https://maixduino.sipeed.com/en/get_started/install.html)
 
 
 ## Other SDK
