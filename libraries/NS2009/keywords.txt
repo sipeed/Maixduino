@@ -1,0 +1,29 @@
+#######################################
+# Syntax Coloring Map For Wire
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin	KEYWORD2
+read    KEYWORD2
+getStatus   KEYWORD2
+getX    KEYWORD2
+getY    KEYWORD2
+calibrate   KEYWORD2
+is_init KEYWORD2
+end     KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+
+#######################################
+# Constants (LITERAL1)
+#######################################

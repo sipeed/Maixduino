@@ -28,7 +28,10 @@ extern class UARTClass Serial3;
 #define LED_BLUE             12
 #define LED_RED              14
 /* KEY */
-#define KEY0                 16
+#define KEY0                 15
+#define PIN_KEY_DOWN         16
+#define PIN_KEY_UP           17
+#define PIN_KEY_PRESS        15
 /* MIC ARRAY */
 #define MIC_BCK              18
 #define MIC_WS               19
