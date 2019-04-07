@@ -88,6 +88,4 @@ private:
 
 }__attribute__((packed));
 
-static int timer_callback(void* ctx);
-
 #endif

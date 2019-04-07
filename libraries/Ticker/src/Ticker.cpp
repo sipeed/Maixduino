@@ -1,6 +1,8 @@
 #include "Ticker.h"
 #include "sysctl.h"
 
+static int timer_callback(void* ctx);
+
 Ticker::Ticker(timer_id_t id)
 :timer_id(id)
 {
