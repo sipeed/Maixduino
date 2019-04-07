@@ -107,6 +107,7 @@ UARTClass::read(void)
   while(this->_buff->available()){
     return this->_buff->read_char();
   }
+  return 0;
 }
 
 void
