@@ -96,6 +96,13 @@ int8_t getPwmPin(void)
     return -1;
 }
 
+uint32_t analogRead( uint32_t ulPin ) 
+{
+#if (defined(BOARD_SIPEED_MAIX_GO) || defined(BOARD_SIPEED_MAIX_ONE_DOCK) )
+    return 0;
+#endif
+}
+
 #ifdef __cplusplus
 } // extern "C"
 #endif // __cplusplus
