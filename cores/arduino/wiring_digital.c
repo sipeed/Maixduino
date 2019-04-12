@@ -19,7 +19,6 @@ void pinMode(uint8_t dwPin, uint8_t dwMode){
         fpioa_function_t function = FUNC_GPIOHS0 + gpionum;
         fpioa_set_function(dwPin, function);
         gpiohs_set_drive_mode((uint8_t)gpionum, (gpio_drive_mode_t)dwMode);
-        gpiohs_set_pin((uint8_t)gpionum, GPIO_PV_LOW);
     }
     return ;
 }
