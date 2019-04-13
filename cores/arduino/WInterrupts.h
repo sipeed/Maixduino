@@ -35,7 +35,7 @@ extern "C"{
 #define DEFAULT 1
 #define EXTERNAL 0
 
-#define digitalPinToInterrupt(Pin) Pin;
+#define digitalPinToInterrupt(Pin) Pin
 typedef void (*voidFuncPtr)(void);
 /*
  * \brief Specifies a named Interrupt Service Routine (ISR) to call when an interrupt occurs. Use digitalPinToInterrupt(pin) to get the correct intnum.
@@ -48,6 +48,8 @@ void attachInterrupt(uint8_t intnum, voidFuncPtr callback, uint8_t mode);
  * \brief Turns off the given interrupt.
  */
 void detachInterrupt(uint8_t intnum);
+
+int gpiohs_callback(void *ctx);
 
 #ifdef __cplusplus
 } // extern "C"

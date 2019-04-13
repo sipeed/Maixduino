@@ -3,11 +3,13 @@
 #include "wiring_constants.h"
 #include "plic.h"
 
-void attachInterrupt(uint8_t intnum, voidFuncPtr callback, uint8_t mode)
+void attachInterrupt(uint8_t intnum, voidFuncPtr user_callback, uint8_t mode)
 {
-    plic_irq_callback_t _callback = (plic_irq_callback_t)callback;
     int gpionum = getGpio(intnum);
     if(gpionum >= 0){
+        fpioa_function_t function = FUNC_GPIOHS0 + gpionum;
+        fpioa_set_function(intnum, function);
+        gpiohs_set_drive_mode(gpionum, GPIO_DM_INPUT_PULL_UP);
         switch(mode){
             case LOW : 
                 gpiohs_set_pin_edge((uint8_t)gpionum, GPIO_PE_LOW);
@@ -25,7 +27,7 @@ void attachInterrupt(uint8_t intnum, voidFuncPtr callback, uint8_t mode)
                 gpiohs_set_pin_edge((uint8_t)gpionum, GPIO_PE_RISING);
                 break;
         }
-        gpiohs_irq_register((uint8_t)gpionum, 10, _callback, NULL);
+        gpiohs_irq_register((uint8_t)gpionum, 10, gpiohs_callback, user_callback);
         sysctl_enable_irq();
     }
 }
@@ -36,4 +38,11 @@ void detachInterrupt(uint8_t intnum)
     if(gpionum >= 0){
         gpiohs_irq_unregister((uint8_t)gpionum);
     }
+}
+
+int gpiohs_callback(void *ctx)
+{
+    voidFuncPtr user_callback = ctx;
+    user_callback();
+    return 0;
 }
