@@ -7,8 +7,6 @@ menu.toolsloc            = Tool Install Location
 ############# Sipeed M1 Dock Board ###############
 
 m1.name = Sipeed "Maix One Dock"/"Maix Bit" Board
-m1.vid.0=0x1A86
-m1.pid.0=0x7523
 
 ## Toolchain
 m1.menu.toolsloc.default=Default
@@ -57,9 +55,6 @@ m1.build.ldscript={runtime.platform.path}/cores/arduino/kendryte-standalone-sdk/
 ############### Sipeed Maix Go Board ###############
 
 go.name = Sipeed Maix Go Board
-
-go.vid.0=0x0403
-go.pid.0=0x6010
 
 
 ## Toolchain
