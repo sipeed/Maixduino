@@ -1,0 +1,6 @@
+{
+    "name": "framework-arduinokendryte210",
+    "description": "Arduino Wiring-based Framework (K210 Core)",
+    "version": "0.0.0",
+    "url": "https://github.com/sipeed/Maixduino"
+}
