@@ -94,6 +94,7 @@ recipe.output.save_file={build.project_name}.{build.variant}.bin
 tools.kflash.path={runtime.tools.kflash.path}/
 tools.kflash.cmd=python3 {runtime.tools.kflash.path}/kflash.py
 tools.kflash.cmd.windows={runtime.tools.kflash.path}/kflash_py
+tools.kflash.cmd.macosx=/usr/local/bin/python3 {runtime.tools.kflash.path}/kflash.py
 tools.kflash.program.pattern={cmd} -n -p {serial.port} -b {build.burn_baudrate} -B {build.burn_tool_firmware} {build.path}/{build.project_name}.bin
 tools.kflash.program.pattern.windows="{cmd}" -n -p {serial.port} -b {build.burn_baudrate} -B {build.burn_tool_firmware} {build.path}/{build.project_name}.bin
 
