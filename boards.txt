@@ -33,7 +33,7 @@ m1.menu.burn_tool_firmware.dan = Default
 m1.menu.burn_tool_firmware.dan.build.burn_tool_firmware = dan
 
 ## Point to the file for ./variants/<variant>/pins_arduino.h
-m1.build.variant=standard
+m1.build.variant=sipeed_maix_one
 
 ## "The 'core' file directory for this board, in ./cores
 m1.build.core=arduino
@@ -84,7 +84,7 @@ go.menu.burn_tool_firmware.goE.build.burn_tool_firmware = goE
 go.menu.burn_tool_firmware.goD.build.burn_tool_firmware = goD
 
 ## Core settings
-go.build.variant= standard
+go.build.variant= sipeed_maix_go
 go.build.core   = arduino
 
 ## This sets a define for use in the compiled code.
