@@ -71,9 +71,11 @@ go.menu.clksrc.600.build.f_cpu = 600000000L
 
 ## Burn baud rate
 go.menu.burn_baudrate.2000000 = 2 Mbps
+go.menu.burn_baudrate.4500000 = 4.5 Mbps (Must open-ec!)
 go.menu.burn_baudrate.1500000 = 1.5 Mbps
 go.menu.burn_baudrate.1000000 = 1 Mbps
 go.menu.burn_baudrate.2000000.build.burn_baudrate = 2000000
+go.menu.burn_baudrate.4500000.build.burn_baudrate = 4500000
 go.menu.burn_baudrate.1500000.build.burn_baudrate = 1500000
 go.menu.burn_baudrate.1000000.build.burn_baudrate = 1000000
 
