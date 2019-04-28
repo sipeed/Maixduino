@@ -1,36 +1,36 @@
-menu.clksrc              = CPU Clock Frequency
-menu.burn_tool_firmware  = Burn Tool Firmware
-menu.burn_baudrate       = Burn Baud Rate
-menu.toolsloc            = Tool Install Location
+menu.clksrc=CPU Clock Frequency
+menu.burn_tool_firmware=Burn Tool Firmware
+menu.burn_baudrate=Burn Baud Rate
+menu.toolsloc=Tool Install Location
 
 ##################################################
 ############# Sipeed M1 Dock Board ###############
 
-m1.name = Sipeed "Maix One Dock"/"Maix Bit" Board
+m1.name=Sipeed "Maix One Dock"/"Maix Bit" Board
 
 ## Toolchain
 m1.menu.toolsloc.default=Default
 m1.menu.toolsloc.default.compiler.path={runtime.tools.riscv64-unknown-elf-gcc.path}/bin/
 
 ## CPU Clock
-m1.menu.clksrc.400 = 400MHz CPU Clock Frequency
-m1.menu.clksrc.500 = 500MHz CPU Clock Frequency
-m1.menu.clksrc.600 = 600MHz CPU Clock Frequency
-m1.menu.clksrc.400.build.f_cpu = 400000000L
-m1.menu.clksrc.500.build.f_cpu = 500000000L
-m1.menu.clksrc.600.build.f_cpu = 600000000L
+m1.menu.clksrc.400=400MHz CPU Clock Frequency
+m1.menu.clksrc.500=500MHz CPU Clock Frequency
+m1.menu.clksrc.600=600MHz CPU Clock Frequency
+m1.menu.clksrc.400.build.f_cpu=400000000L
+m1.menu.clksrc.500.build.f_cpu=500000000L
+m1.menu.clksrc.600.build.f_cpu=600000000L
 
 ## Burn baud rate
-m1.menu.burn_baudrate.2000000 = 2 Mbps
-m1.menu.burn_baudrate.1500000 = 1.5 Mbps
-m1.menu.burn_baudrate.1000000 = 1 Mbps
-m1.menu.burn_baudrate.2000000.build.burn_baudrate = 2000000
-m1.menu.burn_baudrate.1500000.build.burn_baudrate = 1500000
-m1.menu.burn_baudrate.1000000.build.burn_baudrate = 1000000
+m1.menu.burn_baudrate.2000000=2 Mbps
+m1.menu.burn_baudrate.1500000=1.5 Mbps
+m1.menu.burn_baudrate.1000000=1 Mbps
+m1.menu.burn_baudrate.2000000.build.burn_baudrate=2000000
+m1.menu.burn_baudrate.1500000.build.burn_baudrate=1500000
+m1.menu.burn_baudrate.1000000.build.burn_baudrate=1000000
 
 ## Burn tool firmware
-m1.menu.burn_tool_firmware.dan = Default
-m1.menu.burn_tool_firmware.dan.build.burn_tool_firmware = dan
+m1.menu.burn_tool_firmware.dan=Default
+m1.menu.burn_tool_firmware.dan.build.burn_tool_firmware=dan
 
 ## Point to the file for ./variants/<variant>/pins_arduino.h
 m1.build.variant=sipeed_maix_one
@@ -39,7 +39,7 @@ m1.build.variant=sipeed_maix_one
 m1.build.core=arduino
 
 ## This sets a define for use in the compiled code.
-m1.build.board = BOARD_SIPEED_MAIX_ONE_DOCK
+m1.build.board=BOARD_SIPEED_MAIX_ONE_DOCK
 m1.build.sdata.size=512
 
 ## This selects the tool from "programmers.txt"
@@ -54,7 +54,7 @@ m1.build.ldscript={runtime.platform.path}/cores/arduino/kendryte-standalone-sdk/
 ####################################################
 ############### Sipeed Maix Go Board ###############
 
-go.name = Sipeed Maix Go Board
+go.name=Sipeed Maix Go Board
 
 
 ## Toolchain
@@ -62,42 +62,40 @@ go.menu.toolsloc.default=Default
 go.menu.toolsloc.default.compiler.path={runtime.tools.riscv64-unknown-elf-gcc.path}/bin/
 
 ## CPU Clock
-go.menu.clksrc.400 = 400MHz CPU Clock Frequency
-go.menu.clksrc.500 = 500MHz CPU Clock Frequency
-go.menu.clksrc.600 = 600MHz CPU Clock Frequency
-go.menu.clksrc.400.build.f_cpu = 400000000L
-go.menu.clksrc.500.build.f_cpu = 500000000L
-go.menu.clksrc.600.build.f_cpu = 600000000L
+go.menu.clksrc.400=400MHz CPU Clock Frequency
+go.menu.clksrc.500=500MHz CPU Clock Frequency
+go.menu.clksrc.600=600MHz CPU Clock Frequency
+go.menu.clksrc.400.build.f_cpu=400000000L
+go.menu.clksrc.500.build.f_cpu=500000000L
+go.menu.clksrc.600.build.f_cpu=600000000L
 
 ## Burn baud rate
-go.menu.burn_baudrate.2000000 = 2 Mbps
-go.menu.burn_baudrate.4500000 = 4.5 Mbps (Must open-ec!)
-go.menu.burn_baudrate.1500000 = 1.5 Mbps
-go.menu.burn_baudrate.1000000 = 1 Mbps
-go.menu.burn_baudrate.2000000.build.burn_baudrate = 2000000
-go.menu.burn_baudrate.4500000.build.burn_baudrate = 4500000
-go.menu.burn_baudrate.1500000.build.burn_baudrate = 1500000
-go.menu.burn_baudrate.1000000.build.burn_baudrate = 1000000
+go.menu.burn_baudrate.2000000=2 Mbps
+go.menu.burn_baudrate.4500000=4.5 Mbps (Must open-ec!)
+go.menu.burn_baudrate.1500000=1.5 Mbps
+go.menu.burn_baudrate.1000000=1 Mbps
+go.menu.burn_baudrate.2000000.build.burn_baudrate=2000000
+go.menu.burn_baudrate.4500000.build.burn_baudrate=4500000
+go.menu.burn_baudrate.1500000.build.burn_baudrate=1500000
+go.menu.burn_baudrate.1000000.build.burn_baudrate=1000000
 
 ## Burn tool firmware
-go.menu.burn_tool_firmware.goE = open-ec
-go.menu.burn_tool_firmware.goD = CMSIS-DAP
-go.menu.burn_tool_firmware.goE.build.burn_tool_firmware = goE
-go.menu.burn_tool_firmware.goD.build.burn_tool_firmware = goD
+go.menu.burn_tool_firmware.goE=open-ec
+go.menu.burn_tool_firmware.goD=CMSIS-DAP
+go.menu.burn_tool_firmware.goE.build.burn_tool_firmware=goE
+go.menu.burn_tool_firmware.goD.build.burn_tool_firmware=goD
 
 ## Core settings
-go.build.variant= sipeed_maix_go
-go.build.core   = arduino
+go.build.variant=sipeed_maix_go
+go.build.core=arduino
 
 ## This sets a define for use in the compiled code.
-go.build.board  = BOARD_SIPEED_MAIX_GO
+go.build.board=BOARD_SIPEED_MAIX_GO
 
 ## This selects the tool from "programmers.txt"
-go.program.tool = kflash
-go.upload.tool  = kflash
+go.program.tool=kflash
+go.upload.tool=kflash
 
 ## Limit is the 16MB Flash. Assume half is used for something else.
 go.upload.maximum_size=8388608
 go.build.ldscript={runtime.platform.path}/cores/arduino/kendryte-standalone-sdk/lds/kendryte.ld
-
-
