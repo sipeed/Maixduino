@@ -15,11 +15,10 @@ compiler.objcopy.cmd=riscv64-unknown-elf-objcopy
 compiler.elf2hex.cmd=riscv64-unknown-elf-objcopy
 compiler.size.cmd=riscv64-unknown-elf-size
 
-compiler.clib.path={runtime.tools.riscv64-unknown-elf-gcc.path}/include
 compiler.sdk.path={runtime.platform.path}/cores/arduino/kendryte-standalone-sdk/lib
 compiler.lib_hal_inc.path={runtime.platform.path}/cores/arduino/hal/include
 compiler.cores.path={runtime.platform.path}/cores/arduino/
-compiler.preproc.flags=-I{build.system.path}/include -I{compiler.cores.path} -I{compiler.lib_hal_inc.path} -I{compiler.sdk.path}/bsp/include -I{compiler.sdk.path}/drivers/include -I{compiler.sdk.path}/utils/include -I{compiler.sdk.path}/freertos/conf -I{compiler.sdk.path}/freertos/include -I{compiler.sdk.path}/freertos/portable -I{compiler.clib.path}
+compiler.preproc.flags=-I{build.system.path}/include -I{compiler.cores.path} -I{compiler.cores.path}/avr -I{compiler.lib_hal_inc.path} -I{compiler.sdk.path}/bsp/include -I{compiler.sdk.path}/drivers/include -I{compiler.sdk.path}/utils/include -I{compiler.sdk.path}/freertos/conf -I{compiler.sdk.path}/freertos/include -I{compiler.sdk.path}/freertos/portable
 
 compiler.both.flags=-mcmodel=medany -mabi=lp64f -march=rv64imafc -fno-common -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -fno-zero-initialized-in-bss -Os -ggdb -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Werror=frame-larger-than=65536 -Wno-unused-parameter -Wno-sign-compare -Wno-error=missing-braces -Wno-error=return-type -Wno-error=pointer-sign -Wno-missing-braces -Wno-strict-aliasing -Wno-implicit-fallthrough -Wno-missing-field-initializers -Wno-int-to-pointer-cast -Wno-error=comment -Wno-error=logical-not-parentheses -Wno-error=duplicate-decl-specifier -Wno-error=parentheses -Wno-error=narrowing -Wno-error=unused-value
 
