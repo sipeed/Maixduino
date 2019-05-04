@@ -1,5 +1,5 @@
-#ifndef _VARIANT_BOARD_SIPEED_MAIX_GO
-#define _VARIANT_BOARD_SIPEED_MAIX_GO
+#ifndef _VARIANT_SIPEED_M1_DOCK
+#define _VARIANT_SIPEED_M1_DOCK
 
 #include <stdint.h>
 
@@ -28,10 +28,7 @@ extern class UARTClass Serial3;
 #define LED_BLUE             12
 #define LED_RED              14
 /* KEY */
-#define KEY0                 15
-#define PIN_KEY_DOWN         16
-#define PIN_KEY_UP           17
-#define PIN_KEY_PRESS        15
+#define KEY0                 16
 /* MIC ARRAY */
 #define MIC_BCK              18
 #define MIC_WS               19
@@ -47,6 +44,9 @@ extern class UARTClass Serial3;
 #define SPI0_MOSI            28
 #define SPI0_CS0             29
 /* I2S */
+#define MIC0_WS              30
+#define MIC0_DATA            31
+#define MIC0_BCK             32
 #define I2S_WS               33
 #define I2S_DA               34
 #define I2S_BCK              35
@@ -76,7 +76,9 @@ typedef struct _pwm_fpio_set_t{
     uint8_t inuse;
 }pwm_fpio_set_t;
 
+static uint8_t maixduino_pin_map[14] = {4, 5, 21, 22, 23, 24, 32, 15, 14, 13, 12, 11, 10, 3};
 
+uint8_t pinToFpio(uint8_t pin){ return maixduino_pin_map[pin]; }
 
 #define VARIANT_NUM_GPIOHS (32)
 #define VARIANT_NUM_GPIO   ( 8)

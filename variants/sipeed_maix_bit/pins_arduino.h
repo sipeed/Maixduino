@@ -1,5 +1,5 @@
-#ifndef _VARIANT_BOARD_SIPEED_MAIX_GO
-#define _VARIANT_BOARD_SIPEED_MAIX_GO
+#ifndef _VARIANT_SIPEED_M1_DOCK
+#define _VARIANT_SIPEED_M1_DOCK
 
 #include <stdint.h>
 
@@ -28,10 +28,7 @@ extern class UARTClass Serial3;
 #define LED_BLUE             12
 #define LED_RED              14
 /* KEY */
-#define KEY0                 15
-#define PIN_KEY_DOWN         16
-#define PIN_KEY_UP           17
-#define PIN_KEY_PRESS        15
+#define KEY0                 16
 /* MIC ARRAY */
 #define MIC_BCK              18
 #define MIC_WS               19
@@ -46,10 +43,6 @@ extern class UARTClass Serial3;
 #define SPI0_SCLK            27
 #define SPI0_MOSI            28
 #define SPI0_CS0             29
-/* I2S */
-#define I2S_WS               33
-#define I2S_DA               34
-#define I2S_BCK              35
 /* LCD */
 #define LCD_CS               36
 #define LCD_RST              37

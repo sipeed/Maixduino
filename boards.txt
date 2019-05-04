@@ -6,7 +6,7 @@ menu.toolsloc=Tool Install Location
 ##################################################
 ############# Sipeed M1 Dock Board ###############
 
-m1.name=Sipeed "Maix One Dock"/"Maix Bit" Board
+m1.name=Sipeed Maix One Dock Board
 
 ## Toolchain
 m1.menu.toolsloc.default=Default
@@ -33,7 +33,7 @@ m1.menu.burn_tool_firmware.dan=Default
 m1.menu.burn_tool_firmware.dan.build.burn_tool_firmware=dan
 
 ## Point to the file for ./variants/<variant>/pins_arduino.h
-m1.build.variant=sipeed_maix_one
+m1.build.variant=sipeed_maix_one_dock
 
 ## "The 'core' file directory for this board, in ./cores
 m1.build.core=arduino
@@ -49,6 +49,53 @@ m1.upload.tool=kflash
 ## Limit is the 16MB Flash. Assume half is used for something else.
 m1.upload.maximum_size=8388608
 m1.build.ldscript={runtime.platform.path}/cores/arduino/kendryte-standalone-sdk/lds/kendryte.ld
+
+##################################################
+############# Sipeed Maix Bit Board ###############
+
+bit.name=Sipeed Maix Bit Board
+
+## Toolchain
+bit.menu.toolsloc.default=Default
+bit.menu.toolsloc.default.compiler.path={runtime.tools.riscv64-unknown-elf-gcc.path}/bin/
+
+## CPU Clock
+bit.menu.clksrc.400=400MHz CPU Clock Frequency
+bit.menu.clksrc.500=500MHz CPU Clock Frequency
+bit.menu.clksrc.600=600MHz CPU Clock Frequency
+bit.menu.clksrc.400.build.f_cpu=400000000L
+bit.menu.clksrc.500.build.f_cpu=500000000L
+bit.menu.clksrc.600.build.f_cpu=600000000L
+
+## Burn baud rate
+bit.menu.burn_baudrate.2000000=2 Mbps
+bit.menu.burn_baudrate.1500000=1.5 Mbps
+bit.menu.burn_baudrate.1000000=1 Mbps
+bit.menu.burn_baudrate.2000000.build.burn_baudrate=2000000
+bit.menu.burn_baudrate.1500000.build.burn_baudrate=1500000
+bit.menu.burn_baudrate.1000000.build.burn_baudrate=1000000
+
+## Burn tool firmware
+bit.menu.burn_tool_firmware.dan=Default
+bit.menu.burn_tool_firmware.dan.build.burn_tool_firmware=dan
+
+## Point to the file for ./variants/<variant>/pins_arduino.h
+bit.build.variant=sipeed_maix_bit
+
+## "The 'core' file directory for this board, in ./cores
+bit.build.core=arduino
+
+## This sets a define for use in the compiled code.
+bit.build.board=BOARD_SIPEED_MAIX_BIT
+bit.build.sdata.size=512
+
+## This selects the tool from "programmers.txt"
+bit.program.tool=kflash
+bit.upload.tool=kflash
+
+## Limit is the 16MB Flash. Assume half is used for something else.
+bit.upload.maximum_size=8388608
+bit.build.ldscript={runtime.platform.path}/cores/arduino/kendryte-standalone-sdk/lds/kendryte.ld
 
 
 ####################################################
@@ -99,3 +146,50 @@ go.upload.tool=kflash
 ## Limit is the 16MB Flash. Assume half is used for something else.
 go.upload.maximum_size=8388608
 go.build.ldscript={runtime.platform.path}/cores/arduino/kendryte-standalone-sdk/lds/kendryte.ld
+
+##################################################
+############# Sipeed Maixduino Board ###############
+
+mduino.name=Sipeed Maixduino Board
+
+## Toolchain
+mduino.menu.toolsloc.default=Default
+mduino.menu.toolsloc.default.compiler.path={runtime.tools.riscv64-unknown-elf-gcc.path}/bin/
+
+## CPU Clock
+mduino.menu.clksrc.400=400MHz CPU Clock Frequency
+mduino.menu.clksrc.500=500MHz CPU Clock Frequency
+mduino.menu.clksrc.600=600MHz CPU Clock Frequency
+mduino.menu.clksrc.400.build.f_cpu=400000000L
+mduino.menu.clksrc.500.build.f_cpu=500000000L
+mduino.menu.clksrc.600.build.f_cpu=600000000L
+
+## Burn baud rate
+mduino.menu.burn_baudrate.2000000=2 Mbps
+mduino.menu.burn_baudrate.1500000=1.5 Mbps
+mduino.menu.burn_baudrate.1000000=1 Mbps
+mduino.menu.burn_baudrate.2000000.build.burn_baudrate=2000000
+mduino.menu.burn_baudrate.1500000.build.burn_baudrate=1500000
+mduino.menu.burn_baudrate.1000000.build.burn_baudrate=1000000
+
+## Burn tool firmware
+mduino.menu.burn_tool_firmware.dan=Default
+mduino.menu.burn_tool_firmware.dan.build.burn_tool_firmware=dan
+
+## Point to the file for ./variants/<variant>/pins_arduino.h
+mduino.build.variant=sipeed_maixduino
+
+## "The 'core' file directory for this board, in ./cores
+mduino.build.core=arduino
+
+## This sets a define for use in the compiled code.
+mduino.build.board=BOARD_SIPEED_MAIX_DUINO
+mduino.build.sdata.size=512
+
+## This selects the tool from "programmers.txt"
+mduino.program.tool=kflash
+mduino.upload.tool=kflash
+
+## Limit is the 16MB Flash. Assume half is used for something else.
+mduino.upload.maximum_size=8388608
+mduino.build.ldscript={runtime.platform.path}/cores/arduino/kendryte-standalone-sdk/lds/kendryte.ld
