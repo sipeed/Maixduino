@@ -80,6 +80,16 @@ static uint8_t maixduino_pin_map[14] = {4, 5, 21, 22, 23, 24, 32, 15, 14, 13, 12
 
 uint8_t pinToFpio(uint8_t pin){ return maixduino_pin_map[pin]; }
 
+typedef enum _analog_output_pin_t{
+    A0,
+    A1,
+    A2,
+    A3,
+    A4,
+    A5,
+    ANALOG_OUTPUT_PIN_MAX,
+}analog_output_pin_t;
+
 #define VARIANT_NUM_GPIOHS (32)
 #define VARIANT_NUM_GPIO   ( 8)
 #define VARIANT_NUM_PWM    (12)
