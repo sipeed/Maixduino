@@ -723,12 +723,15 @@ uint8_t* Sipeed_OV2640::snapshot()
 
 void Sipeed_OV2640::setRotaion(uint8_t rotation)
 {
-
+    //FIXME
 }
 
 void Sipeed_OV2640::setInvert(bool invert)
 {
-
+    //FIXME
+    ov2640_set_hmirror(!invert); 
+    //ov2640_set_vflip(1);
+    return;
 }
 
 
