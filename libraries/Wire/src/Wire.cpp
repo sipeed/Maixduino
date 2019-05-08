@@ -273,7 +273,7 @@ TwoWire::requestFrom(uint16_t address, uint8_t size, bool sendStop)  //请求数
             size--;
         }
     }
-    return state;
+    return i2c_rx_buff->available();
 }
 
 size_t 
