@@ -16,7 +16,7 @@
 #include "util/flash.h"
 #include "util/ADC.h"
 
-#define USART1_printf printf
+#define USART1_printf Serial.printf
 
 uint16_t VcBuf[atap_len];
 atap_tag    atap_arg;
@@ -118,6 +118,7 @@ SpeechRecognizer::begin()
 int
 SpeechRecognizer::record(uint8_t keyword_num, uint8_t model_num)
 {
+    Serial.printf("debug: in record\n");
     if (keyword_num > 10) return -1;
     if (model_num > 4)    return -2;
     
@@ -144,7 +145,6 @@ SpeechRecognizer::recognize()
 {
     u8 res;
     u32 dis;
-    u32 recg_count = 0;
 
     g_index = 0;
     i2s_rec_flag = 0;
@@ -171,14 +171,14 @@ SpeechRecognizer::addVoiceModel(uint8_t keyword_num, uint8_t model_num, const in
 int
 SpeechRecognizer::print_model(uint8_t keyword_num, uint8_t model_num)
 {
-    printf("frm_num=%d\n", ftr_save[keyword_num*4 + model_num].frm_num);
+    Serial.printf("frm_num=%d\n", ftr_save[keyword_num*4 + model_num].frm_num);
     for (int i = 0; i < (vv_frm_max * mfcc_num); i++) {
         if (((i + 1) % 35) == 0)
-            printf("%d,\n", ftr_save[keyword_num*4 + model_num].mfcc_dat[i]);
+            Serial.printf("%d,\n", ftr_save[keyword_num*4 + model_num].mfcc_dat[i]);
         else
-            printf("%d, ", ftr_save[keyword_num*4 + model_num].mfcc_dat[i]);
+            Serial.printf("%d, ", ftr_save[keyword_num*4 + model_num].mfcc_dat[i]);
     }
-    printf("\nprint model ok!\n");
+    Serial.printf("\nprint model ok!\n");
     return 0;
 }
 
@@ -186,7 +186,7 @@ uint8_t SpeechRecognizer::save_mdl(uint16_t *v_dat, uint32_t addr)
 {
     u16 i, num;
     u16 frame_index;
-
+    Serial.printf("debug: in save_mdl\n");
 get_noise1:
     frame_index = 0;
     num = atap_len / frame_mov;
@@ -207,13 +207,13 @@ get_noise1:
             break;
     }
 //  for(i = 0; i < atap_len; i++)
-//      printf("noise: %d\n", v_dat[i]);
+//      Serial.printf("noise: %d\n", v_dat[i]);
     noise_atap(v_dat, atap_len, &atap_arg);
     if (atap_arg.s_thl > 10000) {
-        printf("get noise again...\n");
+        Serial.printf("get noise again...\n");
         goto get_noise1;
     }
-    printf("speeking...\n");
+    Serial.printf("speeking...\n");
 //wait for finish
     while (i2s_rec_flag == 0)
         continue;
@@ -246,13 +246,13 @@ get_noise1:
             return MFCC_fail;
     }
 //  if (valid_voice[0].end == ((void *)0)) {
-//      printf("VAD_fail\n");
+//      Serial.printf("VAD_fail\n");
 //      return VAD_fail;
 //  }
 
     get_mfcc(&(valid_voice[0]), &ftr, &atap_arg);
     if (ftr.frm_num == 0) {
-        //printf("MFCC_fail\n");
+        //Serial.printf("MFCC_fail\n");
         return MFCC_fail;
     }
 //  ftr.word_num = valid_voice[0].word_num;
@@ -295,11 +295,11 @@ get_noise2:
     }
     noise_atap(v_dat, atap_len, &atap_arg);
     if (atap_arg.s_thl > 10000) {
-        printf("get noise again...\n");
+        Serial.printf("get noise again...\n");
         goto get_noise2;
     }
 
-    printf("speeking...\n");
+    Serial.printf("speeking...\n");
 
     //wait for finish
     while (i2s_rec_flag == 0)
@@ -331,11 +331,11 @@ get_noise2:
             break;
         if (receive_char == 's') {
             *mtch_dis = dis_err;
-            printf("send 'c' to start\n");
+            Serial.printf("send 'c' to start\n");
             return 0;
         }
     }
-    printf("vad ok\n");
+    Serial.printf("vad ok\n");
 //  if (valid_voice[0].end == ((void *)0)) {
 //      *mtch_dis=dis_err;
 //      USART1_printf("VAD fail ");
@@ -345,16 +345,16 @@ get_noise2:
     get_mfcc(&(valid_voice[0]), &ftr, &atap_arg);
     if (ftr.frm_num == 0) {
         *mtch_dis = dis_err;
-        USART1_printf("MFCC fail ");
+        Serial.printf("MFCC fail ");
         return 0;
     }
 //  for (i = 0; i < ftr.frm_num * mfcc_num; i++) {
 //      if (i % 12 == 0)
-//          printf("\n");
-//      printf("%d ", ftr.mfcc_dat[i]);
+//          Serial.printf("\n");
+//      Serial.printf("%d ", ftr.mfcc_dat[i]);
 //  }
 //  ftr.word_num = valid_voice[0].word_num;
-    printf("mfcc ok\n");
+    Serial.printf("mfcc ok\n");
     i = 0;
     min_comm = 0;
     min_dis = dis_max;
@@ -364,8 +364,8 @@ get_noise2:
         ftr_mdl = (v_ftr_tag *)(&ftr_save[ftr_addr / size_per_ftr]);
         cur_dis = ((ftr_mdl->save_sign) == save_mask) ? dtw(ftr_mdl, &ftr) : dis_err;
         if ((ftr_mdl->save_sign) == save_mask) {
-            USART1_printf("no. %d, frm_num = %d, save_mask=%d", i + 1, ftr_mdl->frm_num, ftr_mdl->save_sign);
-            USART1_printf("cur_dis=%d\n", cur_dis);
+            Serial.printf("no. %d, frm_num = %d, save_mask=%d", i + 1, ftr_mdl->frm_num, ftr_mdl->save_sign);
+            Serial.printf("cur_dis=%d\n", cur_dis);
         }
         if (cur_dis < min_dis) {
             min_dis = cur_dis;
@@ -374,7 +374,7 @@ get_noise2:
         i++;
     }
     cycle1 = read_csr(mcycle) - cycle0;
-    printf("[INFO] recg cycle = 0x%08x\n", cycle1);
+    Serial.printf("[INFO] recg cycle = 0x%08x\n", cycle1);
     if (min_comm % 4)
         min_comm = min_comm / ftr_per_comm + 1;
     else

@@ -1,6 +1,7 @@
 #ifndef __MAIX_SPEECH_RECOGNITION_H
 #define __MAIX_SPEECH_RECOGNITION_H
 
+#include "Arduino.h"
 
 #include <stdint.h>
 #include <stdlib.h>
