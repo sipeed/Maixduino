@@ -118,7 +118,6 @@ SpeechRecognizer::begin()
 int
 SpeechRecognizer::record(uint8_t keyword_num, uint8_t model_num)
 {
-    Serial.printf("debug: in record\n");
     if (keyword_num > 10) return -1;
     if (model_num > 4)    return -2;
     
@@ -186,7 +185,6 @@ uint8_t SpeechRecognizer::save_mdl(uint16_t *v_dat, uint32_t addr)
 {
     u16 i, num;
     u16 frame_index;
-    Serial.printf("debug: in save_mdl\n");
 get_noise1:
     frame_index = 0;
     num = atap_len / frame_mov;
