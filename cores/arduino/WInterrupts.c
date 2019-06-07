@@ -5,7 +5,7 @@
 
 void attachInterrupt(uint8_t intnum, voidFuncPtr user_callback, uint8_t mode)
 {
-    int gpionum = getGpio(intnum);
+    int gpionum = get_gpio(MD_PIN_MAP(intnum));
     if(gpionum >= 0){
         fpioa_function_t function = FUNC_GPIOHS0 + gpionum;
         fpioa_set_function(intnum, function);
@@ -34,7 +34,7 @@ void attachInterrupt(uint8_t intnum, voidFuncPtr user_callback, uint8_t mode)
 
 void detachInterrupt(uint8_t intnum)
 {
-    int gpionum = getGpio(intnum);
+    int gpionum = get_gpio(MD_PIN_MAP(intnum));
     if(gpionum >= 0){
         gpiohs_irq_unregister((uint8_t)gpionum);
     }

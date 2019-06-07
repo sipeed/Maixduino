@@ -1,5 +1,5 @@
-#ifndef _VARIANT_SIPEED_M1_DOCK
-#define _VARIANT_SIPEED_M1_DOCK
+#ifndef _VARIANT_SIPEED_MAIX_BIT
+#define _VARIANT_SIPEED_MAIX_BIT
 
 #include <stdint.h>
 
@@ -57,6 +57,8 @@ extern class UARTClass Serial3;
 
 #define SDA                  31
 #define SCL                  30
+
+#define MD_PIN_MAP(fpio)   (fpio)
 
 static const uint8_t SS   = SPI0_CS0 ;
 static const uint8_t MOSI = SPI0_MOSI;

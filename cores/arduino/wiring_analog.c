@@ -52,7 +52,7 @@ void analogOutputInit(void)
 
 void analogWrite(uint8_t ucPin, uint32_t ulValue )
 {
-    int8_t _pin = k210FpioSet(ucPin);
+    int8_t _pin = k210FpioSet(MD_PIN_MAP(ucPin));
     double _duty;
     if(_pin >= 0){
         _duty = dValueToDuty(ulValue);

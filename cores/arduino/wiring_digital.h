@@ -53,9 +53,8 @@ extern void digitalWrite( uint8_t dwPin, uint8_t dwVal ) ;
  */
 extern int digitalRead( uint8_t dwPin ) ;
 
-int getGpio(uint8_t fpioPin) ;
-int getGpio_s(uint8_t fpioPin) ;
-fpioa_function_t fpioa_get_function_buy_io(uint8_t fpioPin) ;
+int get_gpio(uint8_t fpio_pin) ;
+fpioa_function_t fpioa_get_function_by_io(uint8_t fpioPin) ;
 int find_unused_gpiohs_io(void) ;
 
 #ifdef __cplusplus

@@ -1,5 +1,5 @@
-#ifndef _VARIANT_SIPEED_M1_DOCK
-#define _VARIANT_SIPEED_M1_DOCK
+#ifndef _VARIANT_SIPEED_MAIXDUINO
+#define _VARIANT_SIPEED_MAIXDUINO
 
 #include <stdint.h>
 
@@ -56,8 +56,8 @@ extern class UARTClass Serial3;
 #define LCD_DC               38
 #define LCD_WR               39
 
-#define RX0                   4
-#define TX0                   5
+#define RX0                   0
+#define TX0                   1
 
 #define RX1                   6
 #define TX1                   7
@@ -76,9 +76,13 @@ typedef struct _pwm_fpio_set_t{
     uint8_t inuse;
 }pwm_fpio_set_t;
 
-static uint8_t maixduino_pin_map[14] = {4, 5, 21, 22, 23, 24, 32, 15, 14, 13, 12, 11, 10, 3};
+#define MD_PIN_MAP(fpio) _maixduino_pin_map[(fpio)]
 
-uint8_t pinToFpio(uint8_t pin){ return maixduino_pin_map[pin]; }
+uint8_t _maixduino_pin_map[14] = {4, 5, 21, 22, 23, 24, 32, 15, 14, 13, 12, 11, 10, 3};
+
+
+uint8_t pinToFpio(uint8_t pin){ return MD_PIN_MAP(pin); }
+
 
 typedef enum _analog_output_pin_t{
     A0,
