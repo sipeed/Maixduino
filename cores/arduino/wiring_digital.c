@@ -26,26 +26,28 @@ void pinMode(uint8_t dwPin, uint8_t dwMode){
 }
 
 void digitalWrite(uint8_t dwPin, uint8_t dwVal){
-    if(_fpio_to_gpio_table[MD_PIN_MAP(dwPin)] >= 0){
-        gpiohs_set_pin((uint8_t)_fpio_to_gpio_table[MD_PIN_MAP(dwPin)], (gpio_pin_value_t)dwVal);
+    int8_t gpio_pin = _fpio_to_gpio_table[MD_PIN_MAP(dwPin)];
+    if( gpio_pin >= 0){
+        gpiohs_set_pin((uint8_t)gpio_pin, (gpio_pin_value_t)dwVal);
     }
     return ;
 }
 
 int digitalRead(uint8_t dwPin){
-    if(_fpio_to_gpio_table[MD_PIN_MAP(dwPin)] >= 0){
-        return (int)gpiohs_get_pin((uint8_t)_fpio_to_gpio_table[MD_PIN_MAP(dwPin)]);
+    int8_t gpio_pin = _fpio_to_gpio_table[MD_PIN_MAP(dwPin)];
+    if(gpio_pin >= 0){
+        return (int)gpiohs_get_pin((uint8_t)gpio_pin);
     }
     return -1;
 }
 
 int get_gpio(uint8_t fpio_pin)
 {
-    if(_fpio_to_gpio_table[MD_PIN_MAP(fpio_pin)] > -1){
-        return _fpio_to_gpio_table[MD_PIN_MAP(fpio_pin)];
+    if(_fpio_to_gpio_table[fpio_pin] >= 0){
+        return (int)_fpio_to_gpio_table[fpio_pin];
     }else{
-        _fpio_to_gpio_table[MD_PIN_MAP(fpio_pin)] = find_unused_gpiohs_io();
-        return _fpio_to_gpio_table[MD_PIN_MAP(fpio_pin)];        
+        _fpio_to_gpio_table[fpio_pin] = (int8_t)find_unused_gpiohs_io();
+        return (int)_fpio_to_gpio_table[fpio_pin];        
     }
 }
 
@@ -65,6 +67,11 @@ int find_unused_gpiohs_io(void) //返回一个未使用的gpio ，失败返回-1
         return _io;
     }
     return -1;
+}
+
+int read_fpio_to_gpio_table(int number)
+{
+    return _fpio_to_gpio_table[number];
 }
 
 #ifdef __cplusplus

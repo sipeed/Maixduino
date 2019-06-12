@@ -27,12 +27,15 @@
 #include "pins_arduino.h"
 #include "RingBuffer.h"
 
+
+
 class UARTClass : public HardwareSerial
 {
   public:
     UARTClass();
     UARTClass(uart_device_number_t device_select);
-    void begin(uint32_t dwBaudRate, uint8_t _rx = 6, uint8_t _tx = 7);
+    void begin(uint32_t dwBaudRate);
+    void begin(uint32_t dwBaudRate, uint8_t _rx, uint8_t _tx);
     void end(void);
     int available(void);
     int availableForWrite(void);
@@ -57,7 +60,8 @@ class UARTHSClass : public UARTClass
 {
   public:
     UARTHSClass();
-    void begin(uint32_t dwBaudRate, uint8_t _rx = 4, uint8_t _tx = 5);
+    void begin(uint32_t dwBaudRate);
+    void begin(uint32_t dwBaudRate, uint8_t _rx, uint8_t _tx);
     void end(void);
     size_t write(const uint8_t c);
     using Print::write;

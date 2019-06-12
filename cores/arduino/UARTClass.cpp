@@ -21,7 +21,7 @@
 #include <string.h>
 #include "UARTClass.h"
 
-#include "pins_arduino.h"
+#include "Arduino.h"
 #include "uarths.h"
 #include "fpioa.h"
 #include "sysctl.h"
@@ -61,6 +61,12 @@ UARTClass::UARTClass(uart_device_number_t device_select)
     case UART_DEVICE_MAX:
       break;
   }
+}
+
+void 
+UARTClass::begin(uint32_t dwBaudRate)
+{
+  begin(dwBaudRate, RX1, TX1);
 }
 
 void
@@ -139,6 +145,12 @@ uart_rec_callback(void *ctx)
 UARTHSClass::UARTHSClass()
 {
 
+}
+
+void 
+UARTHSClass::begin(uint32_t dwBaudRate)
+{
+  begin(dwBaudRate, RX0, TX0);
 }
 
 void 

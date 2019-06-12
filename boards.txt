@@ -165,16 +165,14 @@ mduino.menu.clksrc.500.build.f_cpu=500000000L
 mduino.menu.clksrc.600.build.f_cpu=600000000L
 
 ## Burn baud rate
-mduino.menu.burn_baudrate.2000000=2 Mbps
 mduino.menu.burn_baudrate.1500000=1.5 Mbps
 mduino.menu.burn_baudrate.1000000=1 Mbps
-mduino.menu.burn_baudrate.2000000.build.burn_baudrate=2000000
 mduino.menu.burn_baudrate.1500000.build.burn_baudrate=1500000
 mduino.menu.burn_baudrate.1000000.build.burn_baudrate=1000000
 
 ## Burn tool firmware
 mduino.menu.burn_tool_firmware.dan=Default
-mduino.menu.burn_tool_firmware.dan.build.burn_tool_firmware=dan
+mduino.menu.burn_tool_firmware.dan.build.burn_tool_firmware=goE
 
 ## Point to the file for ./variants/<variant>/pins_arduino.h
 mduino.build.variant=sipeed_maixduino

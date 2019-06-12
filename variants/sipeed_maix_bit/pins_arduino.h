@@ -59,6 +59,7 @@ extern class UARTClass Serial3;
 #define SCL                  30
 
 #define MD_PIN_MAP(fpio)   (fpio)
+#define ORG_PIN_MAP(org_pin)    (org_pin)
 
 static const uint8_t SS   = SPI0_CS0 ;
 static const uint8_t MOSI = SPI0_MOSI;

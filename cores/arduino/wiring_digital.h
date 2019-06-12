@@ -56,6 +56,7 @@ extern int digitalRead( uint8_t dwPin ) ;
 int get_gpio(uint8_t fpio_pin) ;
 fpioa_function_t fpioa_get_function_by_io(uint8_t fpioPin) ;
 int find_unused_gpiohs_io(void) ;
+int read_fpio_to_gpio_table(int number);
 
 #ifdef __cplusplus
 } // extern "C"

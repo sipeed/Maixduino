@@ -78,11 +78,15 @@ typedef struct _pwm_fpio_set_t{
 
 #define MD_PIN_MAP(fpio) _maixduino_pin_map[(fpio)]
 
-uint8_t _maixduino_pin_map[14] = {4, 5, 21, 22, 23, 24, 32, 15, 14, 13, 12, 11, 10, 3};
+static const uint8_t _maixduino_pin_map[14] = {4, 5, 21, 22, 23, 24, 32, 15, 14, 13, 12, 11, 10, 3};
 
+#define ORG_PIN_MAP(org_pin) _original_pin_map[(org_pin)]
 
-uint8_t pinToFpio(uint8_t pin){ return MD_PIN_MAP(pin); }
-
+static const uint8_t _original_pin_map[48] = {255, 255, 255, 3,   0,   1,   255, 255, 255, 255, 
+                                              12,  11,  10,  9,   8,   7,   255, 255, 255, 255, 
+                                              255, 2,   3,   4,   5,   255, 255, 255, 255, 255, 
+                                              255, 255, 6,   255, 255, 255, 255, 255, 255, 255, 
+                                              255, 255, 255, 255, 255, 255, 255, 255};
 
 typedef enum _analog_output_pin_t{
     A0,
