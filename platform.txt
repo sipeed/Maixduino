@@ -1,5 +1,5 @@
 name = Maixduino
-version = 0.3.8
+version = 0.3.9
 
 # arch
 arch              = k210
