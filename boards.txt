@@ -172,7 +172,7 @@ mduino.menu.burn_baudrate.1000000.build.burn_baudrate=1000000
 
 ## Burn tool firmware
 mduino.menu.burn_tool_firmware.dan=Default
-mduino.menu.burn_tool_firmware.dan.build.burn_tool_firmware=goE
+mduino.menu.burn_tool_firmware.dan.build.burn_tool_firmware=maixduino
 
 ## Point to the file for ./variants/<variant>/pins_arduino.h
 mduino.build.variant=sipeed_maixduino
