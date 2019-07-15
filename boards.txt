@@ -98,6 +98,52 @@ bit.upload.maximum_size=8388608
 bit.build.ldscript={runtime.platform.path}/cores/arduino/kendryte-standalone-sdk/lds/kendryte.ld
 
 
+##################################################
+############# Sipeed Maix Bit with Mic Board ###############
+
+bitm.name=Sipeed Maix Bit-Mic Board
+
+## Toolchain
+bitm.menu.toolsloc.default=Default
+bitm.menu.toolsloc.default.compiler.path={runtime.tools.riscv64-unknown-elf-gcc.path}/bin/
+
+## CPU Clock
+bitm.menu.clksrc.400=400MHz CPU Clock Frequency
+bitm.menu.clksrc.500=500MHz CPU Clock Frequency
+bitm.menu.clksrc.600=600MHz CPU Clock Frequency
+bitm.menu.clksrc.400.build.f_cpu=400000000L
+bitm.menu.clksrc.500.build.f_cpu=500000000L
+bitm.menu.clksrc.600.build.f_cpu=600000000L
+
+## Burn baud rate
+bitm.menu.burn_baudrate.1500000=1.5 Mbps
+bitm.menu.burn_baudrate.1000000=1 Mbps
+bitm.menu.burn_baudrate.1500000.build.burn_baudrate=1500000
+bitm.menu.burn_baudrate.1000000.build.burn_baudrate=1000000
+
+## Burn tool firmware
+bitm.menu.burn_tool_firmware.bitm=Default
+bitm.menu.burn_tool_firmware.bitm.build.burn_tool_firmware=bit-mic
+
+## Point to the file for ./variants/<variant>/pins_arduino.h
+bitm.build.variant=sipeed_maix_bit_mic
+
+## "The 'core' file directory for this board, in ./cores
+bitm.build.core=arduino
+
+## This sets a define for use in the compiled code.
+bitm.build.board=BOARD_SIPEED_MAIX_BIT
+bitm.build.sdata.size=512
+
+## This selects the tool from "programmers.txt"
+bitm.upload.tool=kflash
+
+## Limit is the 16MB Flash. Assume half is used for something else.
+bitm.upload.maximum_size=8388608
+bitm.build.ldscript={runtime.platform.path}/cores/arduino/kendryte-standalone-sdk/lds/kendryte.ld
+
+
+
 ####################################################
 ############### Sipeed Maix Go Board ###############
 
@@ -171,8 +217,8 @@ mduino.menu.burn_baudrate.1500000.build.burn_baudrate=1500000
 mduino.menu.burn_baudrate.1000000.build.burn_baudrate=1000000
 
 ## Burn tool firmware
-mduino.menu.burn_tool_firmware.dan=Default
-mduino.menu.burn_tool_firmware.dan.build.burn_tool_firmware=maixduino
+mduino.menu.burn_tool_firmware.mduino=Default
+mduino.menu.burn_tool_firmware.mduino.build.burn_tool_firmware=maixduino
 
 ## Point to the file for ./variants/<variant>/pins_arduino.h
 mduino.build.variant=sipeed_maixduino
