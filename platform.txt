@@ -1,9 +1,9 @@
-name = Maixduino
-version = 0.3.9
+name=Maixduino
+version=0.3.9
 
 # arch
-arch              = k210
-arch_for_c_cpp    = K210
+arch=k210
+arch_for_c_cpp=K210
 
 # Compile variables
 compiler.path={runtime.tools.riscv64-unknown-elf-gcc.path}/bin/
