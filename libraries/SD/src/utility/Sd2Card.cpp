@@ -20,6 +20,9 @@
 #define USE_SPI_LIB
 #include <Arduino.h>
 #include "Sd2Card.h"
+#include "fpioa.h"
+#include "gpio.h"
+#include "wiring_digital.h"
 //------------------------------------------------------------------------------
 #ifndef SOFTWARE_SPI
 #ifdef USE_SPI_LIB
@@ -249,8 +252,18 @@ uint8_t Sd2Card::init(uint8_t sckRateID, uint8_t chipSelectPin) {
   uint32_t arg;
 
   // set pin modes
-  pinMode(chipSelectPin_, OUTPUT);
-  digitalWrite(chipSelectPin_, HIGH);
+//#ifdef BOARD_SIPEED_MAIXDUINO
+  int gpionum = get_gpio(chipSelectPin_);
+    if(gpionum >= 0){
+        fpioa_function_t function = fpioa_function_t(FUNC_GPIOHS0 + gpionum);
+        fpioa_set_function(chipSelectPin_, function);
+        gpiohs_set_drive_mode((uint8_t)gpionum, GPIO_DM_OUTPUT);
+         gpiohs_set_pin((uint8_t)gpionum, GPIO_PV_HIGH);
+    }
+//#else
+//  pinMode(chipSelectPin_, OUTPUT);
+//  digitalWrite(chipSelectPin_, HIGH);
+//#endif
 #ifndef USE_SPI_LIB
   pinMode(SPI_MISO_PIN, INPUT);
   pinMode(SPI_MOSI_PIN, OUTPUT);
