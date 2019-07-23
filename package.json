@@ -1,6 +1,6 @@
 {
     "name": "framework-maixduino",
     "description": "Arduino Wiring-based Framework (K210 Core)",
-    "version": "0.3.9",
+    "version": "0.3.10",
     "url": "https://github.com/sipeed/Maixduino"
 }
