@@ -18,9 +18,9 @@ extern class UARTClass Serial3;
 #endif
 
 /* BOARD  PIN DEFINE */
-/* LEDs */
-#define PIN_LED              13
-#define LED_BUILTIN          13
+/* LEDs (USE Builtin TX PIN led)*/
+#define PIN_LED              1
+#define LED_BUILTIN          1
 
 /* KEY */
 #define KEY0                 16
