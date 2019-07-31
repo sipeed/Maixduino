@@ -10,6 +10,6 @@
 [submodule "libraries/lv_arduino"]
 	path = libraries/lv_arduino
 	url = https://github.com/btx000/lv_arduino.git
-[submodule "libraries\\lv_maixduino"]
-	path = libraries\\lv_maixduino
+[submodule "libraries/lv_maixduino"]
+	path = libraries/lv_maixduino
 	url = https://github.com/littlevgl/lv_maixduino.git
