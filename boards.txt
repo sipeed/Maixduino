@@ -237,3 +237,50 @@ mduino.upload.tool=kflash
 ## Limit is the 16MB Flash. Assume half is used for something else.
 mduino.upload.maximum_size=8388608
 mduino.build.ldscript={runtime.platform.path}/cores/arduino/kendryte-standalone-sdk/lds/kendryte.ld
+
+##################################################
+############# LamLoei AIoT DaaN Board ###############
+
+aiotdaan.name=LamLoei AIoT DaaN Board
+
+## Toolchain
+aiotdaan.menu.toolsloc.default=Default
+aiotdaan.menu.toolsloc.default.compiler.path={runtime.tools.riscv64-unknown-elf-gcc.path}/bin/
+
+## CPU Clock
+aiotdaan.menu.clksrc.400=400MHz CPU Clock Frequency
+aiotdaan.menu.clksrc.500=500MHz CPU Clock Frequency
+aiotdaan.menu.clksrc.600=600MHz CPU Clock Frequency
+aiotdaan.menu.clksrc.400.build.f_cpu=400000000L
+aiotdaan.menu.clksrc.500.build.f_cpu=500000000L
+aiotdaan.menu.clksrc.600.build.f_cpu=600000000L
+
+## Burn baud rate
+aiotdaan.menu.burn_baudrate.2000000=2 Mbps
+aiotdaan.menu.burn_baudrate.1500000=1.5 Mbps
+aiotdaan.menu.burn_baudrate.1000000=1 Mbps
+aiotdaan.menu.burn_baudrate.2000000.build.burn_baudrate=2000000
+aiotdaan.menu.burn_baudrate.1500000.build.burn_baudrate=1500000
+aiotdaan.menu.burn_baudrate.1000000.build.burn_baudrate=1000000
+
+## Burn tool firmware
+aiotdaan.menu.burn_tool_firmware.dan=Default
+aiotdaan.menu.burn_tool_firmware.dan.build.burn_tool_firmware=dan
+
+## Point to the file for ./variants/<variant>/pins_arduino.h
+aiotdaan.build.variant=lamloei_aiot_daan
+
+## "The 'core' file directory for this board, in ./cores
+aiotdaan.build.core=arduino
+
+## This sets a define for use in the compiled code.
+aiotdaan.build.board=BOARD_SIPEED_MAIX_ONE_DOCK
+aiotdaan.build.sdata.size=512
+
+## This selects the tool from "programmers.txt"
+aiotdaan.program.tool=kflash
+aiotdaan.upload.tool=kflash
+
+## Limit is the 16MB Flash. Assume half is used for something else.
+aiotdaan.upload.maximum_size=8388608
+aiotdaan.build.ldscript={runtime.platform.path}/cores/arduino/kendryte-standalone-sdk/lds/kendryte.ld
