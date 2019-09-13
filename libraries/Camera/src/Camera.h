@@ -76,7 +76,7 @@ public:
      *                                    e.g. two RED pixel: {0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00}
      */
     virtual uint8_t* getRGB888(){ return nullptr; };
-    virtual void setRotaion(uint8_t rotation) = 0;
+    virtual void setRotation(uint8_t rotation) = 0;
     virtual void setInvert(bool invert) = 0;
 
 
