@@ -71,7 +71,7 @@ typedef struct _pwm_fpio_set_t{
     uint8_t inuse;
 }pwm_fpio_set_t;
 
-#define MD_PIN_MAP(fpio) _maixduino_pin_map[(fpio)]
+#define MD_PIN_MAP(fpio) (((fpio) < 17) ? _maixduino_pin_map[(fpio)] : (fpio))
 
 static const uint8_t _maixduino_pin_map[17] = {4, 5, 21, 22, 23, 24, 32, 15, 14, 13, 12, 11, 10, 3, 31, 30, 16};
 
