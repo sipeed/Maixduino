@@ -56,7 +56,7 @@ int i2s_dma_irq(void *ctx)
             for(i = 0; i < frame_mov; i++)
             {
 #ifdef _VARIANT_SIPEED_MAIX_BIT_MIC
-                s_tmp = (int16_t)((g_rx_dma_buf[2 * i] >> 16) & 0xffff); //g_rx_dma_buf[2 * i + 1] High right
+                s_tmp = (int16_t)(g_rx_dma_buf[2 * i + 1] & 0xffff); // High right
 #else
                 s_tmp = (int16_t)(g_rx_dma_buf[2 * i] & 0xffff); //g_rx_dma_buf[2 * i + 1] Low left
 #endif
@@ -71,7 +71,7 @@ int i2s_dma_irq(void *ctx)
             for(i = frame_mov; i < frame_mov * 2; i++)
             {
 #ifdef _VARIANT_SIPEED_MAIX_BIT_MIC
-                s_tmp = (int16_t)((g_rx_dma_buf[2 * i] >> 16) & 0xffff); //g_rx_dma_buf[2 * i + 1] High right
+                s_tmp = (int16_t)(g_rx_dma_buf[2 * i + 1] & 0xffff); // High right
 #else
                 s_tmp = (int16_t)(g_rx_dma_buf[2 * i] & 0xffff);//g_rx_dma_buf[2 * i + 1] Low left
 #endif
