@@ -20,7 +20,7 @@ void setup()
     pinMode(key, INPUT);  
     lcd.begin(15000000, COLOR_RED);    
     touchscreen.begin();
-    touchscreen.calibrate(320,240);
+    touchscreen.calibrate(320, 240);
 }
 
 void loop()
@@ -29,20 +29,16 @@ void loop()
     touchscreen_status = touchscreen.getStatus();
     touchscreen_x = touchscreen.getX();
     touchscreen_y = touchscreen.getY();
-    if(draw){
+    if (draw) {
         lcd.writeLine(x_last,y_last,touchscreen_x,touchscreen_y,COLOR_WHITE);
     }
-    if(status_last!=touchscreen_status){
-        if (touchscreen_status == TOUCH_BEGIN || touchscreen_status == TOUCH_MOVE)
-            draw = true;
-        else
-            draw = false;
-        status_last=touchscreen_status;
+    if (status_last != touchscreen_status) {
+        draw = (touchscreen_status == TOUCH_BEGIN || touchscreen_status == TOUCH_MOVE);
+        status_last = touchscreen_status;
     }
     x_last = touchscreen_x;
     y_last = touchscreen_y;
-    if(digitalRead(key) == LOW)
-    {
+    if (digitalRead(key) == LOW) {
         lcd.fillScreen(COLOR_BLACK);
     }
 }
