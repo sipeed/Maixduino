@@ -721,7 +721,7 @@ uint8_t* Sipeed_OV2640::snapshot()
     return _dataBuffer;
 }
 
-void Sipeed_OV2640::setRotaion(uint8_t rotation)
+void Sipeed_OV2640::setRotation(uint8_t rotation)
 {
     //FIXME
 }
