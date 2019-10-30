@@ -284,3 +284,50 @@ aiotdaan.upload.tool=kflash
 ## Limit is the 16MB Flash. Assume half is used for something else.
 aiotdaan.upload.maximum_size=8388608
 aiotdaan.build.ldscript={runtime.platform.path}/cores/arduino/kendryte-standalone-sdk/lds/kendryte.ld
+
+##################################################
+############# IOXGD4 ###############
+
+ioxgd4.name=IOXGD4
+
+## Toolchain
+ioxgd4.menu.toolsloc.default=Default
+ioxgd4.menu.toolsloc.default.compiler.path={runtime.tools.riscv64-unknown-elf-gcc.path}/bin/
+
+## CPU Clock
+ioxgd4.menu.clksrc.400=400MHz CPU Clock Frequency
+ioxgd4.menu.clksrc.500=500MHz CPU Clock Frequency
+ioxgd4.menu.clksrc.600=600MHz CPU Clock Frequency
+ioxgd4.menu.clksrc.400.build.f_cpu=400000000L
+ioxgd4.menu.clksrc.500.build.f_cpu=500000000L
+ioxgd4.menu.clksrc.600.build.f_cpu=600000000L
+
+## Burn baud rate
+ioxgd4.menu.burn_baudrate.2000000=2 Mbps
+ioxgd4.menu.burn_baudrate.1500000=1.5 Mbps
+ioxgd4.menu.burn_baudrate.1000000=1 Mbps
+ioxgd4.menu.burn_baudrate.2000000.build.burn_baudrate=2000000
+ioxgd4.menu.burn_baudrate.1500000.build.burn_baudrate=1500000
+ioxgd4.menu.burn_baudrate.1000000.build.burn_baudrate=1000000
+
+## Burn tool firmware
+ioxgd4.menu.burn_tool_firmware.dan=Default
+ioxgd4.menu.burn_tool_firmware.dan.build.burn_tool_firmware=dan
+
+## Point to the file for ./variants/<variant>/pins_arduino.h
+ioxgd4.build.variant=ioxgd4
+
+## "The 'core' file directory for this board, in ./cores
+ioxgd4.build.core=arduino
+
+## This sets a define for use in the compiled code.
+ioxgd4.build.board=BOARD_SIPEED_MAIX_ONE_DOCK
+ioxgd4.build.sdata.size=512
+
+## This selects the tool from "programmers.txt"
+ioxgd4.program.tool=kflash
+ioxgd4.upload.tool=kflash
+
+## Limit is the 16MB Flash. Assume half is used for something else.
+ioxgd4.upload.maximum_size=8388608
+ioxgd4.build.ldscript={runtime.platform.path}/cores/arduino/kendryte-standalone-sdk/lds/kendryte.ld
