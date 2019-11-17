@@ -187,7 +187,7 @@ uarths_rec_callback(void *ctx)
   int data;
   auto &driver = *reinterpret_cast<UARTHSClass *>(ctx);
   data = uarths_getc();
-  if(data != 0){
+  if(data != EOF){
     driver._buff->store_char((char)data);
   }
   return 0;
