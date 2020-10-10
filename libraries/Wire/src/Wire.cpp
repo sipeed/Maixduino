@@ -279,8 +279,9 @@ TwoWire::requestFrom(uint16_t address, uint8_t size, bool sendStop)  //请求数
 size_t 
 TwoWire::write(uint8_t data) //写到txbuff
 {
-    if(transmitting) {
+    if(transmitting && !i2c_tx_buff->isFull()) {
         i2c_tx_buff->store_char(data);
+        return 1;
     }
     return 0;
 }
@@ -288,7 +289,7 @@ TwoWire::write(uint8_t data) //写到txbuff
 size_t 
 TwoWire::write(const uint8_t *data, int quantity)
 {
-    for(size_t i = 0; i < quantity; ++i) {
+    for(size_t i = 0; i < quantity; i++) {
         if(!write(data[i])) {
             return i;
         }
