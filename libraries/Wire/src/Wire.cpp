@@ -267,13 +267,13 @@ TwoWire::requestFrom(uint16_t address, uint8_t size, bool sendStop)  //请求数
     uint8_t rx_data[RING_BUFFER_SIZE];
     state = readTransmission(address, rx_data, size, sendStop);
     if(0 == state){
-        while(size)
+        while(index < size)
         {
             i2c_rx_buff->store_char(rx_data[index++]); 
-            size--;
         }
+        return size;
     }
-    return i2c_rx_buff->available();
+    return 0;
 }
 
 size_t 
