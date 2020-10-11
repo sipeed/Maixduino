@@ -221,6 +221,9 @@ TwoWire::readTransmission(uint16_t address, uint8_t* receive_buf, size_t receive
 void 
 TwoWire::beginTransmission(uint16_t address)
 {
+    // Clear buffers when new transation/packet starts
+    flush();
+
     transmitting = 1;
     txAddress = address;
 }
@@ -248,6 +251,9 @@ TwoWire::endTransmission(bool sendStop)  //结束时从rxbuff发送数据？
 uint8_t
 TwoWire::requestFrom(uint16_t address, uint8_t size, bool sendStop)  //请求数据，存入rxbuff，供read读
 {
+    // Clear buffers when new transation/packet starts
+    flush();
+
     int state,index = 0;
     uint8_t rx_data[RING_BUFFER_SIZE];
     state = readTransmission(address, rx_data, size, sendStop);
