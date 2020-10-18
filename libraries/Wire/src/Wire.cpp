@@ -9,6 +9,9 @@ static int maix_i2c_slave_irq(void *userdata);
 
 TwoWire::TwoWire(i2c_device_number_t i2c_device)
 {
+    i2c_tx_buff = 0;
+    i2c_rx_buff = 0;
+
     _i2c_num = i2c_device;
     switch(i2c_device)
     {
@@ -38,44 +41,26 @@ TwoWire::~TwoWire()
 void 
 TwoWire::begin(uint8_t sda, uint8_t scl, uint32_t frequency)
 {
-    i2c_clk = frequency;
     fpioa_set_function(sda, sda_func);
     fpioa_set_function(scl, scl_func);
-    volatile i2c_t *i2c_adapter = i2c[_i2c_num];
-    uint8_t speed_mode = I2C_CON_SPEED_STANDARD;
-    //i2c_clk_init
+
     sysctl_clock_enable((sysctl_clock_t)(SYSCTL_CLOCK_I2C0 + _i2c_num));
     sysctl_clock_set_threshold((sysctl_threshold_t)(SYSCTL_THRESHOLD_I2C0 + _i2c_num), 3);
 
-    uint32_t v_i2c_freq = sysctl_clock_get_freq((sysctl_clock_t)(SYSCTL_CLOCK_I2C0 + _i2c_num));
-    uint16_t v_period_clk_cnt = floor( (v_i2c_freq*1.0 / i2c_clk / 2) + 0.5 );
-    
-
-    if(v_period_clk_cnt <= 6)
-        v_period_clk_cnt = 6;
-    if(v_period_clk_cnt >= 65525)//65535-10
-        v_period_clk_cnt = 65525;
-    if((i2c_clk>100000) && (i2c_clk<=1000000))
-        speed_mode = I2C_CON_SPEED_FAST;
-    else
-        speed_mode = I2C_CON_SPEED_HIGH;
+    volatile i2c_t *i2c_adapter = i2c[_i2c_num];
     i2c_adapter->enable = 0;
-    i2c_adapter->con = I2C_CON_MASTER_MODE | I2C_CON_SLAVE_DISABLE | I2C_CON_RESTART_EN |
-                       (address_width == 10 ? I2C_CON_10BITADDR_SLAVE : 0) | I2C_CON_SPEED(speed_mode);
-    i2c_adapter->ss_scl_hcnt = I2C_SS_SCL_HCNT_COUNT(v_period_clk_cnt);
-    i2c_adapter->ss_scl_lcnt = I2C_SS_SCL_LCNT_COUNT(v_period_clk_cnt);
-
     i2c_adapter->intr_mask = 0;
     i2c_adapter->dma_cr = 0x3;
     i2c_adapter->dma_rdlr = 0;
     i2c_adapter->dma_tdlr = 4;
-    i2c_adapter->enable = I2C_ENABLE_ENABLE;
+    
     is_master_mode = true;
     
+    delete i2c_tx_buff, i2c_rx_buff;
     i2c_tx_buff = new RingBuffer();
     i2c_rx_buff = new RingBuffer();
 
-
+    setClock(frequency);
 }
     
 void 
@@ -83,12 +68,11 @@ TwoWire::begin(uint16_t slave_address, uint8_t sda, uint8_t scl)
 {
     fpioa_set_function(sda, sda_func);
     fpioa_set_function(scl, scl_func);
-
-    volatile i2c_t *i2c_adapter = i2c[_i2c_num];
     
     sysctl_clock_enable((sysctl_clock_t)(SYSCTL_CLOCK_I2C0 + _i2c_num));
     sysctl_clock_set_threshold((sysctl_threshold_t)(SYSCTL_THRESHOLD_I2C0 + _i2c_num), 3);
 
+    volatile i2c_t *i2c_adapter = i2c[_i2c_num];
     i2c_adapter->enable = 0;
     i2c_adapter->con =  I2C_CON_SPEED(1) | I2C_CON_STOP_DET_IFADDRESSED;
     i2c_adapter->ss_scl_hcnt = I2C_SS_SCL_HCNT_COUNT(37);
@@ -98,17 +82,19 @@ TwoWire::begin(uint16_t slave_address, uint8_t sda, uint8_t scl)
     i2c_adapter->tx_tl = I2C_TX_TL_VALUE(0);
     i2c_adapter->intr_mask = I2C_INTR_MASK_RX_FULL | I2C_INTR_MASK_START_DET | I2C_INTR_MASK_STOP_DET | I2C_INTR_MASK_RD_REQ;
 
+    is_master_mode = false;
+
     plic_set_priority((plic_irq_t)(IRQN_I2C0_INTERRUPT + _i2c_num), 1);
     plic_irq_register((plic_irq_t)(IRQN_I2C0_INTERRUPT + _i2c_num), maix_i2c_slave_irq, this);
     plic_irq_enable((plic_irq_t)(IRQN_I2C0_INTERRUPT + _i2c_num));
 
-    i2c_adapter->enable = I2C_ENABLE_ENABLE;
-    is_master_mode = false;
-
+    delete i2c_tx_buff, i2c_rx_buff;
     i2c_tx_buff = new RingBuffer();
     i2c_rx_buff = new RingBuffer();
 
-}  
+    i2c_adapter->enable = I2C_ENABLE_ENABLE;
+}
+
 void
 TwoWire::setTimeOut(uint16_t timeOutMillis)
 {
@@ -145,7 +131,6 @@ TwoWire::setClock(uint32_t frequency)
     i2c_adapter->ss_scl_hcnt = I2C_SS_SCL_HCNT_COUNT(v_period_clk_cnt);
     i2c_adapter->ss_scl_lcnt = I2C_SS_SCL_LCNT_COUNT(v_period_clk_cnt);
     i2c_adapter->enable = I2C_ENABLE_ENABLE;
-
 }
 
 uint32_t 
@@ -236,6 +221,9 @@ TwoWire::readTransmission(uint16_t address, uint8_t* receive_buf, size_t receive
 void 
 TwoWire::beginTransmission(uint16_t address)
 {
+    // Clear buffers when new transation/packet starts
+    flush();
+
     transmitting = 1;
     txAddress = address;
 }
@@ -263,24 +251,28 @@ TwoWire::endTransmission(bool sendStop)  //结束时从rxbuff发送数据？
 uint8_t
 TwoWire::requestFrom(uint16_t address, uint8_t size, bool sendStop)  //请求数据，存入rxbuff，供read读
 {
+    // Clear buffers when new transation/packet starts
+    flush();
+
     int state,index = 0;
     uint8_t rx_data[RING_BUFFER_SIZE];
     state = readTransmission(address, rx_data, size, sendStop);
     if(0 == state){
-        while(size)
+        while(index < size)
         {
             i2c_rx_buff->store_char(rx_data[index++]); 
-            size--;
         }
+        return size;
     }
-    return i2c_rx_buff->available();
+    return 0;
 }
 
 size_t 
 TwoWire::write(uint8_t data) //写到txbuff
 {
-    if(transmitting) {
+    if(transmitting && !i2c_tx_buff->isFull()) {
         i2c_tx_buff->store_char(data);
+        return 1;
     }
     return 0;
 }
@@ -288,7 +280,7 @@ TwoWire::write(uint8_t data) //写到txbuff
 size_t 
 TwoWire::write(const uint8_t *data, int quantity)
 {
-    for(size_t i = 0; i < quantity; ++i) {
+    for(size_t i = 0; i < quantity; i++) {
         if(!write(data[i])) {
             return i;
         }

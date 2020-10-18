@@ -24,7 +24,7 @@ public:
 
     TwoWire(i2c_device_number_t i2c_device);
     ~TwoWire();
-    void begin(uint8_t sda = SDA, uint8_t scl = SCL, uint32_t frequency = 500000);
+    void begin(uint8_t sda = SDA, uint8_t scl = SCL, uint32_t frequency = 400000);
     void begin(uint16_t slave_address, uint8_t sda = SDA, uint8_t scl = SCL);
 
     void setClock(uint32_t frequency); 
