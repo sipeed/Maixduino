@@ -1,5 +1,5 @@
-#ifndef _VARIANT_SIPEED_MAIX_GO
-#define _VARIANT_SIPEED_MAIX_GO
+#ifndef _VARIANT_SIPEED_MAIX_CUBE
+#define _VARIANT_SIPEED_MAIX_CUBE
 
 #include <stdint.h>
 
@@ -18,59 +18,56 @@ extern class UARTClass Serial3;
 #endif
 
 /* BOARD  PIN DEFINE */
-/* UARTHS */
+/* UARTHS CH552T */
 #define RX0                   4
 #define TX0                   5
-/* WIFI UART1 */
+/* SPMOD */
 #define RX1                   6
 #define TX1                   7
-#define ESP_TX                6
-#define ESP_RX                7
-#define ESP_EN                8
-/* BPSK */
-#define BPSK_P                9
-#define BPSK_N               10
-// #define IO_11                11
+// #define IO_8                  8
+// #define IO_9                  9
+/* KEYs */
+#define KEY1                 10
+#define KEY2                 11
+#define PIN_KEY_DOWN         10
+#define PIN_KEY_UP           11
 /* LEDs */
-#define PIN_LED_BLUE         12
-#define PIN_LED_GREEN        13
-#define PIN_LED_RED          14
-#define PIN_LED              13
-#define LED_RED              14
-#define LED_GREEN            13
-#define LED_BLUE             12
-#define LED_BUILTIN          13
-/* KEY */
-#define KEY1                 15
-#define KEY0                 16
-#define KEY2                 17
-#define PIN_KEY_DOWN         15
-#define PIN_KEY_PRESS        16
-#define PIN_KEY_UP           17
-/* MIC ARRAY */
-/* I2S MIC MSM261S4030H0 */
-#define MIC_BCK              18
-#define MIC_WS               19
-#define MIC_DAT3             20
-#define MIC_DAT2             21
-#define MIC_DAT1             22
-#define MIC_DAT0             23
-#define MIC_LED_DAT          24
-#define MIC_LED_CLK          25
-/* SPI0 TF */
+#define PIN_LED_GREEN        12
+#define PIN_LED_RED          13
+#define PIN_LED_BLUE         14
+#define PIN_LED              12
+#define LED_RED              13
+#define LED_GREEN            12
+#define LED_BLUE             14
+#define LED_BUILTIN          12
+/* SPMOD */
+// #define IO_15                15
+// #define IO_20                20
+// #define IO_21                21
+/* I2S AUDIO CODEC ES8374 */
+#define I2S_DIN              18
+#define I2S_MCLK             19
+#define I2S_LRCK             33
+#define I2S_DOUT             34
+#define I2S_SCLK             35
+/* USB_SBU */
+// #define IO_22                22
+// #define IO_23                23
+/* GROVE */
+// #define IO_24                24
+// #define IO_25                25
+/* SPI0 */
 #define SPI0_MISO            26
 #define SPI0_SCLK            27
 #define SPI0_MOSI            28
 #define SPI0_CS0             29
-/* I2C1 MSA300 */
+/* I2C1 - AXP173, MSA301*/
 #define SCL                  30
 #define SDA                  31
-// #define IO_32                32
-/* I2S DAC PT8211 */
-#define I2S_WS               33
-#define I2S_DA               34
-#define I2S_BCK              35
+/* Flash LED */
+#define WLED_EN              32
 /* LCD */
+#define LCD_BL               17
 #define LCD_CS               36
 #define LCD_RST              37
 #define LCD_DC               38

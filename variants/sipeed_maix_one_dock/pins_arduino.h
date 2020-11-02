@@ -1,5 +1,5 @@
-#ifndef _VARIANT_SIPEED_M1_DOCK
-#define _VARIANT_SIPEED_M1_DOCK
+#ifndef _VARIANT_SIPEED_MAIX_ONE_DOCK
+#define _VARIANT_SIPEED_MAIX_ONE_DOCK
 
 #include <stdint.h>
 
@@ -18,17 +18,23 @@ extern class UARTClass Serial3;
 #endif
 
 /* BOARD  PIN DEFINE */
+/* UARTHS */
+#define RX0                   4
+#define TX0                   5
+/* WIFI UART1 */
+#define RX1                   6
+#define TX1                   7
 /* LEDs */
 #define PIN_LED_GREEN        13
 #define PIN_LED_BLUE         12
 #define PIN_LED_RED          14
 #define PIN_LED              13
-#define LED_BUILTIN          13
+#define LED_RED              14
 #define LED_GREEN            13
 #define LED_BLUE             12
-#define LED_RED              14
+#define LED_BUILTIN          13
 /* KEY */
-#define KEY0                 16
+//#define KEY0                 16
 /* MIC ARRAY */
 #define MIC_BCK              18
 #define MIC_WS               19
@@ -56,14 +62,6 @@ extern class UARTClass Serial3;
 #define LCD_DC               38
 #define LCD_WR               39
 
-#define RX0                   4
-#define TX0                   5
-
-#define RX1                   6
-#define TX1                   7
-
-#define SDA                  31
-#define SCL                  30
 
 #define MD_PIN_MAP(fpio)   (fpio)
 #define ORG_PIN_MAP(org_pin)    (org_pin)

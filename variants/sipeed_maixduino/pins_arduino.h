@@ -18,47 +18,48 @@ extern class UARTClass Serial3;
 #endif
 
 /* BOARD  PIN DEFINE */
+#define RX0                   0
+#define TX0                   1
 /* LEDs (USE Builtin TX PIN led)*/
-#define PIN_LED              1
-#define LED_BUILTIN          1
-
+#define PIN_LED_RED          13
+#define PIN_LED_GREEN        12
+#define PIN_LED_BLUE         14
+#define PIN_LED              12
+#define LED_RED              13
+#define LED_GREEN            12
+#define LED_BLUE             14
+#define LED_BUILTIN          12
 /* KEY */
-#define KEY0                 16
-/* MIC ARRAY */
-#define MIC_BCK              18
-#define MIC_WS               19
-#define MIC_DAT3             20
-#define MIC_DAT2             21
-#define MIC_DAT1             22
-#define MIC_DAT0             23
-#define MIC_LED_DAT          24
+//#define KEY0                 16
+/* ONBOARD ESP32 */
+#define ESP_TX                6
+#define ESP_RX                7
+#define ESP_EN                8
+#define ESP_READY             9
+#define ESP_SPI_CS           25
 /* SPI0 */
-#define SPI0_CS1             25
 #define SPI0_MISO            26
 #define SPI0_SCLK            27
 #define SPI0_MOSI            28
 #define SPI0_CS0             29
 /* I2S */
-#define MIC0_WS              30
-#define MIC0_DATA            31
-#define MIC0_BCK             32
+#define MIC_BCK              18
+#define MIC_WS               19
+#define MIC_DATA             20
+/* I2C1 */
+#define SCL                  30
+#define SDA                  31
+/* DAC PT8211 */
 #define I2S_WS               33
 #define I2S_DA               34
 #define I2S_BCK              35
 /* LCD */
+#define LCD_BL               17
 #define LCD_CS               36
 #define LCD_RST              37
 #define LCD_DC               38
 #define LCD_WR               39
 
-#define RX0                   0
-#define TX0                   1
-
-#define RX1                   6
-#define TX1                   7
-
-#define SDA                  31
-#define SCL                  30
 
 static const uint8_t SS   = SPI0_CS0 ;
 static const uint8_t MOSI = SPI0_MOSI;
