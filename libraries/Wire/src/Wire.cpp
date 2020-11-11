@@ -56,7 +56,8 @@ TwoWire::begin(uint8_t sda, uint8_t scl, uint32_t frequency)
     
     is_master_mode = true;
     
-    delete i2c_tx_buff, i2c_rx_buff;
+    delete i2c_tx_buff;
+    delete i2c_rx_buff;
     i2c_tx_buff = new RingBuffer();
     i2c_rx_buff = new RingBuffer();
 
@@ -88,7 +89,8 @@ TwoWire::begin(uint16_t slave_address, uint8_t sda, uint8_t scl)
     plic_irq_register((plic_irq_t)(IRQN_I2C0_INTERRUPT + _i2c_num), maix_i2c_slave_irq, this);
     plic_irq_enable((plic_irq_t)(IRQN_I2C0_INTERRUPT + _i2c_num));
 
-    delete i2c_tx_buff, i2c_rx_buff;
+    delete i2c_tx_buff;
+    delete i2c_rx_buff;
     i2c_tx_buff = new RingBuffer();
     i2c_rx_buff = new RingBuffer();
 
