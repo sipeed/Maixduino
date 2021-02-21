@@ -692,7 +692,7 @@ uint8_t* Sipeed_GC0328::snapshot()
     return _dataBuffer;
 }
 
-void Sipeed_GC0328::setRotaion(uint8_t rotation)
+void Sipeed_GC0328::setRotation(uint8_t rotation)
 {
     //FIXME
 }
