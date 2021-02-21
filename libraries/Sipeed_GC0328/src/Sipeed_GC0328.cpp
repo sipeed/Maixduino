@@ -587,6 +587,11 @@ Sipeed_GC0328::~Sipeed_GC0328()
 }
 
 bool Sipeed_GC0328::begin()
+{
+    return begin(false);
+}
+
+bool Sipeed_GC0328::begin(bool binocular)
 {    
     if(_dataBuffer)
         free(_dataBuffer);
@@ -607,12 +612,31 @@ bool Sipeed_GC0328::begin()
         free(_dataBuffer);
         return false;
     }
-    if(!reset())
+    if(!reset(binocular))
         return false;
-    if(!setPixFormat(_pixFormat))
-        return false;
-    if(!setFrameSize(_frameSize))
-        return false; 
+    
+    if(binocular) {
+        // Configure sensor 0
+        shutdown(true);
+        if(!setPixFormat(_pixFormat))
+            return false;
+        if(!setFrameSize(_frameSize))
+            return false; 
+
+        // Configure sensor 1
+        shutdown(false);
+        if(!setPixFormat(_pixFormat))
+            return false;
+        if(!setFrameSize(_frameSize))
+            return false; 
+    }
+    else {
+        if(!setPixFormat(_pixFormat))
+            return false;
+        if(!setFrameSize(_frameSize))
+            return false; 
+    }
+
     return true;
 }
 
@@ -626,14 +650,39 @@ void Sipeed_GC0328::end()
     _aiBuffer   = nullptr;
 }
 
-bool Sipeed_GC0328::reset()
+bool Sipeed_GC0328::reset(bool binocular)
 {
     if(dvpInit() != 0) // dvp hardware init
         return false;
     if(sensro_gc_detect() != 0) // gc0328 camera detect
         return false;
-    if(gc0328_reset() != 0)
-        return false;
+
+    if(binocular)
+    {
+        // Reset sensor 0
+        shutdown(true);
+        DCMI_RESET_LOW();
+        delay(10);
+        DCMI_RESET_HIGH();
+        delay(10);
+        if(gc0328_reset() != 0)
+            return false;
+
+        // Reset sensor 1
+        shutdown(false);
+        delay(10);
+        DCMI_RESET_LOW();
+        delay(10);
+        DCMI_RESET_HIGH();
+        delay(10);
+        if(gc0328_reset() != 0)
+            return false;
+    }
+    else {
+        if(gc0328_reset() != 0)
+            return false;
+    }
+
     if(dvpInitIrq() != 0)
         return false;
     return true;
@@ -703,6 +752,20 @@ void Sipeed_GC0328::setInvert(bool invert)
     gc0328_set_hmirror(!invert); 
     //gc0328_set_vflip(1);
     return;
+}
+
+void Sipeed_GC0328::shutdown(bool enable)
+{
+    if (enable)
+    {
+        DCMI_PWDN_HIGH();
+    }
+    else
+    {
+        DCMI_PWDN_LOW();
+    }
+
+    delay(10);
 }
 
 int Sipeed_GC0328::dvpInit(uint32_t freq)
