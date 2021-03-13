@@ -45,12 +45,12 @@ size_t Print::printf(const char *format, ...)
         }
     }
     len = vsnprintf(temp, len+1, format, arg);
-    write((uint8_t*)temp, len);
+    size_t ret = write((uint8_t*)temp, len);
     va_end(arg);
     if(len >= sizeof(loc_buf)){
         delete[] temp;
     }
-    return len;
+    return ret;
 }
 
 /* default implementation: may be overridden */
@@ -58,7 +58,12 @@ size_t Print::write(const uint8_t *buffer, size_t size)
 {
   size_t n = 0;
   while (size--) {
-    n += write(*buffer++);
+    size_t ret = write(*buffer++);
+    if (ret == 0) {
+        // Write of last byte didn't complete, abort additional processing
+        break;
+    }
+    n += ret;
   }
   return n;
 }
