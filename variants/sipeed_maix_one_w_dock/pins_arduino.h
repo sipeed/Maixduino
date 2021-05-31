@@ -1,5 +1,5 @@
-#ifndef _VARIANT_SIPEED_MAIX_GO
-#define _VARIANT_SIPEED_MAIX_GO
+#ifndef _VARIANT_SIPEED_MAIX_ONE_W_DOCK
+#define _VARIANT_SIPEED_MAIX_ONE_W_DOCK
 
 #include <stdint.h>
 
@@ -24,31 +24,18 @@ extern class UARTClass Serial3;
 /* WIFI UART1 */
 #define RX1                   6
 #define TX1                   7
-#define ESP_TX                6
-#define ESP_RX                7
-#define ESP_EN                8
-/* BPSK */
-#define BPSK_P                9
-#define BPSK_N               10
-// #define IO_11                11
 /* LEDs */
-#define PIN_LED_BLUE         12
-#define PIN_LED_GREEN        13
 #define PIN_LED_RED          14
+#define PIN_LED_GREEN        13
+#define PIN_LED_BLUE         12
 #define PIN_LED              13
 #define LED_RED              14
 #define LED_GREEN            13
 #define LED_BLUE             12
 #define LED_BUILTIN          13
 /* KEY */
-#define KEY1                 15
-#define KEY0                 16
-#define KEY2                 17
-#define PIN_KEY_DOWN         15
-#define PIN_KEY_PRESS        16
-#define PIN_KEY_UP           17
+//#define KEY0                 16
 /* MIC ARRAY */
-/* I2S MIC MSM261S4030H0 */
 #define MIC_BCK              18
 #define MIC_WS               19
 #define MIC_DAT3             20
@@ -56,17 +43,17 @@ extern class UARTClass Serial3;
 #define MIC_DAT1             22
 #define MIC_DAT0             23
 #define MIC_LED_DAT          24
-#define MIC_LED_CLK          25
-/* SPI0 TF */
+/* SPI0 */
+#define SPI0_CS1             25
 #define SPI0_MISO            26
 #define SPI0_SCLK            27
 #define SPI0_MOSI            28
 #define SPI0_CS0             29
-/* I2C1 MSA300 */
-#define SCL                  30
-#define SDA                  31
-// #define IO_32                32
-/* I2S DAC PT8211 */
+/* I2S */
+#define MIC0_WS              30
+#define MIC0_DATA            31
+#define MIC0_BCK             32
+
 #define I2S_WS               33
 #define I2S_DA               34
 #define I2S_BCK              35
@@ -89,7 +76,8 @@ typedef struct _pwm_fpio_set_t{
     pwm_channel_number_t channel;
     pwm_device_number_t device;
     uint8_t inuse;
-} pwm_fpio_set_t;
+}pwm_fpio_set_t;
+
 
 
 #define VARIANT_NUM_GPIOHS (32)

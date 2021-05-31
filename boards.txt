@@ -4,9 +4,242 @@ menu.burn_baudrate=Burn Baud Rate
 menu.toolsloc=Tool Install Location
 
 ##################################################
+############# Sipeed Maix Amigo ###############
+
+amigo.name=Sipeed Maix Amigo
+
+## Toolchain
+amigo.menu.toolsloc.default=Default
+amigo.menu.toolsloc.default.compiler.path={runtime.tools.riscv64-unknown-elf-gcc.path}/bin/
+
+## CPU Clock
+amigo.menu.clksrc.400=400MHz CPU Clock Frequency
+amigo.menu.clksrc.500=500MHz CPU Clock Frequency
+amigo.menu.clksrc.600=600MHz CPU Clock Frequency
+amigo.menu.clksrc.400.build.f_cpu=400000000L
+amigo.menu.clksrc.500.build.f_cpu=500000000L
+amigo.menu.clksrc.600.build.f_cpu=600000000L
+
+## Burn baud rate
+amigo.menu.burn_baudrate.2000000=2 Mbps
+amigo.menu.burn_baudrate.4500000=4.5 Mbps (Must open-ec!)
+amigo.menu.burn_baudrate.1500000=1.5 Mbps
+amigo.menu.burn_baudrate.1000000=1 Mbps
+amigo.menu.burn_baudrate.2000000.build.burn_baudrate=2000000
+amigo.menu.burn_baudrate.4500000.build.burn_baudrate=4500000
+amigo.menu.burn_baudrate.1500000.build.burn_baudrate=1500000
+amigo.menu.burn_baudrate.1000000.build.burn_baudrate=1000000
+
+## Burn tool firmware
+amigo.menu.burn_tool_firmware.amigo=open-ec
+amigo.menu.burn_tool_firmware.amigo.build.burn_tool_firmware=goE
+
+## Core settings
+amigo.build.variant=sipeed_maix_amigo
+amigo.build.core=arduino
+
+## This sets a define for use in the compiled code.
+amigo.build.board=MAIX_AMIGO
+
+## This selects the tool from "programmers.txt"
+amigo.program.tool=kflash
+amigo.upload.tool=kflash
+
+## Limit is the 16MB Flash. Assume half is used for something else.
+amigo.upload.maximum_size=8388608
+amigo.build.ldscript="{runtime.platform.path}/cores/arduino/kendryte-standalone-sdk/lds/kendryte.ld"
+
+##################################################
+############# Sipeed Maix Cube ###############
+
+cube.name=Sipeed Maix Cube
+
+## Toolchain
+cube.menu.toolsloc.default=Default
+cube.menu.toolsloc.default.compiler.path={runtime.tools.riscv64-unknown-elf-gcc.path}/bin/
+
+## CPU Clock
+cube.menu.clksrc.400=400MHz CPU Clock Frequency
+cube.menu.clksrc.500=500MHz CPU Clock Frequency
+cube.menu.clksrc.600=600MHz CPU Clock Frequency
+cube.menu.clksrc.400.build.f_cpu=400000000L
+cube.menu.clksrc.500.build.f_cpu=500000000L
+cube.menu.clksrc.600.build.f_cpu=600000000L
+
+## Burn baud rate
+cube.menu.burn_baudrate.1500000=1.5 Mbps
+cube.menu.burn_baudrate.1000000=1 Mbps
+cube.menu.burn_baudrate.1500000.build.burn_baudrate=1500000
+cube.menu.burn_baudrate.1000000.build.burn_baudrate=1000000
+
+## Burn tool firmware
+cube.menu.burn_tool_firmware.cube=open-ec
+cube.menu.burn_tool_firmware.cube.build.burn_tool_firmware=goE
+
+## Point to the file for ./variants/<variant>/pins_arduino.h
+cube.build.variant=sipeed_maix_cube
+
+## "The 'core' file directory for this board, in ./cores
+cube.build.core=arduino
+
+## This sets a define for use in the compiled code.
+cube.build.board=MAIX_CUBE
+cube.build.sdata.size=512
+
+## This selects the tool from "programmers.txt"
+cube.upload.tool=kflash
+
+## Limit is the 16MB Flash. Assume half is used for something else.
+cube.upload.maximum_size=8388608
+cube.build.ldscript="{runtime.platform.path}/cores/arduino/kendryte-standalone-sdk/lds/kendryte.ld"
+
+####################################################
+############### Sipeed Maix Go Board ###############
+
+go.name=Sipeed Maix Go
+
+## Toolchain
+go.menu.toolsloc.default=Default
+go.menu.toolsloc.default.compiler.path={runtime.tools.riscv64-unknown-elf-gcc.path}/bin/
+
+## CPU Clock
+go.menu.clksrc.400=400MHz CPU Clock Frequency
+go.menu.clksrc.500=500MHz CPU Clock Frequency
+go.menu.clksrc.600=600MHz CPU Clock Frequency
+go.menu.clksrc.400.build.f_cpu=400000000L
+go.menu.clksrc.500.build.f_cpu=500000000L
+go.menu.clksrc.600.build.f_cpu=600000000L
+
+## Burn baud rate
+go.menu.burn_baudrate.2000000=2 Mbps
+go.menu.burn_baudrate.4500000=4.5 Mbps (Must open-ec!)
+go.menu.burn_baudrate.1500000=1.5 Mbps
+go.menu.burn_baudrate.1000000=1 Mbps
+go.menu.burn_baudrate.2000000.build.burn_baudrate=2000000
+go.menu.burn_baudrate.4500000.build.burn_baudrate=4500000
+go.menu.burn_baudrate.1500000.build.burn_baudrate=1500000
+go.menu.burn_baudrate.1000000.build.burn_baudrate=1000000
+
+## Burn tool firmware
+go.menu.burn_tool_firmware.goE=open-ec
+go.menu.burn_tool_firmware.goD=CMSIS-DAP
+go.menu.burn_tool_firmware.goE.build.burn_tool_firmware=goE
+go.menu.burn_tool_firmware.goD.build.burn_tool_firmware=goD
+
+## Core settings
+## Point to the file for ./variants/<variant>/pins_arduino.h
+go.build.variant=sipeed_maix_go
+
+## "The 'core' file directory for this board, in ./cores
+go.build.core=arduino
+
+## This sets a define for use in the compiled code.
+go.build.board=MAIX_GO
+
+## This selects the tool from "programmers.txt"
+go.program.tool=kflash
+go.upload.tool=kflash
+
+## Limit is the 16MB Flash. Assume half is used for something else.
+go.upload.maximum_size=8388608
+go.build.ldscript="{runtime.platform.path}/cores/arduino/kendryte-standalone-sdk/lds/kendryte.ld"
+
+##################################################
+############# Sipeed Maixduino Board ###############
+
+mduino.name=Sipeed Maixduino
+
+## Toolchain
+mduino.menu.toolsloc.default=Default
+mduino.menu.toolsloc.default.compiler.path={runtime.tools.riscv64-unknown-elf-gcc.path}/bin/
+
+## CPU Clock
+mduino.menu.clksrc.400=400MHz CPU Clock Frequency
+mduino.menu.clksrc.500=500MHz CPU Clock Frequency
+mduino.menu.clksrc.600=600MHz CPU Clock Frequency
+mduino.menu.clksrc.400.build.f_cpu=400000000L
+mduino.menu.clksrc.500.build.f_cpu=500000000L
+mduino.menu.clksrc.600.build.f_cpu=600000000L
+
+## Burn baud rate
+mduino.menu.burn_baudrate.1500000=1.5 Mbps
+mduino.menu.burn_baudrate.1000000=1 Mbps
+mduino.menu.burn_baudrate.1500000.build.burn_baudrate=1500000
+mduino.menu.burn_baudrate.1000000.build.burn_baudrate=1000000
+
+## Burn tool firmware
+mduino.menu.burn_tool_firmware.mduino=Default
+mduino.menu.burn_tool_firmware.mduino.build.burn_tool_firmware=maixduino
+
+## Point to the file for ./variants/<variant>/pins_arduino.h
+mduino.build.variant=sipeed_maixduino
+
+## "The 'core' file directory for this board, in ./cores
+mduino.build.core=arduino
+
+## This sets a define for use in the compiled code.
+mduino.build.board=MAIX_DUINO
+mduino.build.sdata.size=512
+
+## This selects the tool from "programmers.txt"
+mduino.program.tool=kflash
+mduino.upload.tool=kflash
+
+## Limit is the 16MB Flash. Assume half is used for something else.
+mduino.upload.maximum_size=8388608
+mduino.build.ldscript="{runtime.platform.path}/cores/arduino/kendryte-standalone-sdk/lds/kendryte.ld"
+
+##################################################
+############# Sipeed M1W Dock Board ###############
+
+m1w.name=Sipeed Maix Dock M1W
+
+## Toolchain
+m1w.menu.toolsloc.default=Default
+m1w.menu.toolsloc.default.compiler.path={runtime.tools.riscv64-unknown-elf-gcc.path}/bin/
+
+## CPU Clock
+m1w.menu.clksrc.400=400MHz CPU Clock Frequency
+m1w.menu.clksrc.500=500MHz CPU Clock Frequency
+m1w.menu.clksrc.600=600MHz CPU Clock Frequency
+m1w.menu.clksrc.400.build.f_cpu=400000000L
+m1w.menu.clksrc.500.build.f_cpu=500000000L
+m1w.menu.clksrc.600.build.f_cpu=600000000L
+
+## Burn baud rate
+m1w.menu.burn_baudrate.2000000=2 Mbps
+m1w.menu.burn_baudrate.1500000=1.5 Mbps
+m1w.menu.burn_baudrate.1000000=1 Mbps
+m1w.menu.burn_baudrate.2000000.build.burn_baudrate=2000000
+m1w.menu.burn_baudrate.1500000.build.burn_baudrate=1500000
+m1w.menu.burn_baudrate.1000000.build.burn_baudrate=1000000
+
+## Burn tool firmware
+m1w.menu.burn_tool_firmware.dan=Default
+m1w.menu.burn_tool_firmware.dan.build.burn_tool_firmware=dan
+
+## Point to the file for ./variants/<variant>/pins_arduino.h
+m1w.build.variant=sipeed_maix_one_w_dock
+
+## "The 'core' file directory for this board, in ./cores
+m1w.build.core=arduino
+
+## This sets a define for use in the compiled code.
+m1w.build.board=MAIX_DOCK_M1W
+m1w.build.sdata.size=512
+
+## This selects the tool from "programmers.txt"
+m1w.program.tool=kflash
+m1w.upload.tool=kflash
+
+## Limit is the 16MB Flash. Assume half is used for something else.
+m1w.upload.maximum_size=8388608
+m1w.build.ldscript="{runtime.platform.path}/cores/arduino/kendryte-standalone-sdk/lds/kendryte.ld"
+
+##################################################
 ############# Sipeed M1 Dock Board ###############
 
-m1.name=Sipeed Maix One Dock Board
+m1.name=Sipeed Maix Dock M1
 
 ## Toolchain
 m1.menu.toolsloc.default=Default
@@ -39,7 +272,7 @@ m1.build.variant=sipeed_maix_one_dock
 m1.build.core=arduino
 
 ## This sets a define for use in the compiled code.
-m1.build.board=BOARD_SIPEED_MAIX_ONE_DOCK
+m1.build.board=MAIX_DOCK_M1
 m1.build.sdata.size=512
 
 ## This selects the tool from "programmers.txt"
@@ -53,7 +286,7 @@ m1.build.ldscript="{runtime.platform.path}/cores/arduino/kendryte-standalone-sdk
 ##################################################
 ############# Sipeed Maix Bit Board ###############
 
-bit.name=Sipeed Maix Bit Board
+bit.name=Sipeed Maix Bit
 
 ## Toolchain
 bit.menu.toolsloc.default=Default
@@ -86,7 +319,7 @@ bit.build.variant=sipeed_maix_bit
 bit.build.core=arduino
 
 ## This sets a define for use in the compiled code.
-bit.build.board=BOARD_SIPEED_MAIX_BIT
+bit.build.board=MAIX_BIT
 bit.build.sdata.size=512
 
 ## This selects the tool from "programmers.txt"
@@ -101,7 +334,7 @@ bit.build.ldscript="{runtime.platform.path}/cores/arduino/kendryte-standalone-sd
 ##################################################
 ############# Sipeed Maix Bit with Mic Board ###############
 
-bitm.name=Sipeed Maix Bit-Mic Board
+bitm.name=Sipeed Maix Bit-Mic
 
 ## Toolchain
 bitm.menu.toolsloc.default=Default
@@ -132,7 +365,7 @@ bitm.build.variant=sipeed_maix_bit_mic
 bitm.build.core=arduino
 
 ## This sets a define for use in the compiled code.
-bitm.build.board=BOARD_SIPEED_MAIX_BIT
+bitm.build.board=MAIX_BIT_M
 bitm.build.sdata.size=512
 
 ## This selects the tool from "programmers.txt"
@@ -142,106 +375,101 @@ bitm.upload.tool=kflash
 bitm.upload.maximum_size=8388608
 bitm.build.ldscript="{runtime.platform.path}/cores/arduino/kendryte-standalone-sdk/lds/kendryte.ld"
 
-
-
-####################################################
-############### Sipeed Maix Go Board ###############
-
-go.name=Sipeed Maix Go Board
-
-
-## Toolchain
-go.menu.toolsloc.default=Default
-go.menu.toolsloc.default.compiler.path={runtime.tools.riscv64-unknown-elf-gcc.path}/bin/
-
-## CPU Clock
-go.menu.clksrc.400=400MHz CPU Clock Frequency
-go.menu.clksrc.500=500MHz CPU Clock Frequency
-go.menu.clksrc.600=600MHz CPU Clock Frequency
-go.menu.clksrc.400.build.f_cpu=400000000L
-go.menu.clksrc.500.build.f_cpu=500000000L
-go.menu.clksrc.600.build.f_cpu=600000000L
-
-## Burn baud rate
-go.menu.burn_baudrate.2000000=2 Mbps
-go.menu.burn_baudrate.4500000=4.5 Mbps (Must open-ec!)
-go.menu.burn_baudrate.1500000=1.5 Mbps
-go.menu.burn_baudrate.1000000=1 Mbps
-go.menu.burn_baudrate.2000000.build.burn_baudrate=2000000
-go.menu.burn_baudrate.4500000.build.burn_baudrate=4500000
-go.menu.burn_baudrate.1500000.build.burn_baudrate=1500000
-go.menu.burn_baudrate.1000000.build.burn_baudrate=1000000
-
-## Burn tool firmware
-go.menu.burn_tool_firmware.goE=open-ec
-go.menu.burn_tool_firmware.goD=CMSIS-DAP
-go.menu.burn_tool_firmware.goE.build.burn_tool_firmware=goE
-go.menu.burn_tool_firmware.goD.build.burn_tool_firmware=goD
-
-## Core settings
-go.build.variant=sipeed_maix_go
-go.build.core=arduino
-
-## This sets a define for use in the compiled code.
-go.build.board=BOARD_SIPEED_MAIX_GO
-
-## This selects the tool from "programmers.txt"
-go.program.tool=kflash
-go.upload.tool=kflash
-
-## Limit is the 16MB Flash. Assume half is used for something else.
-go.upload.maximum_size=8388608
-go.build.ldscript="{runtime.platform.path}/cores/arduino/kendryte-standalone-sdk/lds/kendryte.ld"
-
 ##################################################
-############# Sipeed Maixduino Board ###############
+############# M5Stack M5StickV Stick ###############
 
-mduino.name=Sipeed Maixduino Board
+stickv.name=M5Stack M5StickV Stick
 
 ## Toolchain
-mduino.menu.toolsloc.default=Default
-mduino.menu.toolsloc.default.compiler.path={runtime.tools.riscv64-unknown-elf-gcc.path}/bin/
+stickv.menu.toolsloc.default=Default
+stickv.menu.toolsloc.default.compiler.path={runtime.tools.riscv64-unknown-elf-gcc.path}/bin/
 
 ## CPU Clock
-mduino.menu.clksrc.400=400MHz CPU Clock Frequency
-mduino.menu.clksrc.500=500MHz CPU Clock Frequency
-mduino.menu.clksrc.600=600MHz CPU Clock Frequency
-mduino.menu.clksrc.400.build.f_cpu=400000000L
-mduino.menu.clksrc.500.build.f_cpu=500000000L
-mduino.menu.clksrc.600.build.f_cpu=600000000L
+stickv.menu.clksrc.400=400MHz CPU Clock Frequency
+stickv.menu.clksrc.500=500MHz CPU Clock Frequency
+stickv.menu.clksrc.600=600MHz CPU Clock Frequency
+stickv.menu.clksrc.400.build.f_cpu=400000000L
+stickv.menu.clksrc.500.build.f_cpu=500000000L
+stickv.menu.clksrc.600.build.f_cpu=600000000L
 
 ## Burn baud rate
-mduino.menu.burn_baudrate.1500000=1.5 Mbps
-mduino.menu.burn_baudrate.1000000=1 Mbps
-mduino.menu.burn_baudrate.1500000.build.burn_baudrate=1500000
-mduino.menu.burn_baudrate.1000000.build.burn_baudrate=1000000
+stickv.menu.burn_baudrate.1500000=1.5 Mbps
+stickv.menu.burn_baudrate.1000000=1 Mbps
+stickv.menu.burn_baudrate.1500000.build.burn_baudrate=1500000
+stickv.menu.burn_baudrate.1000000.build.burn_baudrate=1000000
 
 ## Burn tool firmware
-mduino.menu.burn_tool_firmware.mduino=Default
-mduino.menu.burn_tool_firmware.mduino.build.burn_tool_firmware=maixduino
+stickv.menu.burn_tool_firmware.stick1=CH340
+stickv.menu.burn_tool_firmware.stick1.build.burn_tool_firmware=bit-mic
+
 
 ## Point to the file for ./variants/<variant>/pins_arduino.h
-mduino.build.variant=sipeed_maixduino
+stickv.build.variant=m5stack_m5stick_v
 
 ## "The 'core' file directory for this board, in ./cores
-mduino.build.core=arduino
+stickv.build.core=arduino
 
 ## This sets a define for use in the compiled code.
-mduino.build.board=BOARD_SIPEED_MAIX_DUINO
-mduino.build.sdata.size=512
+stickv.build.board=M5STICK_V
+stickv.build.sdata.size=512
 
 ## This selects the tool from "programmers.txt"
-mduino.program.tool=kflash
-mduino.upload.tool=kflash
+stickv.program.tool=kflash
+stickv.upload.tool=kflash
 
 ## Limit is the 16MB Flash. Assume half is used for something else.
-mduino.upload.maximum_size=8388608
-mduino.build.ldscript="{runtime.platform.path}/cores/arduino/kendryte-standalone-sdk/lds/kendryte.ld"
+stickv.upload.maximum_size=8388608
+stickv.build.ldscript="{runtime.platform.path}/cores/arduino/kendryte-standalone-sdk/lds/kendryte.ld"
+
+##################################################
+############# M5Stack M5UnitV Camera ###############
+
+unitv.name=M5Stack M5UnitV Camera
+
+## Toolchain
+unitv.menu.toolsloc.default=Default
+unitv.menu.toolsloc.default.compiler.path={runtime.tools.riscv64-unknown-elf-gcc.path}/bin/
+
+## CPU Clock
+unitv.menu.clksrc.400=400MHz CPU Clock Frequency
+unitv.menu.clksrc.500=500MHz CPU Clock Frequency
+unitv.menu.clksrc.600=600MHz CPU Clock Frequency
+unitv.menu.clksrc.400.build.f_cpu=400000000L
+unitv.menu.clksrc.500.build.f_cpu=500000000L
+unitv.menu.clksrc.600.build.f_cpu=600000000L
+
+## Burn baud rate
+unitv.menu.burn_baudrate.1500000=1.5 Mbps
+unitv.menu.burn_baudrate.1000000=1 Mbps
+unitv.menu.burn_baudrate.1500000.build.burn_baudrate=1500000
+unitv.menu.burn_baudrate.1000000.build.burn_baudrate=1000000
+
+## Burn tool firmware
+unitv.menu.burn_tool_firmware.unit1=CH340
+unitv.menu.burn_tool_firmware.unit1.build.burn_tool_firmware=bit-mic
+
+## Point to the file for ./variants/<variant>/pins_arduino.h
+unitv.build.variant=m5stack_m5unit_v
+
+## "The 'core' file directory for this board, in ./cores
+unitv.build.core=arduino
+
+## This sets a define for use in the compiled code.
+unitv.build.board=M5UNIT_V
+unitv.build.sdata.size=512
+
+## This selects the tool from "programmers.txt"
+unitv.program.tool=kflash
+unitv.upload.tool=kflash
+
+## Limit is the 16MB Flash. Assume half is used for something else.
+unitv.upload.maximum_size=8388608
+unitv.build.ldscript="{runtime.platform.path}/cores/arduino/kendryte-standalone-sdk/lds/kendryte.ld"
 
 ##################################################
 ############# LamLoei AIoT DaaN Board ###############
 
-aiotdaan.name=LamLoei AIoT DaaN Board
+aiotdaan.name=LamLoei AIoT DaaN
 
 ## Toolchain
 aiotdaan.menu.toolsloc.default=Default
@@ -274,7 +502,7 @@ aiotdaan.build.variant=lamloei_aiot_daan
 aiotdaan.build.core=arduino
 
 ## This sets a define for use in the compiled code.
-aiotdaan.build.board=BOARD_SIPEED_MAIX_ONE_DOCK
+aiotdaan.build.board=MAIX_DOCK_M1
 aiotdaan.build.sdata.size=512
 
 ## This selects the tool from "programmers.txt"
@@ -321,7 +549,7 @@ ioxgd4.build.variant=ioxgd4
 ioxgd4.build.core=arduino
 
 ## This sets a define for use in the compiled code.
-ioxgd4.build.board=BOARD_SIPEED_MAIX_ONE_DOCK
+ioxgd4.build.board=MAIX_DOCK_M1
 ioxgd4.build.sdata.size=512
 
 ## This selects the tool from "programmers.txt"
