@@ -34,8 +34,10 @@ public:
     ~Sipeed_GC0328();
     
     virtual bool begin();
+    bool begin(bool binocular);
     virtual void end();
-    bool reset();
+    bool reset(bool binocular = false);
+    void debug(bool enable);
     bool setPixFormat(pixformat_t pixFormat);
     bool setFrameSize(framesize_t frameSize);
     virtual bool run(bool run);
@@ -47,8 +49,10 @@ public:
     virtual uint8_t* snapshot();
     virtual uint16_t* getRGB565(){ return (uint16_t*)_dataBuffer; };
     virtual uint8_t* getRGB888(){ return _aiBuffer; };
-    virtual void setRotaion(uint8_t rotation);
+    virtual void setRotation(uint8_t rotation);
     virtual void setInvert(bool invert);
+    virtual void shutdown(bool enable);
+    void setFlip(bool flip);
 
 private:
     uint8_t* _dataBuffer;    // put RGB565 data
@@ -61,6 +65,7 @@ private:
     TwoWire *_i2c; // replace sccb
     bool _vflip;
     bool _hmirror;
+    bool _debug;
 
     int dvpInit(uint32_t freq = 14000000);
     int dvpInitIrq();
