@@ -29,6 +29,7 @@ class HardwareSerial : public Stream
     virtual void begin(uint32_t) {};
     virtual void end() {};
     virtual int available(void) = 0;
+    virtual int availableForWrite(void) = 0;
     virtual int peek(void) = 0;
     virtual int read(void) = 0;
     virtual void flush(void) = 0;

@@ -128,7 +128,7 @@ UARTClass::write(const uint8_t c)
   while (uart[this->_uart]->LSR & (1u << 5))
         continue;
   uart[this->_uart]->THR = c;
-  return 0;
+  return 1;
 }
 
 static int 
@@ -177,8 +177,11 @@ UARTHSClass::end()
 size_t
 UARTHSClass::write(const uint8_t uc_data)
 {
-  uarths_putchar(uc_data);
-  return (1);
+  if (uarths_putchar(uc_data) == uc_data) {
+    return 1;
+  }
+
+  return 0;
 }
 
 static int
@@ -186,7 +189,7 @@ uarths_rec_callback(void *ctx)
 {
   int data;
   auto &driver = *reinterpret_cast<UARTHSClass *>(ctx);
-  data = uarths_getc();
+  data = uarths_getchar();
   if(data != EOF){
     driver._buff->store_char((char)data);
   }
