@@ -26,7 +26,7 @@ Maixduino
 
 ## Docs
 
-Docs: [maixduino.sipeed.com](https://maixduino.sipeed.com/)
+Docs: [wiki.sipeed.com](https://wiki.sipeed.com/soft/maixduino/zh/index.html)
 
 ## Install
 
@@ -39,7 +39,7 @@ Refer install doc: [Install](https://maixduino.sipeed.com/en/get_started/install
  1. [Download and install the Arduino IDE](https://www.arduino.cc/en/Main/Software) (at least version v1.9.8)
  2. Start the Arduino IDE
  3. Go into Preferences
- 4. Add ```https://github.com/UT2UH/Maixduino/blob/gh-pages/package_Maixduino_boards_index.json``` as an "Additional Board Manager URL"
+ 4. Add ```https://dl.sipeed.com/MAIX/Maixduino/package_Maixduino_k210_index.json``` as an "Additional Board Manager URL"
  5. Open the Boards Manager from the Tools -> Board menu and install "Maixduino(K210)"
  6. Select your K210 board from the Tools -> Board menu
 
@@ -51,7 +51,7 @@ Refer install doc: [Install](https://maixduino.sipeed.com/en/get_started/install
   * Linux: ```~/Arduino```
   * Windows: ```~/Documents/Arduino```
  3. Create a folder named ```hardware```, if it does not exist, and change directories to it
- 4. Clone this repo: ```git clone https://github.com/UT2UH/Maixduino/tree/MAixCore Maixduino/k210```
+ 4. Clone this repo: ```git clone https://github.com/Sipeed/Maixduino Maixduino/k210```
  5. Restart the Arduino IDE
 
 ### Firmware flashing
