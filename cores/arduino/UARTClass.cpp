@@ -72,8 +72,8 @@ UARTClass::begin(uint32_t dwBaudRate)
 void
 UARTClass::begin(uint32_t dwBaudRate, uint8_t _rx, uint8_t _tx)
 {
-  fpioa_set_function((int)MD_PIN_MAP(_rx), this->_rxfunc);
-  fpioa_set_function((int)MD_PIN_MAP(_tx), this->_txfunc);
+  fpioa_set_function(_rx, this->_rxfunc);
+  fpioa_set_function(_tx, this->_txfunc);
   uart_init(this->_uart);
   uart_configure(this->_uart, dwBaudRate, UART_BITWIDTH_8BIT, UART_STOP_1, UART_PARITY_NONE);
   this->_buff = new RingBuffer();
