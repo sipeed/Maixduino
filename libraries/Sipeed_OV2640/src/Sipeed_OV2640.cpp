@@ -778,7 +778,7 @@ int Sipeed_OV2640::dvpInit(uint32_t freq)
     if(0 == sensor_ov_detect()){//find ov sensor
         // printf("find ov sensor\n");
     }
-    else if(0 == sensro_gc_detect()){//find gc0328 sensor
+    else if(0 == sensor_gc_detect()){//find gc0328 sensor
         // printf("find gc3028\n");
     }
 
@@ -947,7 +947,7 @@ int Sipeed_OV2640::sensor_ov_detect()
     return 0;
 }
 
-int Sipeed_OV2640::sensro_gc_detect()
+int Sipeed_OV2640::sensor_gc_detect()
 {
     DCMI_PWDN_HIGH();//enable gc0328 要恢复 normal 工作模式，需将 PWDN pin 接入低电平即可，同时写入初始化寄存器即可
     DCMI_RESET_LOW();//reset gc3028

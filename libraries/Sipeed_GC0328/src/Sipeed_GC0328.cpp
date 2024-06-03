@@ -656,7 +656,7 @@ bool Sipeed_GC0328::reset(bool binocular)
 {
     if(dvpInit() != 0) // dvp hardware init
         return false;
-    if(sensro_gc_detect() != 0) // gc0328 camera detect
+    if(sensor_gc_detect() != 0) // gc0328 camera detect
         return false;
 
     if(binocular)
@@ -885,7 +885,7 @@ int Sipeed_GC0328::cambus_writeb(uint8_t slv_addr, uint8_t reg_addr, uint8_t reg
     return 0;
 }
 
-int Sipeed_GC0328::sensro_gc_detect()
+int Sipeed_GC0328::sensor_gc_detect()
 {
     DCMI_PWDN_HIGH();//enable gc0328 要恢复 normal 工作模式，需将 PWDN pin 接入低电平即可，同时写入初始化寄存器即可
     DCMI_RESET_LOW();//reset gc3028
