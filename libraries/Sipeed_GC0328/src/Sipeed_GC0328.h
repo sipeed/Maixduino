@@ -76,7 +76,7 @@ private:
     int cambus_readb(uint8_t slv_addr, uint8_t reg_addr, uint8_t *reg_data);
     int cambus_writeb(uint8_t slv_addr, uint8_t reg_addr, uint8_t reg_data);
 
-    int sensro_gc_detect();
+    int sensor_gc_detect();
 
     int gc0328_reset();
     int gc0328_read_reg(uint8_t reg_addr);

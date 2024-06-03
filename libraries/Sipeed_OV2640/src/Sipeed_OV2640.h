@@ -80,7 +80,7 @@ private:
     int cambus_writew2(uint8_t slv_addr, uint16_t reg_addr, uint16_t reg_data);
 
     int sensor_ov_detect();
-    int sensro_gc_detect();
+    int sensor_gc_detect();
 
     int ov2640_reset();
     int ov2640_read_reg(uint8_t reg_addr);
