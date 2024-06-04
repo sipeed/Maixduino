@@ -562,7 +562,7 @@ static const uint8_t gc0328_rgb565_regs[][2] = {
 Sipeed_GC0328::Sipeed_GC0328( framesize_t frameSize, pixformat_t pixFormat, TwoWire *i2c)
 :Camera(frameSize, pixFormat),
 _dataBuffer(NULL), _aiBuffer(NULL),
-_resetPoliraty(ACTIVE_HIGH), _pwdnPoliraty(ACTIVE_HIGH),
+_resetPolarity(ACTIVE_HIGH), _pwdnPolarity(ACTIVE_HIGH),
 _slaveAddr(0x00),
 _id(0),
 _i2c(i2c),
@@ -574,7 +574,7 @@ _debug(false)
 Sipeed_GC0328::Sipeed_GC0328(uint16_t width, uint16_t height, pixformat_t pixFormat, TwoWire *i2c)
 :Camera(width, height, pixFormat),
 _dataBuffer(NULL), _aiBuffer(NULL),
-_resetPoliraty(ACTIVE_HIGH), _pwdnPoliraty(ACTIVE_HIGH),
+_resetPolarity(ACTIVE_HIGH), _pwdnPolarity(ACTIVE_HIGH),
 _slaveAddr(0x00),
 _id(0),
 _i2c(i2c),

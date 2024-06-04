@@ -57,8 +57,8 @@ public:
 private:
     uint8_t* _dataBuffer;    // put RGB565 data
     uint8_t* _aiBuffer;      // put RGB888 data
-    uint8_t  _resetPoliraty; // reset poliraty flag
-    uint8_t  _pwdnPoliraty;  // PWDN poliraty flag
+    uint8_t  _resetPolarity; // reset polarity flag
+    uint8_t  _pwdnPolarity;  // PWDN polarity flag
     uint8_t  _slaveAddr;     // camera address
     uint8_t  _id;
     uint32_t _freq;
