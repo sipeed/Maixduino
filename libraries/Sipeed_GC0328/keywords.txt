@@ -18,7 +18,7 @@ setFrameSize         KEYWORD2
 run                  KEYWORD2
 id                   KEYWORD2
 snapshot             KEYWORD2
-setRotaion           KEYWORD2
+setRotation          KEYWORD2
 setInvert            KEYWORD2
 
 #######################################
