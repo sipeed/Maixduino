@@ -599,7 +599,7 @@ static const uint8_t saturation_regs[NUM_SATURATION_LEVELS + 1][5] = {
 Sipeed_OV2640::Sipeed_OV2640( framesize_t frameSize, pixformat_t pixFormat)
 :Camera(frameSize, pixFormat),
 _dataBuffer(NULL), _aiBuffer(NULL),
-_resetPoliraty(ACTIVE_HIGH), _pwdnPoliraty(ACTIVE_HIGH),
+_resetPolarity(ACTIVE_HIGH), _pwdnPolarity(ACTIVE_HIGH),
 _slaveAddr(0x00),
 _id(0)
 {
@@ -611,7 +611,7 @@ _id(0)
 Sipeed_OV2640::Sipeed_OV2640(uint16_t width, uint16_t height, pixformat_t pixFormat)
 :Camera(width, height, pixFormat),
 _dataBuffer(NULL), _aiBuffer(NULL),
-_resetPoliraty(ACTIVE_HIGH), _pwdnPoliraty(ACTIVE_HIGH),
+_resetPolarity(ACTIVE_HIGH), _pwdnPolarity(ACTIVE_HIGH),
 _slaveAddr(0x00),
 _id(0)
 {
@@ -877,7 +877,7 @@ int Sipeed_OV2640::sensor_ov_detect()
     if (_slaveAddr == 0) {
         /* Sensor has been held in reset,
            so the reset line is active low */
-        _resetPoliraty = ACTIVE_LOW;
+        _resetPolarity = ACTIVE_LOW;
 
         /* Pull the sensor out of the reset state,systick_sleep() */
         DCMI_RESET_HIGH();
@@ -886,14 +886,14 @@ int Sipeed_OV2640::sensor_ov_detect()
         /* Probe again to set the slave addr */
         _slaveAddr = cambus_scan();
         if (_slaveAddr == 0) {
-            _pwdnPoliraty = ACTIVE_LOW;
+            _pwdnPolarity = ACTIVE_LOW;
 
             DCMI_PWDN_HIGH();
             msleep(10);
 
             _slaveAddr = cambus_scan();
             if (_slaveAddr == 0) {
-                _resetPoliraty = ACTIVE_HIGH;
+                _resetPolarity = ACTIVE_HIGH;
 
                 DCMI_RESET_LOW();
                 msleep(10);
