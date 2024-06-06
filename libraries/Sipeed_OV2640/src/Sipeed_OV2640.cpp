@@ -738,7 +738,7 @@ void Sipeed_OV2640::setInvert(bool invert)
 
 int Sipeed_OV2640::dvpInit(uint32_t freq)
 {
-    // just support RGB565 and YUV442 on k210
+    // just support RGB565 and YUV422 on k210
     configASSERT(_pixFormat==PIXFORMAT_RGB565 || _pixFormat==PIXFORMAT_YUV422);
     _freq  = freq;
 
