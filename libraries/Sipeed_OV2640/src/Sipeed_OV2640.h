@@ -56,6 +56,8 @@ public:
     virtual uint8_t* getRGB888(){ return _aiBuffer; };
     virtual void setRotation(uint8_t rotation);
     virtual void setInvert(bool invert);
+    void flip(bool horiz, bool vert);
+
 
 private:
     uint8_t* _dataBuffer;    // put RGB565 data
@@ -103,6 +105,8 @@ private:
     int ov2640_get_rgb_gain_db(float *r_gain_db, float *g_gain_db, float *b_gain_db);
     int ov2640_set_hmirror(int enable);
     int ov2640_set_vflip(int enable);
+    int ov2640_set_flip(bool horiz, bool vert);
+
     int sensor_snapshot( );
     int reverse_u32pixel(uint32_t* addr,uint32_t length);
 

@@ -78,6 +78,7 @@ public:
     virtual uint8_t* getRGB888(){ return nullptr; };
     virtual void setRotation(uint8_t rotation) = 0;
     virtual void setInvert(bool invert) = 0;
+    virtual void flip(bool horiz, bool vert);
 
 
     virtual int width(){ return _width; }
