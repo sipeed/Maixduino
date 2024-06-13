@@ -1488,6 +1488,38 @@ int Sipeed_OV2640::ov2640_set_vflip(int enable)
     return ret;
 }
 
+
+int Sipeed_OV2640::ov2640_set_flip(bool horiz, bool vert) 
+{
+	uint8_t reg;
+	int ret = cambus_readb(_slaveAddr, BANK_SEL, &reg);
+	ret |= cambus_writeb(_slaveAddr, BANK_SEL, reg | BANK_SEL_SENSOR);
+	ret |= cambus_readb(_slaveAddr, REG04, &reg);
+
+	if (horiz) {
+		reg |= REG04_HFLIP_IMG;
+		reg |= REG04_HREF_EN;
+	} 
+	else {
+		reg &= ~REG04_HFLIP_IMG;
+		reg &= ~REG04_HREF_EN;
+	}
+
+	if (vert) {
+		reg |= REG04_VFLIP_IMG;
+		reg |= REG04_VREF_EN;
+	} 
+	else {
+		reg &= ~REG04_VFLIP_IMG;
+		reg &= ~REG04_VREF_EN;
+	}
+
+	ret |= cambus_writeb(_slaveAddr, REG04, reg);
+
+	return ret;
+}
+
+
 int Sipeed_OV2640::reverse_u32pixel(uint32_t* addr,uint32_t length)
 {
   if(NULL == addr)
@@ -1522,3 +1554,6 @@ int Sipeed_OV2640::sensor_snapshot( )
     return 0;
 }
 
+int Sipeed_OV2640::flip( bool horiz, bool vert ) {
+	return ov2640_set_flip(horiz, vert);
+}
