@@ -5,7 +5,7 @@
 #include <stdbool.h>
 
 typedef enum {
-    PIXFORMAT_INVLAID = 0,
+    PIXFORMAT_INVALID = 0,
     PIXFORMAT_BAYER,     // RAW
     PIXFORMAT_RGB565,    // RGB565
     PIXFORMAT_YUV422,    // YUV422
