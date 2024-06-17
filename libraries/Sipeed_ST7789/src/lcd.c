@@ -213,8 +213,6 @@ void lcd_draw_rectangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint
     tft_write_word(data_buf, ((y2 - y1 + 1) * width + 1) / 2);
 }
 
-#define SWAP_16(x) ((x >> 8 & 0xff) | (x << 8))
-
 void lcd_draw_picture(uint16_t x1, uint16_t y1, uint16_t width, uint16_t height, uint16_t *ptr)
 {
     uint32_t i;
@@ -222,8 +220,8 @@ void lcd_draw_picture(uint16_t x1, uint16_t y1, uint16_t width, uint16_t height,
     lcd_set_area(x1, y1, x1 + width - 1, y1 + height - 1);
     for (i = 0; i < LCD_MAX_PIXELS; i += 2)
     {
-        g_lcd_display_buff[i] = SWAP_16(*(p + 1));
-        g_lcd_display_buff[i + 1] = SWAP_16(*(p));
+        g_lcd_display_buff[i] = *(p + 1);
+        g_lcd_display_buff[i + 1] = *(p);
         p += 2;
     }
     tft_write_word((uint32_t*)g_lcd_display_buff, width * height / 2);
