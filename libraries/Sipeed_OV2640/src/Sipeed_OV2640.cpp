@@ -537,7 +537,7 @@ static const uint8_t yuv422_regs[][2] = {
         { BANK_SEL, BANK_SEL_DSP },
         { RESET,   RESET_DVP},
         { 0xD7,     0x01 },
-        { IMAGE_MODE, IMAGE_MODE_YUV422 },
+        { IMAGE_MODE, IMAGE_MODE_YUV422 | 0b00000001 },
         { 0xE1,     0x67 },
         { RESET,    0x00 },
         {0, 0},
