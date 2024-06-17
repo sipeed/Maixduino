@@ -1530,8 +1530,8 @@ int Sipeed_OV2640::reverse_u32pixel(uint32_t* addr,uint32_t length)
   for(;addr<pend;addr++)
   {
 	  data = *(addr);
-	  *(addr) = ((data & 0x000000FF) << 24) | ((data & 0x0000FF00) << 8) | 
-                ((data & 0x00FF0000) >> 8) | ((data & 0xFF000000) >> 24) ;
+      *(addr) = ((data & 0x0000FFFF) << 16) | ((data & 0xFFFF0000) >> 16);
+
   }  //1.7ms
   
   
